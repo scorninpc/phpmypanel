@@ -11,6 +11,87 @@
 		<title>Hello, world!</title>
 	</head>
 	<body>
+		<div class="page">
+
+			{* header *}
+			<header class="navbar navbar-expand-md d-print-none">
+				<div class="container-xl">
+
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+					{* logos *}
+					{* <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+						<a href="/painel">
+							<img src="{$basePath}/assets/main/images/marca-interna-dark.png" width="110" height="32" alt="NOME" class="navbar-brand-image hide-theme-light">
+							<img src="{$basePath}/assets/main/images/marca-interna.png" width="110" height="32" alt="NOME" class="navbar-brand-image hide-theme-dark">
+						</a>
+					</h1> *}
+
+					<div class="navbar-nav flex-row order-md-last">
+						
+						<div class="d-none d-md-flex">
+							<a href="#theme=dark" class="nav-link px-0 " data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Habilitar modo escuro" data-bs-original-title="Habilitar modo escuro"><i class="fas fa-moon"></i></a>
+							<a href="#theme=light" class="nav-link px-0 " data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Habilitar modo claro" data-bs-original-title="Habilitar modo claro"><i class="fas fa-sun"></i></a>
+						</div>
+
+						<div class="nav-item dropdown nav-item-user">
+							<a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu" aria-expanded="false">
+								<span class="avatar avatar-sm" style="background-image: url(/files/general/bbc859c86887754d906c934ea866b081.jpeg)"></span>
+								<div class="d-none d-xl-block ps-2">
+									<div class="nome">Bruno</div>
+									<div class="mt-1 small text-muted">--</div>
+								</div>
+							</a>
+							<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+														<a href="/painel/usuarios/form/idusuario/1" class="dropdown-item">Meu Perfil</a>
+								<a href="/painel/usuarios/logout" class="dropdown-item">Sair</a>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="collapse navbar-collapse" id="navbar-menu">
+						<div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
+							<ul class="navbar-nav">
+								
+								<li class="nav-item">
+									<a class="nav-link active" href="/painel">
+										<span class="nav-link-icon d-md-none d-lg-inline-block">
+											<i class="fas fa-tachometer-alt"></i>
+										</span>
+										<span class="nav-link-title">
+											Dashboard
+										</span>
+									</a>
+								</li>
+											
+								<li class="nav-item dropdown ">
+									<a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+										<span class="nav-link-icon d-md-none d-lg-inline-block">
+											<i class="fas fa-dollar-sign"></i>
+										</span>
+										<span class="nav-link-title">
+											Finance
+										</span>
+									</a>
+									<div class="dropdown-menu" data-bs-popper="static">
+										<a href="/painel/importacao/form" class="dropdown-item"><span class="nav-link-title">Importação </span></a>
+										<a href="/painel/importacao/form" class="dropdown-item"><span class="nav-link-title">Importação </span></a>
+																		
+									</div>
+								</li>
+								
+							</ul>
+						</div>
+					</div>
+						
+				</div>
+			</header>
+		</div>
+
+
 		This is a application/modules/Main/Views/layouts/template.tpl
 		<hr>
 		{$layout_content}
