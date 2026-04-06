@@ -3,7 +3,7 @@
     "type": "project",
     "description": "Um painel administrativo em branco em PHP ",
     "keywords": ["slim","framework","slim 4","tabler","mvc","smarty","skel","php","admin","panel"],
-    "license": "AGPLv3",
+    "license": "AGPL-3.0",
     "authors": [
         {
             "name": "Bruno Pitteli Gonçalves",

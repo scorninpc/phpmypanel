@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.5.6, created on 2026-04-06 02:38:17
+/* Smarty version 4.5.6, created on 2026-04-06 02:52:14
   from '/var/www/html/phpmypanel/application/modules/Main/Views/index/index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.5.6',
-  'unifunc' => 'content_69d31c9996e3c9_93570636',
+  'unifunc' => 'content_69d31fded2bba7_66138052',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_69d31c9996e3c9_93570636 (Smarty_Internal_Template $_smarty_tpl) {
+function content_69d31fded2bba7_66138052 (Smarty_Internal_Template $_smarty_tpl) {
 ?>This is a application/modules/Main/Views/index/index.tpl
 <br>
 This template file are created with application/modules/Main/Views/CONTROLLER/ACTION.tpl 

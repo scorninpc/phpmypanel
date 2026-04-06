@@ -19,4 +19,12 @@ class Bootstrap {
 	{
 		// verify authentication and another stuffs
 	}
+
+	public function initView()
+	{
+		$view = \Slim\Mvc\Factory::get("view");
+		$config = \Slim\Mvc\Factory::get("config");
+
+		$view->basePath = $config['application']['basepath'];
+	}
 }
