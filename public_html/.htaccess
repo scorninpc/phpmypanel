@@ -1,0 +1,14 @@
+
+# Configurações
+Options -Indexes
+Options +FollowSymLinks
+
+# Rewrite
+RewriteEngine On
+
+# Basepath
+RewriteBase /phpmypanel/public_html
+
+# Rewrite do slim
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [QSA,L]
