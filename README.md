@@ -14,13 +14,13 @@ A ideia é só prover um painel com login e cadastro, e alguns helpers para cria
 3. Configure o `public_html/.htaccess` modificando o `RewriteBase` para `/seuprojeto/public_html`
 4. Configure o `application/condifs/config.development.php` mudando `application.basepath` para `/seuprojeto/public_html`
 5. Dê permissão 777 recursivo para `application/tmp`
-6. Baixe as dependencias PHP com `compose update`
+6. Baixe as dependencias PHP com `composer update`
 7. Acesse seu projeto pelo navegador `http://localhost/seuprojeto/public_html`
 
 ## Docker
 1. Baixe o docker
 2. Configure qual banco quer usar em `docker/docker-compose.yaml` descomentando o bloco necessário
-3. Baixe as dependencias PHP com `compose update`
+3. Baixe as dependencias PHP com `composer update`
 4. Inicialize o `docker/docker-compose.yaml`
 5. Acesse seu projeto pelo navegador `http://localhost:8875/`
 
