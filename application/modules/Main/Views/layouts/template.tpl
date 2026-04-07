@@ -47,7 +47,7 @@
 								</div>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-														<a href="/painel/usuarios/form/idusuario/1" class="dropdown-item">Meu Perfil</a>
+								<a href="/painel/usuarios/form/idusuario/1" class="dropdown-item">Meu Perfil</a>
 								<a href="/painel/usuarios/logout" class="dropdown-item">Sair</a>
 							</div>
 
@@ -78,18 +78,14 @@
 									</a>
 									<div class="dropdown-menu" data-bs-popper="static">
 										<a class="dropdown-item" href="{$basePath}/main/index/list">List example</a>
-										<a class="dropdown-item" href="{$basePath}/main/index/list">Form example</a>
+										<a class="dropdown-item" href="{$basePath}/main/index/form">Form example</a>
 									</div>
 								</li>
 
 								<li class="nav-item">
-									<a class="nav-link active" href="{$basePath}/">
-										<span class="nav-link-icon d-md-none d-lg-inline-block">
-											<i class="fa-solid fa-users"></i>
-										</span>
-										<span class="nav-link-title">
-											Users
-										</span>
+									<a class="nav-link active" href="{$basePath}/main/users">
+										<span class="nav-link-icon d-md-none d-lg-inline-block"><i class="fa-solid fa-users"></i></span>
+										<span class="nav-link-title">Users</span>
 									</a>
 								</li>
 								

@@ -28,3 +28,13 @@ function setTheme()
 		$('html').attr("data-bs-theme", "light");
 	}
 }
+
+/**
+ * confirmação de remoção
+ */
+$('body').on('click', '.pmp-delete-confirm', function(e) {
+	if(!confirm('Confirm delete the record?')) {
+		e.preventDefault();
+		return false;
+	}
+});

@@ -20,6 +20,9 @@ class Bootstrap {
 		// verify authentication and another stuffs
 	}
 
+	/**
+	 * inicializa as variaveis do view
+	 */
 	public function initView()
 	{
 		$view = \Slim\Mvc\Factory::get("view");

@@ -24,12 +24,7 @@ return [
 
 	'db' => [
 		'enabled' => TRUE,
-		'driver' => 'pgsql',
-		'host' => "localhost",
-		'username' => "postgres",
-		'password' => "",
-		'database' => "slim_skel",
-		'charset' => 'utf8',
-		'collation' => 'utf8_unicode_ci',
+		'driver' => 'sqlite',
+		'database' => dirname(__FILE__) . "/../tmp/database.sqlite3",
 	],
 ];
