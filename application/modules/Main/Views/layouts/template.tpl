@@ -5,8 +5,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
+		<link rel="stylesheet" href="{$basePath}/assets/main/fonts/font-awesome/css/all.min.css" >
 		<link rel="stylesheet" href="{$basePath}/assets/main/css/tabler.min.css">
 		<link rel="stylesheet" href="{$basePath}/assets/main/css/tabler-themes.min.css">
+		<link rel="stylesheet" href="{$basePath}/assets/main/css/custom.css">
 
 		<title>Hello, world!</title>
 	</head>
@@ -57,7 +59,7 @@
 							<ul class="navbar-nav">
 								
 								<li class="nav-item">
-									<a class="nav-link active" href="/painel">
+									<a class="nav-link active" href="{$basePath}/">
 										<span class="nav-link-icon d-md-none d-lg-inline-block">
 											<i class="fas fa-tachometer-alt"></i>
 										</span>
@@ -66,21 +68,29 @@
 										</span>
 									</a>
 								</li>
-											
-								<li class="nav-item dropdown ">
-									<a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+								
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle show" href="#navbar-form" data-bs-toggle="dropdown" data-bs-auto-close="outside">
 										<span class="nav-link-icon d-md-none d-lg-inline-block">
-											<i class="fas fa-dollar-sign"></i>
+											<i class="fa-solid fa-eye"></i>
 										</span>
-										<span class="nav-link-title">
-											Finance
-										</span>
+										<span class="nav-link-title">Examples</span>
 									</a>
 									<div class="dropdown-menu" data-bs-popper="static">
-										<a href="/painel/importacao/form" class="dropdown-item"><span class="nav-link-title">Importação </span></a>
-										<a href="/painel/importacao/form" class="dropdown-item"><span class="nav-link-title">Importação </span></a>
-																		
+										<a class="dropdown-item" href="{$basePath}/main/index/list">List example</a>
+										<a class="dropdown-item" href="{$basePath}/main/index/list">Form example</a>
 									</div>
+								</li>
+
+								<li class="nav-item">
+									<a class="nav-link active" href="{$basePath}/">
+										<span class="nav-link-icon d-md-none d-lg-inline-block">
+											<i class="fa-solid fa-users"></i>
+										</span>
+										<span class="nav-link-title">
+											Users
+										</span>
+									</a>
 								</li>
 								
 							</ul>
@@ -89,12 +99,13 @@
 						
 				</div>
 			</header>
+
+			{* content wrapper *}
+			<div class="page-wrapper">
+				{$layout_content}
+			</div>
 		</div>
 
-
-		This is a application/modules/Main/Views/layouts/template.tpl
-		<hr>
-		{$layout_content}
 
 		<script src="{$basePath}/assets/main/js/tabler.min.js"></script>
 	</body>

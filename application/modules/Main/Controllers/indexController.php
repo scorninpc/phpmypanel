@@ -10,9 +10,12 @@ class indexController extends \Slim\Mvc\Controller
 		
 	}
 
-	public function helloAction()
+	public function listAction()
 	{
-		$this->view->variable1 = "Hello";
-		$this->view->variable2 = "World";
+		
+	}
+	public function formAction()
+	{
+		
 	}
 }
