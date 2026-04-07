@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme-radius="0.5" data-bs-theme="light" data-bs-theme-font="sans-serif" data-bs-theme-base="neutral" data-bs-theme-primary="azure">
+<html lang="en" data-bs-theme-radius="0.5" data-bs-theme="{$smarty.cookies.theme|default:"light"}" data-bs-theme-font="sans-serif" data-bs-theme-base="neutral" data-bs-theme-primary="azure">
 	<head>
 		
 		<meta charset="utf-8">
@@ -108,5 +108,9 @@
 
 
 		<script src="{$basePath}/assets/main/js/tabler.min.js"></script>
+		<script>var bootstrap = tabler;</script>
+		<script src="{$basePath}/assets/main/js/jquery-4.0.0.min.js"></script>
+		<script src="{$basePath}/assets/main/js/helpers.js"></script>
+		<script src="{$basePath}/assets/main/js/custom.js"></script>
 	</body>
 </html>
