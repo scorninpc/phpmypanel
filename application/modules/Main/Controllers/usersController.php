@@ -3,7 +3,6 @@
 namespace Application\Main\Controllers;
 
 use Application\Main\Helpers;
-use Symfony\Component\Console\Helper\Helper;
 
 /**
  * controller for users
@@ -121,5 +120,34 @@ class usersController extends \Slim\Mvc\Controller
 	{
 		// desabilita o template
 		$this->view->disableTemplate();
+
+		// verifica se tem dados no post
+		if($this->getRequest()->isPost()) {
+
+			// recupera os dados do form
+			$email = strtolower($this->getParam("email", ""));
+			$password = $this->getParam("password", "");
+
+			// recupera o email do banco
+			$model = new \Application\Main\Models\Users();
+			$user = $model->where("email", $email)->first();
+			if(!$user) {
+				Helpers\Redirect::back();
+			}
+
+			// verifica se a senha está correta
+			$check = Helpers\Crypto::check($password, $user['password']);
+			if(!$check) {
+				Helpers\Redirect::back();
+			}
+
+			// efetuou o login ok
+			$session = new Helpers\Sessions("login");
+			$session->iduser = $user['iduser'];
+			$session->email = $user['email'];
+
+			// redireciona de volta
+			Helpers\Redirect::back();
+		}
 	}
 }
