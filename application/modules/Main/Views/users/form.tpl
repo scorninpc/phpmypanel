@@ -1,5 +1,5 @@
 
-<form method="post" action="{$basePath}/main/users/form{if $row}/iduser/{$row['iduser']|escape}{/if}">
+<form method="post" action="{$this->url(['controller'=>"users", 'action'=>"form", 'iduser'=>$row['iduser']|default:0], "default")}">
 
 	{* page header *}
 	<div class="page-header d-print-none">

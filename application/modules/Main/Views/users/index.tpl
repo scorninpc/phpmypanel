@@ -49,7 +49,7 @@
 							<tr>
 								<td>{$row['email']|escape}</td>
 								<td>
-									<a href="{$basePath}/main/users/form/iduser/{$row['iduser']|escape}">Edit</a>
+									<a href="{$this->url(['controller'=>"users", 'action'=>"form", 'iduser'=>$row['iduser']], "default")}">Edit</a>
 								</td>
 							</tr>
 							{/foreach}

@@ -59,7 +59,7 @@ class usersController extends \Slim\Mvc\Controller
 		$model = new \Application\Main\Models\Users();
 
 		// verify if this is a post request
-		if($this->getRequest()->getMethod() == "POST") {
+		if($this->getRequest()->isPost()) {
 
 			// 
 			$data = [

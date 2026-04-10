@@ -59,7 +59,7 @@
 							<ul class="navbar-nav">
 								
 								<li class="nav-item">
-									<a class="nav-link active" href="{$basePath}/">
+									<a class="nav-link active" href="{$this->url([], "default")}">
 										<span class="nav-link-icon d-md-none d-lg-inline-block">
 											<i class="fas fa-tachometer-alt"></i>
 										</span>
@@ -77,13 +77,13 @@
 										<span class="nav-link-title">Examples</span>
 									</a>
 									<div class="dropdown-menu" data-bs-popper="static">
-										<a class="dropdown-item" href="{$basePath}/main/index/list">List example</a>
-										<a class="dropdown-item" href="{$basePath}/main/index/form">Form example</a>
+										<a class="dropdown-item" href="{$this->url(['action' =>"list"], "default")}">List example</a>
+										<a class="dropdown-item" href="{$this->url(['action' =>"form"], "default")}">Form example</a>
 									</div>
 								</li>
 
 								<li class="nav-item">
-									<a class="nav-link active" href="{$basePath}/main/users">
+									<a class="nav-link active" href="{$this->url(['controller' =>"users"], "default")}">
 										<span class="nav-link-icon d-md-none d-lg-inline-block"><i class="fa-solid fa-users"></i></span>
 										<span class="nav-link-title">Users</span>
 									</a>
