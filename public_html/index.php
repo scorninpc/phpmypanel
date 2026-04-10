@@ -57,6 +57,9 @@ $container->set("routes", $routes);
 foreach($routes as $name => $route) {
 	$app->map($route['type'], $route['pattern'], function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response, $args) use ($config) {
 
+			// store request and response
+			\Application\Main\Helpers\Request::getInstance($request, $args);
+
 			// Call MVC bootstrap
 			$bootstrap = new \Slim\Mvc\Bootstrap($this, $request, $response, $args, $config);
 

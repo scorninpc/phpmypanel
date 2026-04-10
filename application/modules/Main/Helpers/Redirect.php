@@ -5,12 +5,27 @@ namespace Application\Main\Helpers;
 class Redirect
 {
 	/**
-	 * do the redirect
+	 * redireciona a partir da rota
+	 */
+	static public function urlFor($route, $params=[])
+	{
+		$request = \Slim\Mvc\Factory::get("request");
+		
+		$routeContext = $request->getRouteContext();
+		$parser = $routeContext->getRouteParser();
+
+		self::go($parser->urlFor($route, $params));
+	}
+
+	/**
+	 * efetua o redirect
+	 * 
+	 * @param string $url URL para dar o redirect
 	 */
 	static public function go($url)
 	{
 		$config = \Slim\Mvc\Factory::get("config");
-
+		
 		// Verifica o http
 		if(strpos($url, "http://") !== FALSE) {
 			header("Location: " . $url);
@@ -45,11 +60,11 @@ class Redirect
 	}
 
 	/**
-	 * go to back
+	 * efetua o redirect para a tela anterior
 	 */
 	static public function back()
 	{
-		Redirect::go($_SERVER['HTTP_REFERER']??"");
+		\Application\Main\Helpers\Redirect::go($_SERVER['HTTP_REFERER']??"");
 	}
 
 }
