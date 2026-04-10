@@ -14,6 +14,9 @@ use Symfony\Component\Console\Helper\Helper;
 class usersController extends \Slim\Mvc\Controller
 {
 
+	/**
+	 * faz a listagem dos registros
+	 */
 	public function indexAction()
 	{
 		// Create the model
@@ -26,6 +29,9 @@ class usersController extends \Slim\Mvc\Controller
 		$this->view->rows = $rows;
 	}
 
+	/**
+	 * remove um registro
+	 */
 	public function deleteAction()
 	{
 		$iduser = intval($this->getParam("iduser", 0));
@@ -51,6 +57,9 @@ class usersController extends \Slim\Mvc\Controller
 		Helpers\Redirect::go("/main/users/index");
 	}
 
+	/**
+	 * formulario do crud
+	 */
 	public function formAction()
 	{
 		$iduser = intval($this->getParam("iduser", 0));
@@ -103,5 +112,14 @@ class usersController extends \Slim\Mvc\Controller
 			// Assign variables
 			$this->view->row = $row;
 		}
+	}
+
+	/**
+	 * efetua o login
+	 */
+	public function loginAction()
+	{
+		// desabilita o template
+		$this->view->disableTemplate();
 	}
 }
