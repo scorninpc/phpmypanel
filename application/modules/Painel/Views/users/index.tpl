@@ -11,7 +11,7 @@
 			<div class="col-auto ms-auto d-print-none">
 				<div class="btn-list">
 
-					<a href="{$basePath}/main/users/form" class="btn btn-primary btn btn-primary btn-icon px-0 px-sm-3">
+					<a href="{$this->url(['controller'=>"users", 'action'=>"form"], "painel")}" class="btn btn-primary btn btn-primary btn-icon px-0 px-sm-3">
 						<i class="fa-solid fa-plus"></i>
 						<span class="d-none d-sm-inline-block ps-1">Create new user</span>
 					</a>
@@ -49,7 +49,7 @@
 							<tr>
 								<td>{$row['email']|escape}</td>
 								<td>
-									<a href="{$this->url(['controller'=>"users", 'action'=>"form", 'iduser'=>$row['iduser']], "default")}">Edit</a>
+									<a href="{$this->url(['controller'=>"users", 'action'=>"form", 'iduser'=>$row['iduser']], "painel")}">Edit</a>
 								</td>
 							</tr>
 							{/foreach}

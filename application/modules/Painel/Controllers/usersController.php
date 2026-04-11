@@ -1,8 +1,8 @@
 <?php
 
-namespace Application\Main\Controllers;
+namespace Application\Painel\Controllers;
 
-use Application\Main\Helpers;
+use Application\Painel\Helpers;
 
 /**
  * controller for users
@@ -19,7 +19,7 @@ class usersController extends \Slim\Mvc\Controller
 	public function indexAction()
 	{
 		// Create the model
-		$model = new \Application\Main\Models\Users();
+		$model = new \Application\Painel\Models\Users();
 		
 		// Fetch user
 		$rows =  $model->get();
@@ -36,7 +36,7 @@ class usersController extends \Slim\Mvc\Controller
 		$iduser = intval($this->getParam("iduser", 0));
 
 		// Create the model
-		$model = new \Application\Main\Models\Users();
+		$model = new \Application\Painel\Models\Users();
 		
 		// Fetch user
 		$row =  $model->where("iduser", $iduser)->first();
@@ -48,14 +48,14 @@ class usersController extends \Slim\Mvc\Controller
 		try {
 			$model->where("iduser", $iduser)->delete();
 
-			Helpers\Messages::success("User deleted!");
+			\Application\Main\Helpers\Messages::success("User deleted!");
 		}
 		catch(\Exception $e) {
 			throw new \Exception("Cannot remove the record");
 		}
 
 		// return
-		Helpers\Redirect::go("/main/users/index");
+		\Application\Main\Helpers\Redirect::go("/painel/users/index");
 	}
 
 	/**
@@ -66,7 +66,7 @@ class usersController extends \Slim\Mvc\Controller
 		$iduser = intval($this->getParam("iduser", 0));
 		
 		// Create the model
-		$model = new \Application\Main\Models\Users();
+		$model = new \Application\Painel\Models\Users();
 
 		// verify if this is a post request
 		if($this->getRequest()->isPost()) {
@@ -79,7 +79,7 @@ class usersController extends \Slim\Mvc\Controller
 
 			// 
 			if(strlen($data['password']) > 0) {
-				$data['password'] = Helpers\Crypto::hash($data['password']);
+				$data['password'] = \Application\Main\Helpers\Crypto::hash($data['password']);
 			}
 			else {
 				unset($data['password']);
@@ -90,12 +90,12 @@ class usersController extends \Slim\Mvc\Controller
 				if($iduser > 0) {
 					$model->where("iduser", $iduser)->update($data);
 
-					Helpers\Messages::success("User updated!");
+					\Application\Main\Helpers\Messages::success("User updated!");
 				}
 				else {
 					$model->insert($data);
 
-					Helpers\Messages::success("User inserted!");
+					\Application\Main\Helpers\Messages::success("User inserted!");
 				}
 			}
 			catch(\Exception $e) {
@@ -103,7 +103,7 @@ class usersController extends \Slim\Mvc\Controller
 			}
 
 			// return
-			Helpers\Redirect::go("/main/users/index");
+			\Application\Main\Helpers\Redirect::go("/painel/users/index");
 		}
 		
 		// verify if has a user
@@ -135,30 +135,30 @@ class usersController extends \Slim\Mvc\Controller
 			$password = $this->getParam("password", "");
 
 			// recupera o email do banco
-			$model = new \Application\Main\Models\Users();
+			$model = new \Application\Painel\Models\Users();
 			$user = $model->where("email", $email)->first();
 			if(!$user) {
-				Helpers\Messages::error("User/Password not match");
-				Helpers\Redirect::back();
+				\Application\Main\Helpers\Messages::error("User/Password not match");
+				\Application\Main\Helpers\Redirect::back();
 			}
 
 			// verifica se a senha está correta
-			$check = Helpers\Crypto::check($password, $user['password']);
+			$check = \Application\Main\Helpers\Crypto::check($password, $user['password']);
 			if(!$check) {
-				Helpers\Messages::error("User/Password not match");
-				Helpers\Redirect::back();
+				\Application\Main\Helpers\Messages::error("User/Password not match");
+				\Application\Main\Helpers\Redirect::back();
 			}
 
 			// efetuou o login ok
-			$session = new Helpers\Sessions("login");
+			$session = new \Application\Main\Helpers\Sessions("login");
 			$session->iduser = $user['iduser'];
 			$session->email = $user['email'];
 
 			// 
-			Helpers\Messages::success("Welcome back!");
+			\Application\Main\Helpers\Messages::success("Welcome back!");
 
 			// redireciona de volta
-			Helpers\Redirect::back();
+			\Application\Main\Helpers\Redirect::back();
 		}
 	}
 
@@ -167,10 +167,10 @@ class usersController extends \Slim\Mvc\Controller
 	 */
 	public function logoutAction()
 	{
-		$session = new Helpers\Sessions("login");
+		$session = new \Application\Main\Helpers\Sessions("login");
 		$session->destroy();
 
 		// redireciona de volta
-		Helpers\Redirect::back();
+		\Application\Main\Helpers\Redirect::back();
 	}
 }

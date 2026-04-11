@@ -1,5 +1,5 @@
 
-<form method="get" action="#">
+<form method="POST" action="{$this->url(['controller'=>"index", 'action'=>"list"], "painel")}">
 
 	{* page header *}
 	<div class="page-header d-print-none">
@@ -14,12 +14,12 @@
 				<div class="col-auto ms-auto d-print-none">
 					<div class="btn-list">
 
-						<a href="{$basePath}/main/index/list" class="btn btn-red btn-icon px-0 px-sm-3 me-0 me-sm-3">
+						<a href="{$this->url(['controller'=>"index", 'action'=>"list"], "painel")}" class="btn btn-red btn-icon px-0 px-sm-3 me-0 me-sm-3">
 							<i class="fa-solid fa-trash"></i>
 							<span class="d-none d-sm-inline-block ps-1">Remove</span>
 						</a>
 
-						<a href="{$basePath}/main/index/list" class="btn btn-secondary btn-icon px-0 px-sm-3">
+						<a href="{$this->url(['controller'=>"index", 'action'=>"list"], "painel")}" class="btn btn-secondary btn-icon px-0 px-sm-3">
 							<i class="fa-solid fa-list-ul"></i>
 							<span class="d-none d-sm-inline-block ps-1">Back to list</span>
 						</a>

@@ -11,7 +11,7 @@
 			<div class="col-auto ms-auto d-print-none">
 				<div class="btn-list">
 
-					<a href="{$basePath}/main/index/form" class="btn btn-primary btn btn-primary btn-icon px-0 px-sm-3">
+					<a href="{$this->url(['controller'=>"index", 'action'=>"form"], "painel")}" class="btn btn-primary btn btn-primary btn-icon px-0 px-sm-3">
 						<i class="fa-solid fa-plus"></i>
 						<span class="d-none d-sm-inline-block ps-1">Create new data</span>
 					</a>
@@ -48,7 +48,7 @@
 								<td class="text-secondary"><a href="#" class="text-reset">mlebarree5@unc.edu</a></td>
 								<td class="text-secondary">User</td>
 								<td>
-									<a href="{$basePath}/main/index/form">Edit</a>
+									<a href="{$this->url(['controller'=>"index", 'action'=>"form"], "painel")}">Edit</a>
 								</td>
 							</tr>
 							<tr>
@@ -57,7 +57,7 @@
 								<td class="text-secondary"><a href="#" class="text-reset">epoetz6@free.fr</a></td>
 								<td class="text-secondary">User</td>
 								<td>
-									<a href="{$basePath}/main/index/form">Edit</a>
+									<a href="{$this->url(['controller'=>"index", 'action'=>"form"], "painel")}">Edit</a>
 								</td>
 							</tr>
 							<tr>
@@ -66,7 +66,7 @@
 								<td class="text-secondary"><a href="#" class="text-reset">kskingley7@columbia.edu</a></td>
 								<td class="text-secondary">User</td>
 								<td>
-									<a href="{$basePath}/main/index/form">Edit</a>
+									<a href="{$this->url(['controller'=>"index", 'action'=>"form"], "painel")}">Edit</a>
 								</td>
 							</tr>
 							<tr>
@@ -75,7 +75,7 @@
 								<td class="text-secondary"><a href="#" class="text-reset">ccharlwood8@nifty.com</a></td>
 								<td class="text-secondary">Owner</td>
 								<td>
-									<a href="{$basePath}/main/index/form">Edit</a>
+									<a href="{$this->url(['controller'=>"index", 'action'=>"form"], "painel")}">Edit</a>
 								</td>
 							</tr>
 							<tr>
@@ -84,7 +84,7 @@
 								<td class="text-secondary"><a href="#" class="text-reset">hshelper9@woothemes.com</a></td>
 								<td class="text-secondary">User</td>
 								<td>
-									<a href="{$basePath}/main/index/form">Edit</a>
+									<a href="{$this->url(['controller'=>"index", 'action'=>"form"], "painel")}">Edit</a>
 								</td>
 							</tr>
 						</tbody>

@@ -7,15 +7,7 @@ class indexController extends \Slim\Mvc\Controller
 
 	public function indexAction()
 	{
-		
-	}
-
-	public function listAction()
-	{
-		
-	}
-	public function formAction()
-	{
-		
+		// redireciona para o painel
+		\Application\Main\Helpers\Redirect::go("/painel");
 	}
 }

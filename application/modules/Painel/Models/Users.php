@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Main\Models;
+namespace Application\Painel\Models;
 
 /**
  * model dos usuarios

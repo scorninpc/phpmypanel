@@ -1,5 +1,5 @@
 
-<form method="post" action="{$this->url(['controller'=>"users", 'action'=>"form", 'iduser'=>$row['iduser']|default:0], "default")}">
+<form method="post" action="{$this->url(['controller'=>"users", 'action'=>"form", 'iduser'=>$row['iduser']|default:0], "painel")}">
 
 	{* page header *}
 	<div class="page-header d-print-none">
@@ -19,13 +19,13 @@
 					<div class="btn-list">
 
 						{if $row}
-						<a href="{$basePath}/main/users/delete/iduser/{$row['iduser']|escape}" class="btn btn-red btn-icon px-0 px-sm-3 me-0 me-sm-3 pmp-delete-confirm">
+						<a href="{$this->url(['controller'=>"users", 'action'=>"delete", 'iduser'=>$row['iduser']|default:0], "painel")}" class="btn btn-red btn-icon px-0 px-sm-3 me-0 me-sm-3 pmp-delete-confirm">
 							<i class="fa-solid fa-trash"></i>
 							<span class="d-none d-sm-inline-block ps-1">Remove</span>
 						</a>
 						{/if}
 
-						<a href="{$basePath}/main/users" class="btn btn-secondary btn-icon px-0 px-sm-3">
+						<a href="{$this->url(['controller'=>"users", 'action'=>"index"], "painel")}" class="btn btn-secondary btn-icon px-0 px-sm-3">
 							<i class="fa-solid fa-list-ul"></i>
 							<span class="d-none d-sm-inline-block ps-1">Back to list</span>
 						</a>
