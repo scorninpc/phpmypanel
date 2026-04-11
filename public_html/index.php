@@ -32,7 +32,7 @@ $app->setBasePath($config['application']['basepath']);
 $container->set("view", function($container) use ($config) {
 
 	// Create smarty view
-	$view = new \Slim\Views\Smarty($config['smarty']);
+	$view = new \Application\Main\Helpers\Smarty($config['smarty']);
 
 	// Return view object
 	return $view;

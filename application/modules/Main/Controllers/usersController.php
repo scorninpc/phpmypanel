@@ -47,6 +47,8 @@ class usersController extends \Slim\Mvc\Controller
 		// remove
 		try {
 			$model->where("iduser", $iduser)->delete();
+
+			Helpers\Messages::success("User deleted!");
 		}
 		catch(\Exception $e) {
 			throw new \Exception("Cannot remove the record");
@@ -87,9 +89,13 @@ class usersController extends \Slim\Mvc\Controller
 			try {
 				if($iduser > 0) {
 					$model->where("iduser", $iduser)->update($data);
+
+					Helpers\Messages::success("User updated!");
 				}
 				else {
 					$model->insert($data);
+
+					Helpers\Messages::success("User inserted!");
 				}
 			}
 			catch(\Exception $e) {
@@ -102,7 +108,7 @@ class usersController extends \Slim\Mvc\Controller
 		
 		// verify if has a user
 		if($iduser > 0) {
-			// Fetch user
+			// fetch user
 			$row =  $model->where("iduser", $iduser)->first();
 			if(!$row) {
 				throw new \Exception("Record not found");
@@ -132,12 +138,14 @@ class usersController extends \Slim\Mvc\Controller
 			$model = new \Application\Main\Models\Users();
 			$user = $model->where("email", $email)->first();
 			if(!$user) {
+				Helpers\Messages::error("User/Password not match");
 				Helpers\Redirect::back();
 			}
 
 			// verifica se a senha está correta
 			$check = Helpers\Crypto::check($password, $user['password']);
 			if(!$check) {
+				Helpers\Messages::error("User/Password not match");
 				Helpers\Redirect::back();
 			}
 
@@ -146,8 +154,23 @@ class usersController extends \Slim\Mvc\Controller
 			$session->iduser = $user['iduser'];
 			$session->email = $user['email'];
 
+			// 
+			Helpers\Messages::success("Welcome back!");
+
 			// redireciona de volta
 			Helpers\Redirect::back();
 		}
+	}
+
+	/**
+	 * efetua o logoff
+	 */
+	public function logoutAction()
+	{
+		$session = new Helpers\Sessions("login");
+		$session->destroy();
+
+		// redireciona de volta
+		Helpers\Redirect::back();
 	}
 }

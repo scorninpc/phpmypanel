@@ -11,11 +11,25 @@
 		<link rel="stylesheet" href="{$basePath}/assets/main/css/custom.css">
 
 		<title>Access to the dashboard</title>
+
+		<script type="text/javascript">
+			var Base = {
+				basePath:'{$basePath}',
+				messages:{
+					error: {json_encode($global_errors|default:[])},
+					success: {json_encode($global_success|default:[])},
+					info: {json_encode($global_infos|default:[])},
+					alert: {json_encode($global_alerts|default:[])},
+				},
+				toast:{
+					time: 5000
+				}
+			};
+		</script>
 	</head>
 	<body>
 		<div class="page page-center">
 			
-
 			<div class="container container-tight py-4">
 				
 				{* your logo *}
@@ -63,6 +77,9 @@
 			</div>
 
 		</div>
+
+		{* container para abrigar os alertas *}
+		<div class="toast-containert position-fixed bottom-0 end-0 p-3"></div>
 
 
 		<script src="{$basePath}/assets/main/js/tabler.min.js"></script>

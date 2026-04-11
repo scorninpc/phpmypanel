@@ -23,3 +23,33 @@ function readCookie(e) {
 function eraseCookie(e) {
 	createCookie(e, "", -1)
 }
+
+/**
+ * show toast
+ */
+function showToast(type, message)
+{
+	// monta o template do toast
+	var html = `
+		<div class="toast mb-1" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="` + Base.toast.time + `">
+			<div class="toast-header bg-` + type + ` text-white">
+				<div class="me-auto">` + message + `</div>
+				<button type="button" class="ms-2 btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+			</div>
+		</div>
+	`;
+	
+	// adiciona o toast ao html
+	var toastElement = $(html).appendTo('.toast-containert');
+
+	// cria o objeto toast
+	var toast = new bootstrap.Toast(toastElement.get(0));
+
+	// ao esconder, remove do html
+	toastElement.get(0).addEventListener('hidden.bs.toast', function () {
+		$(this).remove();
+	});
+
+	// mostra o toast
+	toast.show();
+}
