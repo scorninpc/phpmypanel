@@ -88,22 +88,22 @@
 								<li class="nav-item dropdown">
 									<a class="nav-link dropdown-toggle show" href="#navbar-form" data-bs-toggle="dropdown" data-bs-auto-close="outside">
 										<span class="nav-link-icon d-md-none d-lg-inline-block">
-											<i class="fa-solid fa-eye"></i>
+											<i class="fa-solid fa-gears"></i>
 										</span>
-										<span class="nav-link-title">Examples</span>
+										<span class="nav-link-title">Core</span>
 									</a>
 									<div class="dropdown-menu" data-bs-popper="static">
-										<a class="dropdown-item" href="{$this->url(['action' =>"list"], "painel")}">List example</a>
-										<a class="dropdown-item" href="{$this->url(['action' =>"form"], "painel")}">Form example</a>
+										<a class="dropdown-item" href="{$this->url(['controller'=>"features"], "painel")}">Features</a>
+										<a class="dropdown-item" href="{$this->url(['controller'=>"users"], "painel")}">Users</a>
 									</div>
 								</li>
 
-								<li class="nav-item">
+								{* <li class="nav-item">
 									<a class="nav-link active" href="{$this->url(['controller'=>"users"], "painel")}">
 										<span class="nav-link-icon d-md-none d-lg-inline-block"><i class="fa-solid fa-users"></i></span>
 										<span class="nav-link-title">Users</span>
 									</a>
-								</li>
+								</li> *}
 								
 							</ul>
 						</div>
