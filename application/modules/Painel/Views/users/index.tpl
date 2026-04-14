@@ -31,33 +31,39 @@
 
 				{* real content *}
 				<div class="table-responsive">
-					<table class="table table-vcenter card-table table-striped">
+					<table class="table table-vcenter table-striped sin-table">
 						<thead>
 							<tr>
 								<th>Email</th>
-								<th class="w-1"></th>
 							</tr>
 						</thead>
 						<tbody>
 							{if $rows->count() == 0}
 								<tr>
-									<td colspan="2" class="text-center">No record to list</td>
+									<td class="text-center">No record to list</td>
 								</tr>
 							{/if}
 
 							{foreach from=$rows item=row}
 							<tr>
-								<td>{$row['email']|escape}</td>
 								<td>
-									<a href="{$this->url(['controller'=>"users", 'action'=>"form", 'iduser'=>$row['iduser']], "painel")}">Edit</a>
+									<a href="{$this->url(['controller'=>"users", 'action'=>"form", 'iduser'=>$row['iduser']], "painel")}">{$row['email']|escape}</a>
 								</td>
 							</tr>
 							{/foreach}
 						</tbody>
 					</table>
 				</div>
+			</div>
 
-
+			{* card footer *}
+			<div class="card-footer d-flex align-items-center">
+				<p class="m-0 text-muted"></p>
+				<ul class="pagination m-0 ms-auto">																																											
+					<li class="page-item active">
+						<a class="page-link" href="/sgl.sincore.digital/public_html/painel/parceiros/index/pagina/1">1</a>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>
