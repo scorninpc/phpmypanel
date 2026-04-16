@@ -93,7 +93,8 @@
 										<span class="nav-link-title">Core</span>
 									</a>
 									<div class="dropdown-menu" data-bs-popper="static">
-										<a class="dropdown-item" href="{$this->url(['controller'=>"features"], "painel")}">Features</a>
+										<a class="dropdown-item" href="{$this->url(['controller'=>"funcionalidades"], "painel")}">Funcionalidades</a>
+										<a class="dropdown-item" href="{$this->url(['controller'=>"perfis"], "painel")}">Perfis</a>
 										<a class="dropdown-item" href="{$this->url(['controller'=>"users"], "painel")}">Users</a>
 									</div>
 								</li>

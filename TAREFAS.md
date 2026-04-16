@@ -12,3 +12,7 @@
 - [ ] criar helpers para incluir title
 - [ ] criar helpers para incluir metas
 - [ ] confirmar se o helper url está fazendo escape corretamente
+- [ ] adicionar o popup no label dos campos do form
+- [ ] criar um helper que monte o input no form
+- [ ] criar um helper que mostre o valor do campo na listagem
+- [ ] criar um metodo que "popula" o model, assim a gente pode usar o getValue() de um model populado

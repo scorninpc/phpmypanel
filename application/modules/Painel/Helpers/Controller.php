@@ -41,5 +41,14 @@ class Controller extends \Slim\Mvc\Controller
 		$this->view->core_rows = $rows;
 		$this->view->core_model = $this->model;
 	}
+
+	/**
+	 * monta o formulário
+	 */
+	public function formAction()
+	{
+		// assina as variaveis
+		$this->view->core_model = $this->model;
+	}
 	
 }

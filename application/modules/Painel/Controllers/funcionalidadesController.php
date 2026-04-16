@@ -56,7 +56,7 @@ class funcionalidadesController extends \Application\Painel\Helpers\Controller
 	/**
 	 * formulario do crud
 	 */
-	public function formAction()
+	public function fsormAction()
 	{
 		$iduser = intval($this->getParam("iduser", 0));
 		

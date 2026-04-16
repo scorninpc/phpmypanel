@@ -35,7 +35,7 @@
 							<tr>
 								{* percorre as colunas do model *}
 								{foreach from=$core_model->getColumns() item=column}
-									<th>{$column['name']|escape}</th>
+									<th>{$column['description']|escape}</th>
 								{/foreach}
 							</tr>
 						</thead>
