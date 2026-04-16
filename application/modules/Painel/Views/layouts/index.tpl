@@ -4,16 +4,16 @@
 		<div class="row g-2 align-items-center">
 
 			<div class="col">
-				<div class="page-pretitle">Users</div>
-				<h2 class="page-title">List of users</h2>
+				<div class="page-pretitle">{$core_funcionalidade['nome']|escape}</div>
+				<h2 class="page-title">Listagem de {$core_funcionalidade['nome']|escape}</h2>
 			</div>
 
 			<div class="col-auto ms-auto d-print-none">
 				<div class="btn-list">
 
-					<a href="{$this->url(['controller'=>"users", 'action'=>"form"], "painel")}" class="btn btn-primary btn btn-primary btn-icon px-0 px-sm-3">
+					<a href="{$this->url(['controller'=>$core_funcionalidade['controlador'], 'action'=>"form"], "painel")}" class="btn btn-primary btn btn-primary btn-icon px-0 px-sm-3">
 						<i class="fa-solid fa-plus"></i>
-						<span class="d-none d-sm-inline-block ps-1">Create new user</span>
+						<span class="d-none d-sm-inline-block ps-1">Novo</span>
 					</a>
 
 				</div>
@@ -53,7 +53,7 @@
 								{* percorre as colunas do model *}
 								{foreach from=$core_model->getColumns() item=column}
 									<td>
-										<a href="{$this->url(['controller'=>"users", 'action'=>"form", 'iduser'=>$row['iduser']], "painel")}">
+										<a href="{$this->url(['controller'=>$core_funcionalidade['controlador'], 'action'=>"form", $core_model->getPrimaryKey()=>$row[$core_model->getPrimaryKey()]|escape], "painel")}">
 											{$row[$column['name']]|escape}
 										</a>
 									</td>

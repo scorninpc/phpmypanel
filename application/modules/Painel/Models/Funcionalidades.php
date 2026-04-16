@@ -10,6 +10,10 @@ namespace Application\Painel\Models;
  *  nome varchar(250),
  *	controlador varchar(250)
  * );
+ * 
+ * insert into funcionalidades (nome, controlador) values ('Usuarios', 'usuarios');
+ * insert into funcionalidades (nome, controlador) values ('Funcionalidades', 'funcionalidades');
+ * 
  */
 class Funcionalidades extends \Application\Painel\Helpers\Model
 {

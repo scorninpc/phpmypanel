@@ -3,7 +3,7 @@
 namespace Application\Painel;
 
 /***
- * class to bootstrap the module
+ * classe que inicializa o modulo
  */
 class Bootstrap {
 
@@ -20,9 +20,14 @@ class Bootstrap {
 	 */
 	public function initSessions()
 	{
+		$view = \Slim\Mvc\Factory::get("view");
 		$request = \Application\Main\Helpers\Request::getInstance();
 		$session = new \Application\Main\Helpers\Sessions("login");
 
+		// recupera os dados do modulo
+		$currentController = $request->getParam("controller");
+		$currentAction = $request->getParam("action");
+		
 		// informa as paginas publicas que podem ser acessadas sem login
 		// @todo melhorar podendo usar wildcards tipo `main:users:*` ou `api:*`
 		// @todo melhorar informando se com login pode ser acessado, por exemplo, tela de login, ao estar logado nao pode acessar, mas tem tela que pode mesmo logado
@@ -33,7 +38,7 @@ class Bootstrap {
 		];
 
 		// monta a actionString
-		$actionString = $request->getParam("module") . ":" . $request->getParam("controller") . ":" . $request->getParam("action");
+		$actionString = $request->getParam("module") . ":" . $currentController . ":" . $currentAction;
 
 		// verifica se não está logado
 		if(($session->iduser?:0) == 0) {
@@ -57,6 +62,15 @@ class Bootstrap {
 			}
 
 		}
+
+		// recupera a funcionalidade
+		$model = new \Application\Painel\Models\Funcionalidades();
+		$funcionalidade = $model->where("controlador", $currentController)->first();
+
+		// assina as variaveis
+		$view->core_funcionalidade = $funcionalidade;
+		$view->core_current_controller = $currentController;
+		$view->core_current_action = $currentAction;
 	}
 
 	/**

@@ -7,6 +7,10 @@ namespace Application\Painel\Helpers;
  */
 class Model extends \Slim\Mvc\Model
 {	
+	// configura o nome da tabela e a chave primaria
+	protected $table = "funcionalidades";
+	protected $primaryKey = "idfuncionalidade";
+
 	// armazena as colunas do model
 	protected $columns = [];
 
@@ -57,5 +61,13 @@ class Model extends \Slim\Mvc\Model
 	public function getColumns()
 	{
 		return $this->columns;
+	}
+
+	/**
+	 * recupera a chave primaria
+	 */
+	public function getPrimaryKey()
+	{
+		return $this->primaryKey;
 	}
 }
