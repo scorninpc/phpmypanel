@@ -26,7 +26,7 @@ class Controller extends \Slim\Mvc\Controller
 		$this->configure();
 
 		// chama o parent
-		return parent::__construct($view, $container, $request, $response, $args);
+		parent::__construct($view, $container, $request, $response, $args);
 	}
 
 	/**
@@ -38,7 +38,8 @@ class Controller extends \Slim\Mvc\Controller
 		$rows =  $this->model->get();
 
 		// assina as variaveis
-		$this->view->rows = $rows;
+		$this->view->core_rows = $rows;
+		$this->view->core_model = $this->model;
 	}
 	
 }

@@ -28,27 +28,37 @@
 	<div class="container-xl">
 		<div class="card">
 			<div class="card-body p-1">
-
 				{* real content *}
 				<div class="table-responsive">
 					<table class="table table-vcenter table-striped sin-table">
 						<thead>
 							<tr>
-								<th>Email</th>
+								{* percorre as colunas do model *}
+								{foreach from=$core_model->getColumns() item=column}
+									<th>{$column['name']|escape}</th>
+								{/foreach}
 							</tr>
 						</thead>
 						<tbody>
-							{if $rows->count() == 0}
+							{* {if $rows->count() == 0}
 								<tr>
 									<td class="text-center">No record to list</td>
 								</tr>
-							{/if}
+							{/if} *}
 
-							{foreach from=$rows item=row}
+							{* percorre os registros *}
+							{foreach from=$core_rows item=row}
 							<tr>
-								<td>
-									<a href="{$this->url(['controller'=>"users", 'action'=>"form", 'iduser'=>$row['iduser']], "painel")}">{$row['email']|escape}</a>
-								</td>
+
+								{* percorre as colunas do model *}
+								{foreach from=$core_model->getColumns() item=column}
+									<td>
+										<a href="{$this->url(['controller'=>"users", 'action'=>"form", 'iduser'=>$row['iduser']], "painel")}">
+											{$row[$column['name']]|escape}
+										</a>
+									</td>
+								{/foreach}
+								
 							</tr>
 							{/foreach}
 						</tbody>
