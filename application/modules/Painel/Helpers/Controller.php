@@ -47,8 +47,20 @@ class Controller extends \Slim\Mvc\Controller
 	 */
 	public function formAction()
 	{
+		$primaryKey = $this->model->getPrimaryKey();
+
+		// recupera se tem parametro com o nome da chave primaria
+		$id = intval($this->getParam($primaryKey, 0));
+
+		// se tiver id é porque está editando
+		$row = NULL;
+		if($id > 0) {
+			$row = $this->model->where($primaryKey, $id)->first();
+		}
+
 		// assina as variaveis
 		$this->view->core_model = $this->model;
+		$this->view->core_row = $row;
 	}
 	
 }
