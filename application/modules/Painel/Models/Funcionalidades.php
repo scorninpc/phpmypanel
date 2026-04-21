@@ -4,16 +4,6 @@ namespace Application\Painel\Models;
 
 /**
  * model das funcionalidades do painel
- * 
- * create table funcionalidades (
- *	idfuncionalidade integer not null primary key AUTOINCREMENT, 
- *  nome varchar(250),
- *	controlador varchar(250)
- * );
- * 
- * insert into funcionalidades (nome, controlador) values ('Usuarios', 'usuarios');
- * insert into funcionalidades (nome, controlador) values ('Funcionalidades', 'funcionalidades');
- * 
  */
 class Funcionalidades extends \Application\Painel\Helpers\Model
 {
