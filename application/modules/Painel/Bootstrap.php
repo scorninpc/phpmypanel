@@ -67,8 +67,12 @@ class Bootstrap {
 		$model = new \Application\Painel\Models\Funcionalidades();
 		$funcionalidade = $model->where("controlador", $currentController)->first();
 
+		// recupera todas as funcionalidades para criar o menu
+		$funcionalidades = $model->orderBy("nome")->get();
+
 		// assina as variaveis
 		$view->core_funcionalidade = $funcionalidade;
+		$view->core_funcionalidades = $funcionalidades;
 		$view->core_current_controller = $currentController;
 		$view->core_current_action = $currentAction;
 	}

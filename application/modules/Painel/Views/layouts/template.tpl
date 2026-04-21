@@ -84,8 +84,21 @@
 										</span>
 									</a>
 								</li>
+
+								{foreach from=$core_funcionalidades item=core_funcionalidade}
+								<li class="nav-item">
+									<a class="nav-link active" href="{$this->url(['controller'=>$core_funcionalidade['controlador']], "painel")}">
+										{if strlen($core_funcionalidade['icone']|default:"") > 0}
+										<span class="nav-link-icon d-md-none d-lg-inline-block">
+											<i class="{$core_funcionalidade['icone']|escape}"></i>
+										</span>
+										{/if}
+										<span class="nav-link-title">{$core_funcionalidade['nome']|escape}</span>
+									</a>
+								</li>
+								{/foreach}
 								
-								<li class="nav-item dropdown">
+								{* <li class="nav-item dropdown">
 									<a class="nav-link dropdown-toggle show" href="#navbar-form" data-bs-toggle="dropdown" data-bs-auto-close="outside">
 										<span class="nav-link-icon d-md-none d-lg-inline-block">
 											<i class="fa-solid fa-gears"></i>
@@ -97,7 +110,7 @@
 										<a class="dropdown-item" href="{$this->url(['controller'=>"perfis"], "painel")}">Perfis</a>
 										<a class="dropdown-item" href="{$this->url(['controller'=>"users"], "painel")}">Users</a>
 									</div>
-								</li>
+								</li> *}
 
 								{* <li class="nav-item">
 									<a class="nav-link active" href="{$this->url(['controller'=>"users"], "painel")}">
