@@ -14,6 +14,9 @@ class Model extends \Slim\Mvc\Model
 	// armazena as colunas do model
 	protected $columns = [];
 
+	// armazena o nome da coluna que serve como identificador/descrição
+	protected $description_field = NULL;
+
 	// tipo de dados
 	const FIELDTYPE_INTEGER = "integer";
 	const FIELDTYPE_DECIMAL = "decimal";
@@ -69,5 +72,21 @@ class Model extends \Slim\Mvc\Model
 	public function getPrimaryKey()
 	{
 		return $this->primaryKey;
+	}
+
+	/**
+	 * seta o nome da coluna descrição/identificador
+	 */
+	public function setDescriptionField($field)
+	{
+		$this->description_field = $field;
+	}
+
+	/**
+	 * recupera o nome da coluna descrição/identificador
+	 */
+	public function getDescriptionField()
+	{
+		return $this->description_field;
 	}
 }
