@@ -55,7 +55,8 @@ class Controller extends \Slim\Mvc\Controller
 		// se tiver id é porque está editando
 		$row = NULL;
 		if($id > 0) {
-			$row = $this->model->where($primaryKey, $id)->first();
+			// popula o model com um registro, e retorna ele
+			$row = $this->model->setRecord($id);
 		}
 
 		// assina as variaveis

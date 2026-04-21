@@ -67,6 +67,14 @@ class Model extends \Slim\Mvc\Model
 	}
 
 	/**
+	 * recupera uma coluna
+	 */
+	public function getColumn($field)
+	{
+		return $this->columns[$field];
+	}
+
+	/**
 	 * recupera a chave primaria
 	 */
 	public function getPrimaryKey()
@@ -88,5 +96,33 @@ class Model extends \Slim\Mvc\Model
 	public function getDescriptionField()
 	{
 		return $this->description_field;
+	}
+
+	/**
+	 * popula o model com os dados de um registro
+	 */
+	public function setRecord($id)
+	{
+		try {
+			$row = $this->where($this->getPrimaryKey(), $id)->first();
+		}
+		catch(\Exception $e) {
+			throw $e;
+		}
+
+		// percorre as colunas adicionando o valor nelas
+		foreach($this->columns as $field => $column) {
+			$this->columns[$field]['value'] = $row[$field];
+		}
+
+		return $row;
+	}
+
+	/**
+	 * recupera o valor de uma coluna
+	 */
+	public function getValue($field)
+	{
+		return $this->columns[$field]['value']??NULL;
 	}
 }

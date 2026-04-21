@@ -53,10 +53,15 @@
 
 						{* percorre as colunas do model *}
 						{foreach from=$core_model->getColumns() item=column}
+
 							<div class="col-12 col-md-6 mb-3">
 								<label class="form-label"> {$column['description']} </label>
-								<input type="email" name="email" value="{$core_row['email']|default:""|escape}" placeholder="{$column['long_description']}" class="form-control">
+
+								{$this->formField($core_model, $column['name'])}
+
+								
 							</div>
+
 						{/foreach}
 
 					</div>
