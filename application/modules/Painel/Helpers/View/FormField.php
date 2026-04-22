@@ -6,11 +6,13 @@ class FormField
 {
 	protected $config;
 	protected $request;
+	protected $view;
 
 	public function __construct($config) 
 	{
 		$this->config = $config;
 		$this->request = \Slim\Mvc\Factory::get("request");
+		$this->view = \Slim\Mvc\Factory::get("view");
 	}
 
 	/**
@@ -24,16 +26,28 @@ class FormField
 
 		// inicia o template
 		$template = "";
-		$value = "";
 
-		// recupera o valor, caso tenha
-		$value = $model->getValue($column['name'])??"";
-		$value = htmlentities($value);
+		// recupera o valor já formatado para usar no value
+		$original_value = $model->getValue($column['name'])??"";
+		$helper = new \Application\Painel\Helpers\View\GetFormatedValue($this->config);
+		$value = $helper->call($model, $field, $original_value);
 
 		// verifica o tipo
-		if($column['datatype'] == \Application\Painel\Helpers\Model::FIELDTYPE_VARCHAR) {
-			$template = "<input type=\"text\" name=\"%(name)s\" value=\"%(value)s\" placeholder=\"%(long_description)s\" class=\"form-control\">";
+		switch($column['datatype']) {
+
+			// senhas
+			case \Application\Painel\Helpers\Model::FIELDTYPE_PASSWORD:
+				$template = "<input type=\"password\" name=\"%(name)s\" value=\"\" placeholder=\"%(long_description)s\" class=\"form-control\">";
+				break;
+
+			// textos
+			case \Application\Painel\Helpers\Model::FIELDTYPE_VARCHAR:
+				$template = "<input type=\"text\" name=\"%(name)s\" value=\"%(value)s\" placeholder=\"%(long_description)s (deixe\" class=\"form-control\">";
+				break;
+
+			
 		}
+
 
 		// faz a troca
 		$html = \Application\Main\Helpers\Strings::vsprintf_named($template, [

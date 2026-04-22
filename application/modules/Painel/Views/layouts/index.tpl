@@ -54,7 +54,7 @@
 								{foreach from=$core_model->getColumns() item=column}
 									<td>
 										<a href="{$this->url(['controller'=>$core_funcionalidade['controlador'], 'action'=>"form", $core_model->getPrimaryKey()=>$row[$core_model->getPrimaryKey()]|escape], "painel")}">
-											{$row[$column['name']]|escape}
+											{$this->getFormatedValue($core_model, $column['name'], $row[$column['name']])|default:"&nbsp;"}
 										</a>
 									</td>
 								{/foreach}
