@@ -54,7 +54,12 @@ class Model extends \Slim\Mvc\Model
 			'name' => $name,
 			'datatype' => $type,
 			'description' => $description,
-			'long_description' => $long_description
+			'long_description' => $long_description,
+			'visibility' => [
+				'insert' => TRUE,
+				'update' => TRUE,
+				'list' => TRUE,
+			],
 		];
 	}
 
@@ -124,5 +129,23 @@ class Model extends \Slim\Mvc\Model
 	public function getValue($field)
 	{
 		return $this->columns[$field]['value']??NULL;
+	}
+
+	/**
+	 * seta a visibilidade do campo
+	 */
+	public function setVisibility($field, $insert=TRUE, $update=TRUE, $list=TRUE)
+	{
+		$this->columns[$field]['visibility']['insert'] = $insert;
+		$this->columns[$field]['visibility']['update'] = $update;
+		$this->columns[$field]['visibility']['list'] = $list;
+	}
+
+	/**
+	 * recupera a visibilidade do campo
+	 */
+	public function getVisibility($field, $mode)
+	{
+		return $this->columns[$field]['visibility'][$mode];
 	}
 }

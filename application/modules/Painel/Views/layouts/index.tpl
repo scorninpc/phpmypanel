@@ -35,7 +35,10 @@
 							<tr>
 								{* percorre as colunas do model *}
 								{foreach from=$core_model->getColumns() item=column}
+									{* verifica a visilibidade do campo *}
+									{if $core_model->getVisibility($column['name'], 'list')}
 									<th>{$column['description']|escape}</th>
+									{/if}
 								{/foreach}
 							</tr>
 						</thead>
@@ -52,11 +55,14 @@
 
 								{* percorre as colunas do model *}
 								{foreach from=$core_model->getColumns() item=column}
+									{* verifica a visilibidade do campo *}
+									{if $core_model->getVisibility($column['name'], 'list')}
 									<td>
 										<a href="{$this->url(['controller'=>$core_funcionalidade['controlador'], 'action'=>"form", $core_model->getPrimaryKey()=>$row[$core_model->getPrimaryKey()]|escape], "painel")}">
 											{$this->getFormatedValue($core_model, $column['name'], $row[$column['name']])|default:"&nbsp;"}
 										</a>
 									</td>
+									{/if}
 								{/foreach}
 								
 							</tr>
