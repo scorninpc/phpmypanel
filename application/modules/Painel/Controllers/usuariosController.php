@@ -41,7 +41,7 @@ class usuariosController extends \Application\Painel\Helpers\Controller
 			}
 
 			// verifica se a senha está correta
-			$check = \Application\Main\Helpers\Crypto::check($password, $user['password']);
+			$check = \Application\Painel\Helpers\Crypto::check($password, $user['password']);
 			if(!$check) {
 				\Application\Main\Helpers\Messages::error("User/Password not match");
 				\Application\Main\Helpers\Redirect::back();

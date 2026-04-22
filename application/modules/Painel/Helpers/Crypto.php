@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Main\Helpers;
+namespace Application\Painel\Helpers;
 
 class Crypto
 {
