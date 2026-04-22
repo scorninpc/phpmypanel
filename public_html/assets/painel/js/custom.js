@@ -32,8 +32,8 @@ function setTheme()
 /**
  * confirmação de remoção
  */
-$('body').on('click', '.pmp-delete-confirm', function(e) {
-	if(!confirm('Confirm delete the record?')) {
+$('body').on('click', '.core-delete-confirm', function(e) {
+	if(!confirm('Deseja remover esse registro?')) {
 		e.preventDefault();
 		return false;
 	}

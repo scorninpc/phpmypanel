@@ -25,7 +25,7 @@
 					<div class="btn-list">
 
 						{if $core_form_mode == "update"}
-						<a href="{$this->url(['controller'=>$core_funcionalidade['controlador'], 'action'=>"delete", $core_model->getPrimaryKey()=>$core_row[$core_model->getPrimaryKey()]|default:0], "painel")}" class="btn btn-red btn-icon px-0 px-sm-3 me-0 me-sm-3 pmp-delete-confirm">
+						<a href="{$this->url(['controller'=>$core_funcionalidade['controlador'], 'action'=>"delete", $core_model->getPrimaryKey()=>$core_row[$core_model->getPrimaryKey()]|default:0], "painel")}" class="btn btn-red btn-icon px-0 px-sm-3 me-0 me-sm-3 core-delete-confirm">
 							<i class="fa-solid fa-trash"></i>
 							<span class="d-none d-sm-inline-block ps-1">Remover</span>
 						</a>

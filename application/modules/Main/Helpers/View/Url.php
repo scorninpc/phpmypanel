@@ -42,13 +42,19 @@ class Url
 
 		// agora percorre o que sobrou de $params para criar o query string final
 		foreach ($params as $key => $value) {
-			$final_params['params'] .= "/" . $key . "/" . $value;
+			$final_params['params'] .= "/" . urlencode($key) . "/" . urlencode($value);
 		}
 		if(isset($final_params['params'])) {
 			$final_params['params'] = substr($final_params['params'], 1);
 		}
 
+		// monta a url final
+		$final_url = $parser->urlFor($name, $final_params);
+
+		//
+		$final_url = htmlspecialchars($final_url, ENT_QUOTES, "UTF-8");
+
 		// retorna a url
-		return $parser->urlFor($name, $final_params);
+		return $final_url;
 	}
 }

@@ -33,7 +33,8 @@ class GetFormatedValue
 		}
 
 		// encoda
-		$value = htmlentities($value);
+		// $value = htmlentities($value);
+		$value = htmlspecialchars($value, ENT_QUOTES, "UTF-8");
 
 		// retorna o valor formatado
 		return $value;

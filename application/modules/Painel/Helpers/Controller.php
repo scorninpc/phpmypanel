@@ -143,6 +143,39 @@ class Controller extends \Slim\Mvc\Controller
 	}
 
 	/**
+	 * ação que deleta um registro
+	 */
+	public function deleteAction()
+	{
+		$primaryKey = $this->model->getPrimaryKey();
+
+		// recupera se tem parametro com o nome da chave primaria
+		$id = intval($this->getParam($primaryKey, 0));
+
+		// @hook: chama antes de remover
+		$this->dobeforeDelete($id);
+
+		// se tiver
+		if($id > 0) {
+			// remove o registro
+			try {
+				$this->model->where($this->model->getPrimaryKey(), $id)->delete();
+			}
+			catch(\Exception $e) {
+				throw $e;
+			}
+
+			// @hook: chama depois de remover
+			$this->doAfterDelete($id);
+
+			// @hook: chama o redirect
+			$this->redirectAfterDelete($id);
+		}
+
+		throw new \Exception("ID não encontrado");
+	}
+
+	/**
 	 * hook para redicionar após inserir
 	 */
 	public function redirectAfterInsert($id)
@@ -160,6 +193,15 @@ class Controller extends \Slim\Mvc\Controller
 		\Application\Main\Helpers\Redirect::urlFor("painel", ['controller'=>$this->getParam("controller")]);
 	}
 
+	/**
+	 * hook para redicionar após remover
+	 */
+	public function redirectAfterDelete($id)
+	{
+		// Retorna para a pagina anterior
+		\Application\Main\Helpers\Redirect::urlFor("painel", ['controller'=>$this->getParam("controller")]);
+	}
+
 
 	/**
 	 * hooks
@@ -168,6 +210,8 @@ class Controller extends \Slim\Mvc\Controller
 	public function doBeforeInsert($data) { return $data; }
 	public function doAfterUpdate($id) {}
 	public function doBeforeUpdate($data) { return $data; }
+	public function doAfterDelete($id) {}
+	public function dobeforeDelete($id) {}
 
 	
 }
