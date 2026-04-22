@@ -36,7 +36,7 @@ class FormField
 		}
 
 		// faz a troca
-		$html = \Application\Painel\Helpers\Strings::vsprintf_named($template, [
+		$html = \Application\Main\Helpers\Strings::vsprintf_named($template, [
 			'name' => $column['name'],
 			'id' => $column['id']??$column['name'],
 			'long_description' => $column['long_description'],

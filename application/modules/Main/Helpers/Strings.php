@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Painel\Helpers;
+namespace Application\Main\Helpers;
 
 /**
  * algumas funções que facilitam o tratamento de strings
