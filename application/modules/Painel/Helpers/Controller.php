@@ -95,8 +95,15 @@ class Controller extends \Slim\Mvc\Controller
 				if(count($data) > 0) {
 					try {
 						$this->model->where($this->model->getPrimaryKey(), $id)->update($data);
+
+						// adiciona o alerta
+						\Application\Main\Helpers\Messages::success("Registro atualizado");
 					}
 					catch(\Exception $e) {
+
+						// adiciona o alerta
+						\Application\Main\Helpers\Messages::error("Problema ao atualizar o registro");
+
 						throw $e;
 					}
 				}
@@ -121,8 +128,15 @@ class Controller extends \Slim\Mvc\Controller
 						
 						// recupera o id inserido
 						$id = $this->model->getConnection()->getPdo()->lastInsertId();
+
+						// adiciona o alerta
+						\Application\Main\Helpers\Messages::success("Registro inserido");
 					}
 					catch(\Exception $e) {
+
+						// adiciona o alerta
+						\Application\Main\Helpers\Messages::error("Problema ao inserir o registro");
+
 						throw $e;
 					}
 				}
@@ -160,8 +174,15 @@ class Controller extends \Slim\Mvc\Controller
 			// remove o registro
 			try {
 				$this->model->where($this->model->getPrimaryKey(), $id)->delete();
+
+				// adiciona o alerta
+				\Application\Main\Helpers\Messages::success("Registro removido");
 			}
 			catch(\Exception $e) {
+
+				// adiciona o alerta
+				\Application\Main\Helpers\Messages::error("Problema ao remover o registro");
+
 				throw $e;
 			}
 

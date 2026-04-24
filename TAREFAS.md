@@ -15,4 +15,11 @@
 - [x] criar um metodo que "popula" o model, assim a gente pode usar o getValue() de um model populado
 - [ ] criar helper para logar os erros
 - [ ] criar tela para ver os erros
-- [ ] adicionar os alertas ao inserir, atualizar e remover, inclusive nos erros
+- [x] adicionar os alertas ao inserir, atualizar e remover, inclusive nos erros
+- [ ] criar metodo no model que seta que o campo é invisivel no index quando mobile, para adicionar uma classe que esconde a coluna da tabela no mobile 
+- [ ] criar sistema de log que grava inserts, updates e deletes numa tabela de log
+- [ ] criar log de login
+- [ ] criar o recuperar senha
+- [ ] criar opção de login sem senha, por token
+- [ ] desenvolver "salvar sessão" no login
+- [ ] desenvolver busca
