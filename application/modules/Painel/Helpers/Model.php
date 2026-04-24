@@ -55,12 +55,37 @@ class Model extends \Slim\Mvc\Model
 			'datatype' => $type,
 			'description' => $description,
 			'long_description' => $long_description,
+			'classes' => [],
 			'visibility' => [
 				'insert' => TRUE,
 				'update' => TRUE,
 				'list' => TRUE,
 			],
 		];
+
+		// a depender do tipo, ja configura alguns padrões
+		switch($type) {
+
+			// integer
+			case \Application\Painel\Helpers\Model::FIELDTYPE_INTEGER:
+				$this->columns[$name]['classes'][] = "core-mask-integer";
+				break;
+				
+			// decimal
+			case \Application\Painel\Helpers\Model::FIELDTYPE_DECIMAL:
+				$this->columns[$name]['classes'][] = "core-mask-decimal";
+				break;
+				
+			// date
+			case \Application\Painel\Helpers\Model::FIELDTYPE_DATE:
+				$this->columns[$name]['classes'][] = "core-mask-date";
+				break;
+				
+			// datetime
+			case \Application\Painel\Helpers\Model::FIELDTYPE_DATETIME:
+				$this->columns[$name]['classes'][] = "core-mask-datetime";
+				break;
+		}
 	}
 
 	/**

@@ -62,14 +62,7 @@
 
 							{* verifica a visilibidade do campo *}
 							{if $core_model->getVisibility($column['name'], $core_form_mode)}
-
-							<div class="col-12 col-md-6 mb-3">
-								<label class="form-label"> {$column['description']} </label>
-
 								{$this->formField($core_model, $column['name'])}
-
-								
-							</div>
 							{/if}
 
 						{/foreach}
