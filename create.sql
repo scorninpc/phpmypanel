@@ -18,3 +18,18 @@ CREATE TABLE usuarios (
 );
 
 INSERT INTO usuarios (email, password) VALUES ('Admin', 'test@localhost', '$2a$07$ZHyBfzO7xkSfuU5D3EIHGOmdI6DX2rSLu/.TPWCdAzu5Xugaqhby.'); -- senha 123mudar
+
+
+-- tabela de testes
+CREATE TABLE testes (
+	idteste integer not null primary key AUTOINCREMENT, 
+	campo_varchar varchar(250),
+	campo_integer integer,
+	campo_decimal decimal,
+	campo_boolean boolean,
+	campo_senha varchar(255),
+	campo_texto text,
+	campo_data date,
+	campo_datahora datetime,
+	campo_arquivo varchar(50)
+);
