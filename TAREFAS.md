@@ -9,7 +9,7 @@
 - [ ] criar helpers para incluir title
 - [ ] criar helpers para incluir metas
 - [x] confirmar se o helper url está fazendo escape corretamente
-- [ ] adicionar o popup no label dos campos do form
+- [ ] adicionar o popup/title no label dos campos do form
 - [x] criar um helper que monte o input no form
 - [x] criar um helper que mostre o valor do campo na listagem
 - [x] criar um metodo que "popula" o model, assim a gente pode usar o getValue() de um model populado
@@ -33,7 +33,7 @@
 - [ ] colocar max_size no modal
 - [ ] colocar opção de campo obrigatório no modal
 - [ ] adicionar validação dos campos no formulário
-- [ ] adicionar mascaras aos campos
+- [x] adicionar mascaras aos campos
 - [ ] criar campo do tipo option que possa selecionar com radio
 - [ ] adicionar opção de texto rico 
 - [ ] adicionar opção de texto autoheight (nativo do tabler)

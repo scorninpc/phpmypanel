@@ -138,7 +138,8 @@
 		<script src="{$basePath}/assets/painel/js/tabler.min.js"></script>
 		<script>var bootstrap = tabler;</script>
 		<script src="{$basePath}/assets/painel/js/jquery-4.0.0.min.js"></script>
-		<script src="{$basePath}/assets/painel/js/helpers.js"></script>
+		<script src="{$basePath}/assets/painel/js/plugins/helpers.js"></script>
+		<script src="{$basePath}/assets/painel/js/plugins/jquery.mask.min.js"></script>
 		<script src="{$basePath}/assets/painel/js/custom.js"></script>
 	</body>
 </html>
