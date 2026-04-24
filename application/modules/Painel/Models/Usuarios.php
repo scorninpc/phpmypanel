@@ -20,6 +20,9 @@ class Usuarios extends \Application\Painel\Helpers\Model
 		$this->addField("email", \Application\Painel\Helpers\Model::FIELDTYPE_VARCHAR, "Email", "Email do usuário");
 		$this->addField("password", \Application\Painel\Helpers\Model::FIELDTYPE_PASSWORD, "Senha", "Senha do usuário (ao editar, deixe em branco para não modificar)");
 
+		// seta o campo descrição
+		$this->setDescriptionField("nome");
+		
 		// seta a visibilidade dos campos
 		$this->setVisibility("nome", TRUE, TRUE, TRUE);
 		$this->setVisibility("email", TRUE, TRUE, TRUE);
