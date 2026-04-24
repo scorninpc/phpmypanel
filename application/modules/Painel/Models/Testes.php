@@ -41,5 +41,14 @@ class Testes extends \Application\Painel\Helpers\Model
 		$this->setVisibility("campo_datahora", TRUE, TRUE, TRUE);
 		$this->setVisibility("campo_arquivo", TRUE, TRUE, TRUE);
 
+		// seta o tamanho da coluna bootstrap
+		$this->setBootstrapColumnSize("campo_varchar", 4);
+		$this->setBootstrapColumnSize("campo_integer", 4);
+		$this->setBootstrapColumnSize("campo_decimal", 4);
+		$this->setBootstrapColumnSize("campo_boolean", 2);
+		$this->setBootstrapColumnSize("campo_texto", 4);
+		$this->setBootstrapColumnSize("campo_data", 3);
+		$this->setBootstrapColumnSize("campo_datahora", 3);
+		$this->setBootstrapColumnSize("campo_arquivo", 6);
 	}
 }

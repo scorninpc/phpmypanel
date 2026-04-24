@@ -37,4 +37,4 @@
 - [ ] criar campo do tipo option que possa selecionar com radio
 - [ ] adicionar opção de texto rico 
 - [ ] adicionar opção de texto autoheight (nativo do tabler)
-- [ ] adicionar no model o tamanho da coluna bootstrap
+- [x] adicionar no model o tamanho da coluna bootstrap

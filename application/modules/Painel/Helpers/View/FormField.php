@@ -26,7 +26,7 @@ class FormField
 
 		// template da coluna
 		$column_template = "
-			<div class=\"col-12 col-md-6 mb-3\">
+			<div class=\"col-12 col-md-%(bootstrap_column_size)s mb-3\">
 				<label class=\"form-label\" for=\"%(id)s\"> %(description)s </label>
 				%(input)s
 			</div>";
@@ -93,6 +93,7 @@ class FormField
 			'id' => $column['id']??$column['name'],
 			'description' => $column['description'],
 			'long_description' => $column['long_description'],
+			'bootstrap_column_size' => $column['bootstrap_column_size'],
 			'input' => $field_html??"",
 		]);
 

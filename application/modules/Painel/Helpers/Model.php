@@ -56,6 +56,7 @@ class Model extends \Slim\Mvc\Model
 			'description' => $description,
 			'long_description' => $long_description,
 			'classes' => [],
+			'bootstrap_column_size' => 6,
 			'visibility' => [
 				'insert' => TRUE,
 				'update' => TRUE,
@@ -177,5 +178,13 @@ class Model extends \Slim\Mvc\Model
 	public function getVisibility($field, $mode)
 	{
 		return $this->columns[$field]['visibility'][$mode];
+	}
+
+	/**
+	 * seta o tamanho da coluna bootstrap/tabler
+	 */
+	public function setBootstrapColumnSize($field, $size=6)
+	{
+		return $this->columns[$field]['bootstrap_column_size'] = $size;
 	}
 }
