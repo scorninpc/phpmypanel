@@ -18,6 +18,19 @@ class usuariosController extends \Application\Painel\Helpers\Controller
 	}
 
 	/**
+	 * hook antes da atualização
+	 */
+	public function doBeforeUpdate($data)
+	{
+		// se a senha for vazia, remove o campo
+		if(strlen($data['password']) == 0) {
+			unset($data['password']);
+		}
+
+		return $data;
+	}
+
+	/**
 	 * efetua o login
 	 */
 	public function loginAction()
