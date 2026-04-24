@@ -136,6 +136,11 @@ class Model extends \Slim\Mvc\Model
 	 */
 	public function setVisibility($field, $insert=TRUE, $update=TRUE, $list=TRUE)
 	{
+		// verifica se a coluna existe
+		if(!isset($this->columns[$field])) {
+			throw new \Exception("Coluna \"" . $field . "\" não existe");
+		}
+
 		$this->columns[$field]['visibility']['insert'] = $insert;
 		$this->columns[$field]['visibility']['update'] = $update;
 		$this->columns[$field]['visibility']['list'] = $list;
