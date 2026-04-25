@@ -27,8 +27,9 @@
 - [ ] criar campo autocomplete
 - [ ] criar campo select
 - [ ] criar campo options
-- [ ] criar campo upload
-- [ ] criar metodo para setar as extensões ou mimes permitidos e o tamanho maximo permitido
+- [x] criar campo upload
+- [x] criar metodo para setar as extensões ou mimes permitidos e o tamanho maximo permitido
+- [ ] estilizar o botão de upload, com preview e remoção
 - [ ] criar campo multiplos uploads
 - [ ] colocar max_size no modal
 - [ ] colocar opção de campo obrigatório no model
