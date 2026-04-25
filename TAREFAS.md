@@ -31,11 +31,11 @@
 - [ ] criar metodo para setar as extensões ou mimes permitidos e o tamanho maximo permitido
 - [ ] criar campo multiplos uploads
 - [ ] colocar max_size no modal
-- [ ] colocar opção de campo obrigatório no modal
+- [ ] colocar opção de campo obrigatório no model
 - [ ] adicionar validação dos campos no formulário
 - [x] adicionar mascaras aos campos
 - [ ] criar campo do tipo option que possa selecionar com radio
-- [ ] adicionar opção de texto rico 
+- [x] adicionar opção de texto rico 
 - [ ] adicionar opção de texto autoheight (nativo do tabler)
 - [x] adicionar no model o tamanho da coluna bootstrap
 - [ ] implementar minificação
