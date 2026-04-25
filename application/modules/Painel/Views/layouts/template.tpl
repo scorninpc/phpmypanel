@@ -8,6 +8,8 @@
 		<link rel="stylesheet" href="{$basePath}/assets/painel/fonts/font-awesome/css/all.min.css" >
 		<link rel="stylesheet" href="{$basePath}/assets/painel/css/tabler.min.css">
 		<link rel="stylesheet" href="{$basePath}/assets/painel/css/tabler-themes.min.css">
+		<link rel="stylesheet" href="{$basePath}/assets/painel/css/jquery-ui.min.css">
+		<link rel="stylesheet" href="{$basePath}/assets/painel/css/plugins/summernote-bs5.min.css">
 		<link rel="stylesheet" href="{$basePath}/assets/painel/css/custom.css">
 
 		<title>Hello, world!</title>
@@ -136,10 +138,12 @@
 		<div class="toast-containert position-fixed bottom-0 end-0 p-3"></div>
 
 		<script src="{$basePath}/assets/painel/js/tabler.min.js"></script>
-		<script>var bootstrap = tabler;</script>
 		<script src="{$basePath}/assets/painel/js/jquery-4.0.0.min.js"></script>
+		<script src="{$basePath}/assets/painel/js/jquery-migrate-3.6.0.min.js"></script>
+		<script src="{$basePath}/assets/painel/js/jquery-ui.min.js"></script>
 		<script src="{$basePath}/assets/painel/js/plugins/helpers.js"></script>
 		<script src="{$basePath}/assets/painel/js/plugins/jquery.mask.min.js"></script>
+		<script src="{$basePath}/assets/painel/js/plugins/summernote-bs5.min.js"></script>
 		<script src="{$basePath}/assets/painel/js/custom.js"></script>
 	</body>
 </html>

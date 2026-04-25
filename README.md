@@ -40,5 +40,7 @@ A ideia é só prover um painel com login e cadastro, e alguns helpers para cria
 - [Bootstrap](https://github.com/twbs/bootstrap)
 - [Tabler](https://github.com/tabler/tabler)
 - [JQuery](https://github.com/jquery/jquery)
+- [JQuery UI](https://github.com/jquery/jquery-ui)
 - [jQuery Mask Plugin](https://github.com/igorescobar/jQuery-Mask-Plugin)
+- [summernote](https://github.com/summernote/summernote/)
 - [Font-Awesome](https://github.com/fortawesome/font-awesome)

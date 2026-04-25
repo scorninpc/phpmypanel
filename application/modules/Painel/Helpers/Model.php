@@ -102,6 +102,11 @@ class Model extends \Slim\Mvc\Model
 	 */
 	public function getColumn($field)
 	{
+		// verifica se a coluna existe
+		if(!isset($this->columns[$field])) {
+			throw new \Exception("Coluna \"" . $field . "\" não existe");
+		}
+
 		return $this->columns[$field];
 	}
 
@@ -118,6 +123,11 @@ class Model extends \Slim\Mvc\Model
 	 */
 	public function setDescriptionField($field)
 	{
+		// verifica se a coluna existe
+		if(!isset($this->columns[$field])) {
+			throw new \Exception("Coluna \"" . $field . "\" não existe");
+		}
+
 		$this->description_field = $field;
 	}
 
@@ -154,6 +164,11 @@ class Model extends \Slim\Mvc\Model
 	 */
 	public function getValue($field)
 	{
+		// verifica se a coluna existe
+		if(!isset($this->columns[$field])) {
+			throw new \Exception("Coluna \"" . $field . "\" não existe");
+		}
+
 		return $this->columns[$field]['value']??NULL;
 	}
 
@@ -177,6 +192,11 @@ class Model extends \Slim\Mvc\Model
 	 */
 	public function getVisibility($field, $mode)
 	{
+		// verifica se a coluna existe
+		if(!isset($this->columns[$field])) {
+			throw new \Exception("Coluna \"" . $field . "\" não existe");
+		}
+
 		return $this->columns[$field]['visibility'][$mode];
 	}
 
@@ -185,6 +205,11 @@ class Model extends \Slim\Mvc\Model
 	 */
 	public function setBootstrapColumnSize($field, $size=6)
 	{
+		// verifica se a coluna existe
+		if(!isset($this->columns[$field])) {
+			throw new \Exception("Coluna \"" . $field . "\" não existe");
+		}
+
 		return $this->columns[$field]['bootstrap_column_size'] = $size;
 	}
 }

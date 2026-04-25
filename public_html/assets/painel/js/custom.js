@@ -91,3 +91,18 @@ $('.core-mask-decimal').on('input', function(e) {
 	return false;
 
 });
+
+
+/**
+ * texto rico
+ */
+$('#campo_texto').each(function() {
+
+	$(this).summernote({
+		minHeight: 200,
+		maxHeight: 500,
+		lang: 'pt-BR'
+	});
+
+	// $(this).summernote('code');
+});

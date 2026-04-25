@@ -46,7 +46,7 @@ class Testes extends \Application\Painel\Helpers\Model
 		$this->setBootstrapColumnSize("campo_integer", 4);
 		$this->setBootstrapColumnSize("campo_decimal", 4);
 		$this->setBootstrapColumnSize("campo_boolean", 2);
-		$this->setBootstrapColumnSize("campo_texto", 4);
+		$this->setBootstrapColumnSize("campo_texto", 12);
 		$this->setBootstrapColumnSize("campo_data", 3);
 		$this->setBootstrapColumnSize("campo_datahora", 3);
 		$this->setBootstrapColumnSize("campo_arquivo", 6);

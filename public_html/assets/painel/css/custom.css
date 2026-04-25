@@ -60,3 +60,10 @@ html[data-bs-theme="dark"] table.sin-table thead tr th {
 html[data-bs-theme="dark"] table.sin-table tbody tr td a {
 	color: #fff
 }
+
+/**
+ * summernote
+ */
+.note-editor.note-airframe .note-editing-area .note-editable, .note-editor.note-frame .note-editing-area .note-editable {
+	background-color: var(--tblr-bg-forms);
+}
