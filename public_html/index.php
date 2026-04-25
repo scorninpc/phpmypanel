@@ -9,6 +9,9 @@ $config = require(__DIR__ . "/../application/configs/config.development.php");
 // Define a path to application directory
 defined("APPLICATION_PATH") || define("APPLICATION_PATH", realpath($config['application']['location']));
 
+// define o diretorio publico
+defined("PUBLIC_DIR") || define("PUBLIC_DIR", getenv("PUBLIC_DIR")?:"public_html");
+
 // Include autoload
 require __DIR__ . "/../vendor/autoload.php";
 

@@ -247,5 +247,14 @@ class Model extends \Slim\Mvc\Model
 		elseif($type == "documento") {
 			$this->columns[$field]['classes'][] = "core-mask-documento";
 		}
+
+		// file
+		elseif($type == "file") {
+			$this->columns[$field]['classes'][] = "core-custom-file";
+			$this->columns[$field]['modifiers']['preview'] = $options['dir'];
+			$this->columns[$field]['modifiers']['destination'] = APPLICATION_PATH . "/../" . PUBLIC_DIR . "/files/" . $options['dir'];
+			$this->columns[$field]['modifiers']['allowed_mimes'] = $options['mimes'];
+			$this->columns[$field]['modifiers']['keep_format'] = $options['keep_format']??FALSE;
+		}
 	}
 }

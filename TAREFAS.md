@@ -41,3 +41,4 @@
 - [ ] implementar minificação
 - [ ] no tema escuro, a seleção de texto nos inputs quase nao aparecem
 - [ ] fazer o upload de imagem no summernote
+- [ ] incluir multiplos arquivos de configurações com APPLICATION_ENV

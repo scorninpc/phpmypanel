@@ -83,6 +83,61 @@ class Controller extends \Slim\Mvc\Controller
 					}
 				}
 
+				// se é campo de arquivo
+				else if($config['datatype'] == \Application\Painel\Helpers\Model::FIELDTYPE_FILE) {
+
+					$arquivo = $_FILES[$column];
+					if($arquivo['size'] > 0) {
+
+						// verifica se o arquivo é valido
+						$filetype = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $arquivo['tmp_name']);
+						if(!in_array($filetype, $config['modifiers']['allowed_mimes'])) {
+							throw new \Exception("Tipo do arquivo não permitido");
+						}
+
+						// caminho final do arquivo
+						$destiny = $config['modifiers']['destination'];
+
+						// se tiver imagick, força salvar em webp se for uma imagem
+						if(class_exists("\\Imagick") && (strpos($filetype, "image") !== FALSE) && (!$config['modifiers']['keep_format'])) {
+							$name = md5(time() . rand(1000, 9999));
+							$extension = "webp";
+							$filename = $name . "." . $extension;
+							$dest = $destiny . "/" . $filename;
+
+							$format = explode("/", $arquivo['type'])[1] ?? "";
+
+							$img = new \Imagick();
+							$img->readImage($format . ":" . $arquivo['tmp_name']);
+							$img->setImageFormat("webp");
+							$img->setImageCompressionQuality(85);
+
+							$largura = $img->getImageWidth();
+							if ($largura > 1090) {
+								$img->resizeImage(1090, 0, \Imagick::FILTER_LANCZOS, 1);
+							}
+
+							$img->stripImage();
+							$img->writeImage($dest); 
+
+							if(method_exists($img, "clear")) {
+								$img->clear();
+							}
+							$img->destroy();
+						}
+						else {
+							$filename = md5(time() . rand(1000, 9999)) . "." . pathinfo($arquivo['name'], PATHINFO_EXTENSION);
+
+							// move o arquivo para o diretório
+							move_uploaded_file($arquivo['tmp_name'], $destiny . "/" . $filename);
+						}
+
+						// seta o nome final do arquivo
+						$data[$column] = $filename;
+					}
+
+				}
+
 			}
 
 			// verifica se está editando ou inserindo

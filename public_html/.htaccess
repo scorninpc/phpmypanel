@@ -3,6 +3,9 @@
 Options -Indexes
 Options +FollowSymLinks
 
+SetEnv APPLICATION_ENV development
+SetEnv PUBLIC_DIR public_html
+
 # Rewrite
 RewriteEngine On
 

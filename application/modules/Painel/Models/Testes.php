@@ -32,6 +32,11 @@ class Testes extends \Application\Painel\Helpers\Model
 
 		// seta os modificadores
 		$this->setType("campo_texto", "richtext");
+		$this->setType("campo_arquivo", "file", [
+			'dir' => "arquivos",
+			'mimes' => ['image/jpeg', 'image/png', 'image/webp', 'image/bmp', 'image/gif'],
+			'keep_format' => FALSE
+		]);
 
 		// seta a visibilidade dos campos
 		$this->setVisibility("campo_varchar", TRUE, TRUE, TRUE);

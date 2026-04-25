@@ -5,7 +5,7 @@
 {/if}
 
 
-<form method="post" action="{$this->url(['controller'=>$core_funcionalidade['controlador'], 'action'=>"form", $core_model->getPrimaryKey()=>$core_row[$core_model->getPrimaryKey()]|default:0], "painel")}">
+<form method="post" action="{$this->url(['controller'=>$core_funcionalidade['controlador'], 'action'=>"form", $core_model->getPrimaryKey()=>$core_row[$core_model->getPrimaryKey()]|default:0], "painel")}" enctype="multipart/form-data">
 
 	{* page header *}
 	<div class="page-header d-print-none">

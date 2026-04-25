@@ -65,6 +65,11 @@ class FormField
 				$template = "<textarea name=\"%(name)s\" id=\"%(id)s\" class=\"form-control %(classes)s\">%(value)s</textarea>";
 				break;
 
+			// file
+			case \Application\Painel\Helpers\Model::FIELDTYPE_FILE:
+				$template = "<input type=\"file\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" class=\"%(classes)s\">";
+				break;
+
 			// todos os outros tipos são um input="text"
 			case \Application\Painel\Helpers\Model::FIELDTYPE_VARCHAR:
 			case \Application\Painel\Helpers\Model::FIELDTYPE_INTEGER:
