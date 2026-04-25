@@ -29,6 +29,18 @@ class GetFormatedValue
 				$value = "";
 				break;
 
+			// boolean
+			case \Application\Painel\Helpers\Model::FIELDTYPE_BOOLEAN:
+				
+				if($value == TRUE) {
+					$value = "Sim";
+				}
+				else {
+					$value = "Não";
+				}
+				
+				break;
+
 			
 		}
 

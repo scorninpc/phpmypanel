@@ -35,11 +35,11 @@ class Testes extends \Application\Painel\Helpers\Model
 		$this->setVisibility("campo_integer", TRUE, TRUE, TRUE);
 		$this->setVisibility("campo_decimal", TRUE, TRUE, TRUE);
 		$this->setVisibility("campo_boolean", TRUE, TRUE, TRUE);
-		$this->setVisibility("campo_senha", TRUE, TRUE, TRUE);
-		$this->setVisibility("campo_texto", TRUE, TRUE, TRUE);
+		$this->setVisibility("campo_senha", TRUE, TRUE, FALSE);
+		$this->setVisibility("campo_texto", TRUE, TRUE, FALSE);
 		$this->setVisibility("campo_data", TRUE, TRUE, TRUE);
 		$this->setVisibility("campo_datahora", TRUE, TRUE, TRUE);
-		$this->setVisibility("campo_arquivo", TRUE, TRUE, TRUE);
+		$this->setVisibility("campo_arquivo", TRUE, TRUE, FALSE);
 
 		// seta o tamanho da coluna bootstrap
 		$this->setBootstrapColumnSize("campo_varchar", 4);

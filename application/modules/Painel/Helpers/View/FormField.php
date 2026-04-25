@@ -51,7 +51,7 @@ class FormField
 			case \Application\Painel\Helpers\Model::FIELDTYPE_BOOLEAN:
 
 				$checked = "";
-				if($value == TRUE) {
+				if($value == "Sim") {
 					$checked = "checked=\"checked\"";
 				}
 
