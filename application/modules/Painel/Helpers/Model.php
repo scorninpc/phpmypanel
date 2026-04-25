@@ -56,6 +56,7 @@ class Model extends \Slim\Mvc\Model
 			'description' => $description,
 			'long_description' => $long_description,
 			'classes' => [],
+			'modifiers' => [],
 			'bootstrap_column_size' => 6,
 			'visibility' => [
 				'insert' => TRUE,
@@ -211,5 +212,40 @@ class Model extends \Slim\Mvc\Model
 		}
 
 		return $this->columns[$field]['bootstrap_column_size'] = $size;
+	}
+
+	/**
+	 * seta o tipo do campo manualmente
+	 */
+	public function setType($field, $type, $options=[])
+	{
+		// verifica se o campo existe
+		if(!isset($this->columns[$field])) {
+			throw new \Exception("Coluna \"" . $field . "\" não existe");
+		}
+
+		// texto rico
+		if($type == "richtext") {
+			if(!isset($options['escape'])) {
+				$options['escape'] = FALSE;
+			}
+			$this->columns[$field]['modifiers']['escape'] = $options['escape'];
+			$this->columns[$field]['classes'][] = "core-richtext";
+		}
+
+		// telefone
+		elseif($type == "phone") {
+			$this->columns[$field]['classes'][] = "core-mask-phone";
+		}
+
+		// cep
+		elseif($type == "cep") {
+			$this->columns[$field]['classes'][] = "core-mask-cep";
+		}
+
+		// documento
+		elseif($type == "documento") {
+			$this->columns[$field]['classes'][] = "core-mask-documento";
+		}
 	}
 }

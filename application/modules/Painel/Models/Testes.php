@@ -30,6 +30,9 @@ class Testes extends \Application\Painel\Helpers\Model
 		// seta o campo descrição
 		$this->setDescriptionField("campo_varchar");
 
+		// seta os modificadores
+		$this->setType("campo_texto", "richtext");
+
 		// seta a visibilidade dos campos
 		$this->setVisibility("campo_varchar", TRUE, TRUE, TRUE);
 		$this->setVisibility("campo_integer", TRUE, TRUE, TRUE);

@@ -96,7 +96,7 @@ $('.core-mask-decimal').on('input', function(e) {
 /**
  * texto rico
  */
-$('#campo_texto').each(function() {
+$('.core-richtext').each(function() {
 
 	$(this).summernote({
 		minHeight: 200,
@@ -104,5 +104,4 @@ $('#campo_texto').each(function() {
 		lang: 'pt-BR'
 	});
 
-	// $(this).summernote('code');
 });
