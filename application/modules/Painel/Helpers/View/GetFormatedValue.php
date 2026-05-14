@@ -29,6 +29,17 @@ class GetFormatedValue
 				$value = "";
 				break;
 
+			// date
+			case \Application\Painel\Helpers\Model::FIELDTYPE_DATE:
+				$value = strtotime($value);
+				if($value !== FALSE) {
+					$value = date("d/m/Y", $value);
+				}
+				else {
+					$value = "";
+				}
+				break;
+
 			// boolean
 			case \Application\Painel\Helpers\Model::FIELDTYPE_BOOLEAN:
 				

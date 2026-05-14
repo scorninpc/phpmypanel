@@ -29,25 +29,25 @@ class Bootstrap {
 		$currentAction = $request->getParam("action");
 		
 		// informa as paginas publicas que podem ser acessadas sem login
-		// @todo melhorar podendo usar wildcards tipo `main:users:*` ou `api:*`
+		// @todo melhorar podendo usar wildcards tipo `main:usuarios:*` ou `api:*`
 		// @todo melhorar informando se com login pode ser acessado, por exemplo, tela de login, ao estar logado nao pode acessar, mas tem tela que pode mesmo logado
 		$publicPages = [
-			"painel:users:login",
-			"painel:users:recover",
-			"painel:users:register",
+			"painel:usuarios:login",
+			"painel:usuarios:recover",
+			"painel:usuarios:register",
 		];
 
 		// monta a actionString
 		$actionString = $request->getParam("module") . ":" . $currentController . ":" . $currentAction;
 
 		// verifica se não está logado
-		if(($session->iduser?:0) == 0) {
+		if(($session->idusuario?:0) == 0) {
 
 			// verifica se é uma tela publica
 			if(!in_array($actionString, $publicPages)) {
 
 				// se não, redireciona para o login
-				\Application\Main\Helpers\Redirect::go("/painel/users/login");
+				\Application\Main\Helpers\Redirect::go("/painel/usuarios/login");
 			}
 		}
 

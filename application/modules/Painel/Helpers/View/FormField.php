@@ -65,6 +65,17 @@ class FormField
 				$template = "<textarea name=\"%(name)s\" id=\"%(id)s\" class=\"form-control %(classes)s\">%(value)s</textarea>";
 				break;
 
+			// date
+			case \Application\Painel\Helpers\Model::FIELDTYPE_DATE:
+				$value = $original_value;
+				$template = "<input type=\"date\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" class=\"form-control %(classes)s\">";
+				break;
+
+			// datetime
+			case \Application\Painel\Helpers\Model::FIELDTYPE_DATETIME:
+				$template = "<input type=\"datetime-local\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" class=\"form-control %(classes)s\">";
+				break;
+
 			// file
 			case \Application\Painel\Helpers\Model::FIELDTYPE_FILE:
 				$template = "<input type=\"file\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" class=\"%(classes)s\">";

@@ -44,7 +44,7 @@
 				<div class="card card-md">
 					<div class="card-body">
 						<h2 class="h2 text-center mb-4">ACCESS TO THE DASHBOARD</h2>
-						<form action="{$this->url(['controller'=>"users", 'action'=>"login"], "painel")}" method="POST">
+						<form action="{$this->url(['controller'=>"usuarios", 'action'=>"login"], "painel")}" method="POST">
 							<div class="mb-3">
 								<label class="form-label" for="l_email">Email address</label>
 								<input type="email" name="email" id="l_email" class="form-control" placeholder="your@email.com">
@@ -53,7 +53,7 @@
 								<label class="form-label" for="l_password">
 									Password
 									{* <span class="form-label-description">
-										<a href="{$this->url(['controller'=>"users", 'action'=>"recorver"], "painel")}">I forgot password</a>
+										<a href="{$this->url(['controller'=>"usuarios", 'action'=>"recorver"], "painel")}">I forgot password</a>
 									</span> *}
 								</label>
 								<input type="password" name="password" id="l_password" class="form-control" placeholder="Your password" autocomplete="off">
@@ -72,7 +72,7 @@
 				</div>
 
 				{* enable if anyone can register *}
-				{* <div class="text-center text-secondary mt-3">Don't have account yet? <a href="{$this->url(['controller'=>"users", 'action'=>"register"], "painel")}" tabindex="-1">Sign up</a></div> *}
+				{* <div class="text-center text-secondary mt-3">Don't have account yet? <a href="{$this->url(['controller'=>"usuarios", 'action'=>"register"], "painel")}" tabindex="-1">Sign up</a></div> *}
 
 			</div>
 

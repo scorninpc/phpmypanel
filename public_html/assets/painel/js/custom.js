@@ -58,8 +58,8 @@ $.each(Base.messages.alert, function(index, message) {
 /**
  * mascaras automaticas
  */
-$('.core-mask-date').mask('00/00/0000');
-$('.core-mask-datetime').mask('00/00/0000 00:00');
+// $('.core-mask-date').mask('00/00/0000'); // removido, vamos usar o input type="date"
+// $('.core-mask-datetime').mask('00/00/0000 00:00'); // removido, vamos usar o input type="datetime-local"
 $('.core-mask-time').mask('00:00');
 $('.core-mask-cep').mask('99999-999');
 $('.core-mask-phone').mask(mask_telefone, options_telefone);
