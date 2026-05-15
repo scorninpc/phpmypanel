@@ -84,6 +84,14 @@ class FormField
 			// todos os outros tipos são um input="text"
 			case \Application\Painel\Helpers\Model::FIELDTYPE_VARCHAR:
 			case \Application\Painel\Helpers\Model::FIELDTYPE_INTEGER:
+				$template = "<input type=\"text\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" placeholder=\"%(long_description)s\" class=\"form-control %(classes)s\">";
+
+				// se for um autocomplete
+				if($column['autocomplete'] !== NULL) {
+					$template = "<input type=\"text\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" placeholder=\"%(long_description)s\" class=\"form-control %(classes)s\" data-core-autocomplete-model=\"%(model_name)s\">";
+				}
+
+				break;
 			case \Application\Painel\Helpers\Model::FIELDTYPE_DECIMAL:
 			default:
 				$template = "<input type=\"text\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" placeholder=\"%(long_description)s\" class=\"form-control %(classes)s\">";
@@ -101,6 +109,7 @@ class FormField
 			'long_description' => $column['long_description'],
 			'value' => $value??"",
 			'checked' => $checked??"",
+			'model_name' => "\\" . get_class($model),
 		]);
 
 		// faz a troca do template todo (coluna bootstrap)

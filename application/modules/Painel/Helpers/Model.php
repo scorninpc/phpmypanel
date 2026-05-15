@@ -63,6 +63,7 @@ class Model extends \Slim\Mvc\Model
 				'update' => TRUE,
 				'list' => TRUE,
 			],
+			'autocomplete' => NULL,
 		];
 
 		// a depender do tipo, ja configura alguns padrões
@@ -256,5 +257,49 @@ class Model extends \Slim\Mvc\Model
 			$this->columns[$field]['modifiers']['allowed_mimes'] = $options['mimes'];
 			$this->columns[$field]['modifiers']['keep_format'] = $options['keep_format']??FALSE;
 		}
+	}
+
+	/**
+	 * seta o campo como autocomplete
+	 * 
+	 * $field - nome do campo
+	 * $model - model da tabela que é pra ser listada
+	 * $select - querybuilder do select que é pra ser executado para exibir no autocomplete
+	 */
+	public function setAutocomplete($field, $model, $options=[])
+	{
+		// $options = [
+		// 	'columns' => [
+		// 		'id' => "idfield",
+		// 		'label' => "campo"
+		// 	],
+		// 	'where' => [
+		// 		"algum_campo = 2",
+		// 		'outrocampo = ?' => $valor_dinamico,
+		// 	],
+		// 	'select' => $select,
+		// 	'search_field' => "nome || fazenda"
+ 		// ];
+
+		// cerifica se é um vetor, pois se for string as colunas tem o mesmo nome, caso contrario 'column_name'=>'ref_column_name'
+		if(is_array($field)) {
+			$name = key($field);
+			$ref_column = current($field);
+		}
+		else {
+			$name = $field;
+			$ref_column = $field;
+		}
+
+		// armazena as informações do autocomplete
+		$this->columns[$name]['autocomplete'] = [
+			'model' => $model,
+			'refcolumn' => $ref_column,
+			'options' => $options
+		];
+
+		// seta a classe que vai mudar o autocomplete
+		$this->columns[$name]['classes'][] = "core-autocomplete";
+
 	}
 }

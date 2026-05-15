@@ -13,6 +13,11 @@ class Controller extends \Slim\Mvc\Controller
 	public $model;
 
 	/**
+	 * armazena o request
+	 */
+	public $request;
+
+	/**
 	 * inicializa o controller
 	 */
 	public function configure() {}
@@ -278,6 +283,20 @@ class Controller extends \Slim\Mvc\Controller
 		\Application\Main\Helpers\Redirect::urlFor("painel", ['controller'=>$this->getParam("controller")]);
 	}
 
+	/**
+	 * retorna no formato json
+	 */
+	public function json($payload, $status=200)
+	{
+		// se for um vetor, encoda json
+		if(is_array($payload)) {
+			$payload = json_encode($payload);
+		}
+
+		// retorna o json
+		$this->response->getBody()->write($payload);
+		return $this->response->withHeader("Content-Type", "application/json")->withStatus($status);
+	}
 
 	/**
 	 * hooks
