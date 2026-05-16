@@ -2,18 +2,37 @@
 
 namespace Application\Main\Helpers;
 
+/**
+ * Classe que trata mensagens de alerta do sistema
+ * 
+ * Responsável por armazenar mensagens de feedback no sistema, que serão exibidas
+ * ao usuário na próxima atualização da página. As mensagens são salvas na sessão
+ * e exibidas como toasts, sendo removidas da sessão após a exibição.
+ */
 class Messages
 {
-	// armazena as mensagens
+	/**
+	 * Sessão que armazena as mensagens.
+	 * 
+	 * @var \Application\Main\Helpers\Sessions
+	 */
 	private static $_messages;
 	
-	// informa se está inicializado
+	/**
+	 * Informa se está inicializado
+	 *
+	 * @var bool
+	 */
 	private static $initialized = FALSE;
 
 	/**
-	 * inicializa a classe estatica
+	 * Inicializa a classe garantindo que a instância seja criada apenas uma vez.
+	 * 
+	 * Configura a propriedade $_messages para armazenar mensagens na sessão.
+	 * 
+	 * @return void
 	 */
-	private static function initialize()
+	private static function initialize():void
 	{
 		if (self::$initialized) {
 			return;
@@ -24,9 +43,21 @@ class Messages
 	}
 
 	/**
-	 * adiciona mensagens de sucesso na sessão
+	 * Adiciona uma mensagem de sucesso na sessão.
+	 * 
+	 * Inicializa a sessão automaticamente se necessário e define a mensagem de sucesso para exibição futura.
+	 * 
+	 * @example
+	 *
+	 * ```php
+	 * \Application\Main\Helpers\Messages::success("Registro inserido com sucesso");
+	 * ```
+	 * 
+	 * @param string $message Mensagem de sucesso a ser armazenada.
+	 * 
+	 * @return void
 	 */
-	static public function success($message)
+	static public function success(string $message):void
 	{
 		self::initialize();
 		
@@ -40,9 +71,20 @@ class Messages
 	}
 
 	/**
-	 * adiciona mensagens de erro na sessão
+	 * Adiciona uma mensagem de erro na sessão.
+	 * 
+	 * Inicializa a sessão automaticamente se necessário e define a mensagem de erro para exibição futura.
+	 * 
+	 * @example
+	 * ```php
+	 * \Application\Main\Helpers\Messages::error("Erro ao inserir o registro");
+	 * ```
+	 *
+	 * @param string $message Mensagem de erro a ser armazenada.
+	 * 
+	 * @return void
 	 */
-	public static function error($message)
+	public static function error(string $message):void
 	{
 		self::initialize();
 
@@ -56,9 +98,20 @@ class Messages
 	}
 
 	/**
-	 * adiciona mensagens de alerta na sessão
+	 * Adiciona uma mensagem de alerta na sessão.
+	 * 
+	 * Inicializa a sessão automaticamente se necessário e define a mensagem de alerta para exibição futura.
+	 * 
+	 * @example
+	 * ```php
+	 * \Application\Main\Helpers\Messages::alert("Houve um erro ao enviar uma foto, verifique");
+	 * ```
+	 *
+	 * @param string $message Mensagem de alerta a ser armazenada.
+	 * 
+	 * @return void
 	 */
-	static public function alert($message)
+	static public function alert(string $message):void
 	{
 		self::initialize();
 
@@ -72,9 +125,20 @@ class Messages
 	}
 	
 	/**
-	 * adiciona mensagens de informação na sessão
+	 * Adiciona uma mensagem de informação na sessão.
+	 * 
+	 * Inicializa a sessão automaticamente se necessário e define a mensagem de informação para exibição futura.
+	 * 
+	 * @example
+	 * ```php
+	 * \Application\Main\Helpers\Messages::info("Um novo usuário efetuou o login");
+	 * ```
+	 *
+	 * @param string $message Mensagem de informação a ser armazenada.
+	 * 
+	 * @return void
 	 */
-	static public function info($message)
+	static public function info(string $message):void
 	{
 		self::initialize();
 		
@@ -88,9 +152,22 @@ class Messages
 	}
 
 	/**
-	 * recupera as mensagens
+	 * Recupera as mensagens da sessão.
+	 * 
+	 * Recupera a sessão onde estão armazenadas as mensagens
+	 * 
+	 * @example
+	 * ```php
+	 * $sessao = \Application\Main\Helpers\Messages::getMessages();
+	 * d($sessao->success);
+	 * d($sessao->error);
+	 * d($sessao->alert);
+	 * d($sessao->info);
+	 * ```
+	 *
+	 * @return \Application\Main\Helpers\Sessions
 	 */
-	static public function getMessages()
+	static public function getMessages():\Application\Main\Helpers\Sessions
 	{
 		self::initialize();
 		
@@ -99,9 +176,13 @@ class Messages
 	}
 
 	/**
-	 * limpa as mensagens
+	 * Limpa as mensagens da sessão.
+	 * 
+	 * Após exibir na tela, não faz sentido mante-las na sessão
+	 *
+	 * @return \Application\Main\Helpers\Sessions
 	 */
-	static public function clearMessages()
+	static public function clearMessages():void
 	{
 		self::initialize();
 		

@@ -3,3 +3,5 @@ vendor/
 application/tmp/templates_c/*.php
 application/tmp/database.sqlite3
 public_html/files/*/*.*
+
+docs/

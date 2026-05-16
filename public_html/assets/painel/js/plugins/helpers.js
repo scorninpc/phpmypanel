@@ -43,7 +43,7 @@ function showToast(type, message)
 	var toastElement = $(html).appendTo('.toast-containert');
 
 	// cria o objeto toast
-	var toast = new bootstrap.Toast(toastElement.get(0));
+	var toast = new tabler.Toast(toastElement.get(0));
 
 	// ao esconder, remove do html
 	toastElement.get(0).addEventListener('hidden.bs.toast', function () {
