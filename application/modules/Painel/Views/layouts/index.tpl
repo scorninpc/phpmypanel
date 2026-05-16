@@ -59,7 +59,7 @@
 									{if $core_model->getVisibility($column['name'], 'list')}
 									<td>
 										<a href="{$this->url(['controller'=>$core_funcionalidade['controlador'], 'action'=>"form", $core_model->getPrimaryKey()=>$row[$core_model->getPrimaryKey()]], "painel")}">
-											{$this->getFormatedValue($core_model, $column['name'], $row[$column['name']])|default:"&nbsp;"}
+											{$this->getFormatedValue($core_model, $column['name'], $row)|default:"&nbsp;"}
 										</a>
 									</td>
 									{/if}

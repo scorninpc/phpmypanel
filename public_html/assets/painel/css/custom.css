@@ -67,3 +67,23 @@ html[data-bs-theme="dark"] table.sin-table tbody tr td a {
 .note-editor.note-airframe .note-editing-area .note-editable, .note-editor.note-frame .note-editing-area .note-editable {
 	background-color: var(--tblr-bg-forms);
 }
+
+/**
+ * inputs
+ */
+.form-control:read-only {
+	color: var(--tblr-secondary);
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+	background-color: var(--tblr-bg-surface-secondary);
+	opacity: 1;
+}
+
+/**
+ * autocomplete
+ */
+.core-autocomplete {
+	max-width: 80px;
+	text-align: center;
+}

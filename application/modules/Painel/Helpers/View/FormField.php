@@ -18,7 +18,7 @@ class FormField
 	/**
 	 * faz a chamada ao helper do template
 	 */
-	public function call($model, $field)
+	public function call($model, $field, $row=NULL)
 	{	
 
 		// recupera a coluna
@@ -37,7 +37,7 @@ class FormField
 		// recupera o valor já formatado para usar no value
 		$original_value = $model->getValue($column['name'])??"";
 		$helper = new \Application\Painel\Helpers\View\GetFormatedValue($this->config);
-		$value = $helper->call($model, $field, $original_value);
+		$value = $helper->call($model, $field, $row);
 
 		// verifica o tipo
 		switch($column['datatype']) {
@@ -88,7 +88,9 @@ class FormField
 
 				// se for um autocomplete
 				if($column['autocomplete'] !== NULL) {
-					$template = "<input type=\"text\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" placeholder=\"%(long_description)s\" class=\"form-control %(classes)s\" data-core-autocomplete-model=\"%(model_name)s\">";
+					$autocomplete_label = $row[$field . "_label"];
+					$value = $original_value;
+					$template = "<input type=\"text\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" placeholder=\"%(long_description)s\" class=\"form-control %(classes)s\" data-core-autocomplete-model=\"%(model_name)s\" data-core-autocomplete-label=\"%(autocomplete_label)s\">";
 				}
 
 				break;
@@ -108,6 +110,7 @@ class FormField
 			'id' => $column['id']??$column['name'],
 			'long_description' => $column['long_description'],
 			'value' => $value??"",
+			'autocomplete_label' => $autocomplete_label??"",
 			'checked' => $checked??"",
 			'model_name' => "\\" . get_class($model),
 		]);

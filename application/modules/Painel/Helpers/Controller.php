@@ -40,7 +40,8 @@ class Controller extends \Slim\Mvc\Controller
 	public function indexAction()
 	{
 		// recupera os registros
-		$rows =  $this->model->get();
+		$select = $this->model->queryBuilder();
+		$rows =  $select->get();
 
 		// assina as variaveis
 		$this->view->core_rows = $rows;
@@ -297,6 +298,8 @@ class Controller extends \Slim\Mvc\Controller
 		$this->response->getBody()->write($payload);
 		return $this->response->withHeader("Content-Type", "application/json")->withStatus($status);
 	}
+
+	
 
 	/**
 	 * hooks

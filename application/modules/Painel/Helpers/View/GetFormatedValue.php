@@ -16,8 +16,11 @@ class GetFormatedValue
 	/**
 	 * faz a chamada ao helper do template
 	 */
-	public function call($model, $field, $value)
+	public function call($model, $field, $row)
 	{	
+		// recupera o valor do campo
+		$value = $row[$field];
+
 		// recupera a coluna
 		$column = $model->getColumn($field);
 
@@ -27,6 +30,16 @@ class GetFormatedValue
 			// senhas
 			case \Application\Painel\Helpers\Model::FIELDTYPE_PASSWORD:
 				$value = "";
+				break;
+
+			// integer
+			case \Application\Painel\Helpers\Model::FIELDTYPE_INTEGER:
+				
+				// se for autocomplete
+				if($column['autocomplete'] !== NULL) {
+					$value = $row[$field . "_label"];
+				}
+
 				break;
 
 			// date

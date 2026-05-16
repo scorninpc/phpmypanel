@@ -62,7 +62,7 @@
 
 							{* verifica a visilibidade do campo *}
 							{if $core_model->getVisibility($column['name'], $core_form_mode)}
-								{$this->formField($core_model, $column['name'])}
+								{$this->formField($core_model, $column['name'], $core_row)}
 							{/if}
 
 						{/foreach}

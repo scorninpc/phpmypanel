@@ -14,6 +14,9 @@ class Model extends \Slim\Mvc\Model
 	// armazena as colunas do model
 	protected $columns = [];
 
+	// armazena o registro
+	protected $row;
+
 	// armazena o nome da coluna que serve como identificador/descrição
 	protected $description_field = NULL;
 
@@ -92,6 +95,14 @@ class Model extends \Slim\Mvc\Model
 	}
 
 	/**
+	 * recupera o nome da tabela
+	 */
+	public function getTable()
+	{
+		return $this->table;
+	}
+
+	/**
 	 * recupera as colunas
 	 */
 	public function getColumns()
@@ -147,18 +158,22 @@ class Model extends \Slim\Mvc\Model
 	public function setRecord($id)
 	{
 		try {
-			$row = $this->where($this->getPrimaryKey(), $id)->first();
+			$select = $this->queryBuilder();
+			$this->row = $select->where($this->getPrimaryKey(), $id)->first();
 		}
 		catch(\Exception $e) {
 			throw $e;
 		}
 
-		// percorre as colunas adicionando o valor nelas
-		foreach($this->columns as $field => $column) {
-			$this->columns[$field]['value'] = $row[$field];
-		}
+		return $this->row;
+	}
 
-		return $row;
+	/**
+	 * recupera o valor de todas as colunas
+	 */
+	public function getValues()
+	{
+		return $this->row;
 	}
 
 	/**
@@ -166,12 +181,7 @@ class Model extends \Slim\Mvc\Model
 	 */
 	public function getValue($field)
 	{
-		// verifica se a coluna existe
-		if(!isset($this->columns[$field])) {
-			throw new \Exception("Coluna \"" . $field . "\" não existe");
-		}
-
-		return $this->columns[$field]['value']??NULL;
+		return $this->row[$field]??NULL;
 	}
 
 	/**
@@ -266,20 +276,30 @@ class Model extends \Slim\Mvc\Model
 	 * $model - model da tabela que é pra ser listada
 	 * $select - querybuilder do select que é pra ser executado para exibir no autocomplete
 	 */
-	public function setAutocomplete($field, $model, $options=[])
+	public function setAutocomplete($field, $model_name, $options=[])
 	{
-		// $options = [
-		// 	'columns' => [
-		// 		'id' => "idfield",
-		// 		'label' => "campo"
-		// 	],
-		// 	'where' => [
-		// 		"algum_campo = 2",
-		// 		'outrocampo = ?' => $valor_dinamico,
-		// 	],
-		// 	'select' => $select,
-		// 	'search_field' => "nome || fazenda"
- 		// ];
+		if(!class_exists($model_name)) {
+			throw new \Exception("Model \"" . $model_name . "\" não existe");
+		}
+		$model = new $model_name();
+
+		// monta a configuração padrão
+		$defaults = [
+			'columns' => [
+				\Application\Main\Helpers\Db::raw($model->getPrimaryKey() . " as id"),
+				\Application\Main\Helpers\Db::raw($model->getDescriptionField() . " as label"),
+			],
+			'where' => [
+				"LOWER(" . $model->getDescriptionField() . ") like '%' || :term: || '%'" // essa concatenação e o lower é feito para que funcione no sqlite tambem que noa possui ilike
+			],
+			// 'select' => $select,
+			// 'search_field' => "nome || fazenda"
+ 		];
+
+		// verifica se tem columns
+		if(isset($options['columns'])) {
+			$defaults['columns'] = $options['columns'];
+		}
 
 		// cerifica se é um vetor, pois se for string as colunas tem o mesmo nome, caso contrario 'column_name'=>'ref_column_name'
 		if(is_array($field)) {
@@ -293,13 +313,65 @@ class Model extends \Slim\Mvc\Model
 
 		// armazena as informações do autocomplete
 		$this->columns[$name]['autocomplete'] = [
-			'model' => $model,
+			'model' => $model_name,
 			'refcolumn' => $ref_column,
-			'options' => $options
+			'options' => $options,
+			'columns' => $defaults['columns'],
+			'where' => $defaults['where'],
 		];
 
 		// seta a classe que vai mudar o autocomplete
 		$this->columns[$name]['classes'][] = "core-autocomplete";
 
+	}
+
+	/**
+	 * monta a query do model
+	 */
+	public function queryBuilder()
+	{
+		// inicia a montagem da query
+		$select = $this->from($this->getTable());
+
+		// Recupera as colunas do model
+		$select_columns = [$this->getTable() . "." . $this->getPrimaryKey()];
+		$columns = $this->getColumns();
+		$count = 1;
+		foreach($columns as $column => $config) {
+
+			// adiciona a coluna ao select
+			$select_columns[] = $this->getTable() . "." . $column;
+
+			// se a coluna for um autocomplete
+			if($config['autocomplete'] !== NULL) {
+
+				// cria o model da referencia
+				$ac = new $config['autocomplete']['model']();
+
+				// monta a coluna de descricao
+				$ac_column_description = sprintf("T%02d.%s as %s_label", $count, $ac->getDescriptionField(), $column);
+
+				// faz o join
+				$select->leftJoin(
+					$ac->getTable() . " AS " . sprintf("T%02d", $count), 
+					sprintf("T%02d", $count) . "." . $config['autocomplete']['refcolumn'], 
+					"=", 
+					$this->getTable() . "." . $column
+				);
+
+				// adiciona a coluna do label
+				$select_columns[] = $ac_column_description;
+
+				// proximo join
+				$count++;
+			}
+
+		}
+
+		// adiciona as colunas
+		$select->select($select_columns);
+
+		// retorna a query
+		return $select;
 	}
 }
