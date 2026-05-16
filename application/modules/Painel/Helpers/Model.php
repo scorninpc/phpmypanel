@@ -242,6 +242,9 @@ class Model extends \Slim\Mvc\Model
 			}
 			$this->columns[$field]['modifiers']['escape'] = $options['escape'];
 			$this->columns[$field]['classes'][] = "core-richtext";
+
+			// muda o tipo
+			$this->columns[$field]['datatype'] = \Application\Painel\Helpers\Model::FIELDTYPE_TEXT;
 		}
 
 		// telefone
