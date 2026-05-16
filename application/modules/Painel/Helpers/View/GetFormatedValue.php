@@ -44,7 +44,7 @@ class GetFormatedValue
 
 			// date
 			case \Application\Painel\Helpers\Model::FIELDTYPE_DATE:
-				$value = strtotime($value);
+				$value = strtotime($value??"");
 				if($value !== FALSE) {
 					$value = date("d/m/Y", $value);
 				}
