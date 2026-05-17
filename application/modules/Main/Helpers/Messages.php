@@ -3,11 +3,10 @@
 namespace Application\Main\Helpers;
 
 /**
- * Classe que trata mensagens de alerta do sistema
+ * Classe que trata mensagens de alerta do sistema.
  * 
- * Responsável por armazenar mensagens de feedback no sistema, que serão exibidas
- * ao usuário na próxima atualização da página. As mensagens são salvas na sessão
- * e exibidas como toasts, sendo removidas da sessão após a exibição.
+ * Responsável por armazenar mensagens de feedback no sistema, que serão exibidas ao usuário na próxima atualização da página. As
+ * mensagens são salvas na sessão e exibidas como toasts, sendo removidas da sessão após a exibição.
  */
 class Messages
 {
@@ -19,7 +18,7 @@ class Messages
 	private static $_messages;
 	
 	/**
-	 * Informa se está inicializado
+	 * Informa se está inicializado.
 	 *
 	 * @var bool
 	 */

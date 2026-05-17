@@ -5,21 +5,39 @@ namespace Application\Main\Helpers;
 use Slim\Routing\RouteContext;
 
 /**
- * trata o request, como por exemplo, o metodo, o nome da rota, os parametros
+ * Trata o request, como por exemplo, o metodo, o nome da rota, os parametros.
  */
 class Request
 {
+	/**
+	 * Request original do slim
+	 * 
+	 * @var \Psr\Http\Message\ServerRequestInterface
+	 */
 	protected $request;
 
+	/**
+	 * Vetor com os parametros
+	 * 
+	 * @var array
+	 */
 	protected $params;
 
+	/**
+	 * Proprio objeto
+	 * @var \Application\Main\Helpers\Request
+	 */
 	static $instance;
 
 	/**
-	 * SSO
-	 * os parametros são passados somente na primeira chamada
+	 * Cria a instancia. Os parametros são passados somente na primeira chamada.
+	 * 
+	 * @param \Psr\Http\Message\ServerRequestInterface|null $request Request original Slim
+	 * @param array|null $args Vetor com os parametros recebidos
+	 * 
+	 * @return \Application\Main\Helpers\Request
 	 */
-	static public function getInstance($request=NULL, $args=NULL)
+	static public function getInstance(\Psr\Http\Message\ServerRequestInterface|NULL $request=NULL, array|NULL $args=NULL): \Application\Main\Helpers\Request
 	{
 		if(!self::$instance) {
 			self::$instance = new self($request, $args);
@@ -29,7 +47,12 @@ class Request
 	}
 
 	/**
-	 * construtor privado, para forçar executar somente uma vez
+	 * Construtor privado, para forçar executar somente uma vez.
+	 * 
+	 * @param \Psr\Http\Message\ServerRequestInterface|null $request Request original Slim
+	 * @param array|null $args Vetor com os parametros recebidos
+	 * 
+	 * @return \Application\Main\Helpers\Request
 	 */
 	private function __construct($request, $args)
 	{
@@ -82,9 +105,11 @@ class Request
 	}
 
 	/**
-	 * retorna o request slim original
+	 * Retorna o request slim original.
+	 * 
+	 * @return \Psr\Http\Message\ServerRequestInterface
 	 */
-	public function getRequest()
+	public function getRequest(): \Psr\Http\Message\ServerRequestInterface
 	{
 		return $this->request;
 	}

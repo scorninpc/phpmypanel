@@ -2,12 +2,20 @@
 
 namespace Application\Main\Helpers;
 
+/**
+ * Classe que ajuda nos redirecionamentos, tanto por nome de rota, por caminho ou outras formas possiveis.
+ */
 class Redirect
 {
 	/**
-	 * redireciona a partir da rota
+	 * Redireciona a partir do nome da rota.
+	 * 
+	 * @param string $route Nome da rota
+	 * @param string $params Vetor com os parametros
+	 * 
+	 * @return void
 	 */
-	static public function urlFor($route, $params=[])
+	static public function urlFor(string $route, array $params=[]): void
 	{
 		$request = \Slim\Mvc\Factory::get("request");
 		
@@ -18,11 +26,13 @@ class Redirect
 	}
 
 	/**
-	 * efetua o redirect
+	 * Efetua o redirect a partir da URL.
 	 * 
 	 * @param string $url URL para dar o redirect
+	 * 
+	 * @return void
 	 */
-	static public function go($url)
+	static public function go(string $url): void
 	{
 		$config = \Slim\Mvc\Factory::get("config");
 		
@@ -60,9 +70,11 @@ class Redirect
 	}
 
 	/**
-	 * efetua o redirect para a tela anterior
+	 * Efetua o redirect para a tela anterior.
+	 * 
+	 * @return void
 	 */
-	static public function back()
+	static public function back(): void
 	{
 		\Application\Main\Helpers\Redirect::go($_SERVER['HTTP_REFERER']??"");
 	}

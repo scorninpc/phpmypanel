@@ -185,9 +185,16 @@ class Model extends \Slim\Mvc\Model
 	}
 
 	/**
-	 * seta a visibilidade do campo
+	 * Informa a visibilidade do campo conforme a tela do CRUD.
+	 * 
+	 * @param string $field Nome do campo
+	 * @param bool $insert Se o campo é visivel no formulário quando está inserindo um registro
+	 * @param bool $update Se o campo é visivel no formulário quando está atualizando um registro
+	 * @param bool $list Se o campo é visivel na tela de listagem
+	 * 
+	 * @return void
 	 */
-	public function setVisibility($field, $insert=TRUE, $update=TRUE, $list=TRUE)
+	public function setVisibility($field, $insert=TRUE, $update=TRUE, $list=TRUE):void
 	{
 		// verifica se a coluna existe
 		if(!isset($this->columns[$field])) {
