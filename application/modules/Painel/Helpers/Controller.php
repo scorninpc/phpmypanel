@@ -89,57 +89,72 @@ class Controller extends \Slim\Mvc\Controller
 					}
 				}
 
-				// se é campo de arquivo
-				else if($config['datatype'] == \Application\Painel\Helpers\Model::FIELDTYPE_FILE) {
+				// se é um campo varchar
+				else if($config['datatype'] == \Application\Painel\Helpers\Model::FIELDTYPE_VARCHAR) {
 
-					$arquivo = $_FILES[$column];
-					if($arquivo['size'] > 0) {
 
-						// verifica se o arquivo é valido
-						$filetype = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $arquivo['tmp_name']);
-						if(!in_array($filetype, $config['modifiers']['allowed_mimes'])) {
-							throw new \Exception("Tipo do arquivo não permitido");
-						}
+					// se é campo de arquivo
+					if($config['file'] !== NULL) {
 
-						// caminho final do arquivo
-						$destiny = $config['modifiers']['destination'];
+						$arquivo = $_FILES[$column];
+						if($arquivo['size'] > 0) {
 
-						// se tiver imagick, força salvar em webp se for uma imagem
-						if(class_exists("\\Imagick") && (strpos($filetype, "image") !== FALSE) && (!$config['modifiers']['keep_format'])) {
-							$name = md5(time() . rand(1000, 9999));
-							$extension = "webp";
-							$filename = $name . "." . $extension;
-							$dest = $destiny . "/" . $filename;
-
-							$format = explode("/", $arquivo['type'])[1] ?? "";
-
-							$img = new \Imagick();
-							$img->readImage($format . ":" . $arquivo['tmp_name']);
-							$img->setImageFormat("webp");
-							$img->setImageCompressionQuality(85);
-
-							$largura = $img->getImageWidth();
-							if ($largura > 1090) {
-								$img->resizeImage(1090, 0, \Imagick::FILTER_LANCZOS, 1);
+							// verifica se o arquivo é valido
+							$filetype = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $arquivo['tmp_name']);
+							if(!in_array($filetype, $config['file']['allowed_mimes'])) {
+								\Application\Main\Helpers\Messages::error("Tipo do arquivo não permitido");
+								\Application\Main\Helpers\Redirect::back();
 							}
 
-							$img->stripImage();
-							$img->writeImage($dest); 
-
-							if(method_exists($img, "clear")) {
-								$img->clear();
+							// verifica se o diretório existe e é escrevivel (hahah)
+							if(!is_writable($config['file']['destination'])) {
+								\Application\Main\Helpers\Messages::error("Diretório \"" . ($config['file']['destination']) . "\" não possui permissão de escrita ou não existe");
+								\Application\Main\Helpers\Redirect::back();
 							}
-							$img->destroy();
+							
+							// caminho final do arquivo
+							$destiny = $config['file']['destination'];
+
+							// se tiver imagick, força salvar em webp se for uma imagem
+							if(class_exists("\\Imagick") && (strpos($filetype, "image") !== FALSE) && (!$config['file']['keep_format'])) {
+								$name = md5(time() . rand(1000, 9999));
+								$extension = "webp";
+								$filename = $name . "." . $extension;
+								$dest = $destiny . "/" . $filename;
+
+								$format = explode("/", $arquivo['type'])[1] ?? "";
+
+								$img = new \Imagick();
+								$img->readImage($format . ":" . $arquivo['tmp_name']);
+								$img->setImageFormat("webp");
+								$img->setImageCompressionQuality(85);
+
+								$largura = $img->getImageWidth();
+								if ($largura > 1090) {
+									$img->resizeImage(1090, 0, \Imagick::FILTER_LANCZOS, 1);
+								}
+
+								$img->stripImage();
+								$img->writeImage($dest); 
+
+								if(method_exists($img, "clear")) {
+									$img->clear();
+								}
+								$img->destroy();
+							}
+							else {
+								$filename = md5(time() . rand(1000, 9999)) . "." . pathinfo($arquivo['name'], PATHINFO_EXTENSION);
+
+								// move o arquivo para o diretório
+								move_uploaded_file($arquivo['tmp_name'], $destiny . "/" . $filename);
+							}
+
+							// seta o nome final do arquivo
+							$data[$column] = $filename;
 						}
 						else {
-							$filename = md5(time() . rand(1000, 9999)) . "." . pathinfo($arquivo['name'], PATHINFO_EXTENSION);
-
-							// move o arquivo para o diretório
-							move_uploaded_file($arquivo['tmp_name'], $destiny . "/" . $filename);
+							unset($data[$column]);
 						}
-
-						// seta o nome final do arquivo
-						$data[$column] = $filename;
 					}
 
 				}

@@ -29,7 +29,7 @@ class Model extends \Slim\Mvc\Model
 	const FIELDTYPE_DATE = "date";
 	const FIELDTYPE_BOOLEAN = "boolean";
 	const FIELDTYPE_PASSWORD = "password";
-	const FIELDTYPE_FILE = "file";
+	// const FIELDTYPE_FILE = "file"; // não existe mais, usar varchar, pois o campo no banco é varchar
 
 	/**
 	 * inicializa o controller
@@ -66,6 +66,7 @@ class Model extends \Slim\Mvc\Model
 				'update' => TRUE,
 				'list' => TRUE,
 			],
+			'file' => NULL,
 			'autocomplete' => NULL,
 		];
 
@@ -272,10 +273,10 @@ class Model extends \Slim\Mvc\Model
 		// file
 		elseif($type == "file") {
 			$this->columns[$field]['classes'][] = "core-custom-file";
-			$this->columns[$field]['modifiers']['preview'] = $options['dir'];
-			$this->columns[$field]['modifiers']['destination'] = APPLICATION_PATH . "/../" . PUBLIC_DIR . "/files/" . $options['dir'];
-			$this->columns[$field]['modifiers']['allowed_mimes'] = $options['mimes'];
-			$this->columns[$field]['modifiers']['keep_format'] = $options['keep_format']??FALSE;
+			$this->columns[$field]['file']['dir'] = $options['dir'];
+			$this->columns[$field]['file']['destination'] = APPLICATION_PATH . "/../" . PUBLIC_DIR . "/files/" . $options['dir'];
+			$this->columns[$field]['file']['allowed_mimes'] = $options['mimes'];
+			$this->columns[$field]['file']['keep_format'] = $options['keep_format']??FALSE;
 		}
 	}
 

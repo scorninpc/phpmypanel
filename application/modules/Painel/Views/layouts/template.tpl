@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="{$basePath}/assets/painel/css/tabler-themes.min.css">
 		<link rel="stylesheet" href="{$basePath}/assets/painel/css/jquery-ui.min.css">
 		<link rel="stylesheet" href="{$basePath}/assets/painel/css/plugins/summernote-bs5.min.css">
+		<link rel="stylesheet" href="{$basePath}/assets/painel/css/plugins/fancybox.css">
 		<link rel="stylesheet" href="{$basePath}/assets/painel/css/custom.css">
 
 		<title>Hello, world!</title>
@@ -144,6 +145,7 @@
 		<script src="{$basePath}/assets/painel/js/plugins/helpers.js"></script>
 		<script src="{$basePath}/assets/painel/js/plugins/jquery.mask.min.js"></script>
 		<script src="{$basePath}/assets/painel/js/plugins/summernote-bs5.min.js"></script>
+		<script src="{$basePath}/assets/painel/js/plugins/fancybox.umd.js"></script>
 		<script src="{$basePath}/assets/painel/js/custom.js"></script>
 	</body>
 </html>

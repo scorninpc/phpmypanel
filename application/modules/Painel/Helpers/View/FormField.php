@@ -34,6 +34,10 @@ class FormField
 		// inicia o template
 		$template = "";
 
+		// recupera o basepath
+		$config = \Slim\Mvc\Factory::get("config");
+		$basePath = $config['application']['basepath'];
+
 		// recupera o valor já formatado para usar no value
 		$original_value = $model->getValue($column['name'])??"";
 		$helper = new \Application\Painel\Helpers\View\GetFormatedValue($this->config);
@@ -76,13 +80,56 @@ class FormField
 				$template = "<input type=\"datetime-local\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" class=\"form-control %(classes)s\">";
 				break;
 
-			// file
-			case \Application\Painel\Helpers\Model::FIELDTYPE_FILE:
-				$template = "<input type=\"file\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" class=\"%(classes)s\">";
-				break;
-
 			// todos os outros tipos são um input="text"
 			case \Application\Painel\Helpers\Model::FIELDTYPE_VARCHAR:
+				// template padrão do varchar
+				$template = "<input type=\"text\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" placeholder=\"%(long_description)s\" class=\"form-control %(classes)s\">";
+
+				// se for um arquivo
+				if($column['file'] !== NULL) {
+
+					// se tiver valor, mostra o preview
+					if($value?:"" !== "") {
+
+						$preview_attrib = "target=\"_blank\"";
+
+						// verifica se é uma imagem
+						$finfo = new \finfo(FILEINFO_MIME_TYPE);
+						if(in_array($finfo->file($column['file']['destination'] . "/" . $value), ['image/jpeg', 'image/png', 'image/webp', 'image/bmp', 'image/gif'])) {
+							$preview_attrib = "data-fancybox";
+						}
+						
+						// monta o caminho do arquivo 
+						$preview_path = $basePath . "/files/" . $column['file']['dir'] . "/" . $value;
+
+						$template = "
+							<div class=\"input-group\">
+								<a href=\"" . $preview_path . "\" class=\"btn\" " . $preview_attrib . ">
+									<i class=\"fa-solid fa-picture-in-picture\"></i>
+								</a>
+								<input type=\"file\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" class=\"form-control %(classes)s\">
+							</div>
+
+							<div class=\"modal\" id=\"exampleModal\" tabindex=\"-1\">
+								<div class=\"modal-dialog\" role=\"document\">
+									<div class=\"modal-content\">
+									<div class=\"modal-header\">Preview</div>
+									<div class=\"modal-body\">...</div>
+									</div>
+								</div>
+							</div>
+						";
+					}
+					else {
+						$template = "
+							<input type=\"file\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" class=\"form-control %(classes)s\">
+						";
+					}
+					
+				}
+
+				break;
+
 			case \Application\Painel\Helpers\Model::FIELDTYPE_INTEGER:
 				$template = "<input type=\"text\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" placeholder=\"%(long_description)s\" class=\"form-control %(classes)s\">";
 
