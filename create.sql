@@ -3,7 +3,8 @@ CREATE TABLE funcionalidades (
 	idfuncionalidade integer not null primary key AUTOINCREMENT, 
 	nome varchar(250),
 	controlador varchar(250),
-	icone varchar(50)
+	icone varchar(50),
+	hide boolean not null default false
 );
 
 INSERT INTO funcionalidades (nome, controlador) VALUES ('Usuarios', 'usuarios', 'fa-solid fa-user-group');

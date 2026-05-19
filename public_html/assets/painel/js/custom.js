@@ -108,7 +108,9 @@ $('.core-richtext').each(function() {
 
 
 
-
+/**
+ * plugin do autocomplete
+ */
 jQuery.fn.CoreAutocomplete = function(e) {
 
 	// configuração padrão
@@ -300,3 +302,8 @@ $('input[data-core-autocomplete-model]').each(function() {
 	$(this).CoreAutocomplete();
 
 });
+
+/**
+ * custom files
+ */
+Fancybox.bind("[data-fancybox]", {});

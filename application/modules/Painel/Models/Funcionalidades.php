@@ -20,6 +20,7 @@ class Funcionalidades extends \Application\Painel\Helpers\Model
 		$this->addField("nome", \Application\Painel\Helpers\Model::FIELDTYPE_VARCHAR, "Nome", "Nome da funcionalidade");
 		$this->addField("controlador", \Application\Painel\Helpers\Model::FIELDTYPE_VARCHAR, "Controlador", "Nome do controlador da funcionalidade");
 		$this->addField("icone", \Application\Painel\Helpers\Model::FIELDTYPE_VARCHAR, "Icone", "Classe do fontawesome para o icone");
+		$this->addField("hide", \Application\Painel\Helpers\Model::FIELDTYPE_BOOLEAN, "Esconder", "Informa se deve esconder do menu");
 
 		// seta o campo descrição
 		$this->setDescriptionField("nome");
@@ -28,5 +29,6 @@ class Funcionalidades extends \Application\Painel\Helpers\Model
 		$this->setVisibility("nome", TRUE, TRUE, TRUE);
 		$this->setVisibility("controlador", TRUE, TRUE, TRUE);
 		$this->setVisibility("icone", TRUE, TRUE, TRUE);
+		$this->setVisibility("hide", TRUE, TRUE, TRUE);
 	}
 }

@@ -39,9 +39,11 @@ class FormField
 		$basePath = $config['application']['basepath'];
 
 		// recupera o valor já formatado para usar no value
-		$original_value = $model->getValue($column['name'])??"";
-		$helper = new \Application\Painel\Helpers\View\GetFormatedValue($this->config);
-		$value = $helper->call($model, $field, $row);
+		// $original_value = $model->getValue($column['name'])??"";
+		// $helper = new \Application\Painel\Helpers\View\GetFormatedValue($this->config);
+		// $value = $helper->call($model, $field, $row);
+
+		$value = $model->getValue($column['name'])??"";
 
 		// verifica o tipo
 		switch($column['datatype']) {
@@ -55,7 +57,7 @@ class FormField
 			case \Application\Painel\Helpers\Model::FIELDTYPE_BOOLEAN:
 
 				$checked = "";
-				if($value == "Sim") {
+				if($value) {
 					$checked = "checked=\"checked\"";
 				}
 
@@ -71,7 +73,6 @@ class FormField
 
 			// date
 			case \Application\Painel\Helpers\Model::FIELDTYPE_DATE:
-				$value = $original_value;
 				$template = "<input type=\"date\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" class=\"form-control %(classes)s\">";
 				break;
 
@@ -136,7 +137,6 @@ class FormField
 				// se for um autocomplete
 				if($column['autocomplete'] !== NULL) {
 					$autocomplete_label = $row[$field . "_label"];
-					$value = $original_value;
 					$template = "<input type=\"text\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" placeholder=\"%(long_description)s\" class=\"form-control %(classes)s\" data-core-autocomplete-model=\"%(model_name)s\" data-core-autocomplete-label=\"%(autocomplete_label)s\">";
 				}
 

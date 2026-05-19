@@ -25,7 +25,7 @@ class Testes extends \Application\Painel\Helpers\Model
 		$this->addField("campo_texto", \Application\Painel\Helpers\Model::FIELDTYPE_TEXT, "Campo Texto", "Campo do tipo texto");
 		$this->addField("campo_data", \Application\Painel\Helpers\Model::FIELDTYPE_DATE, "Campo Data", "Campo do tipo data");
 		$this->addField("campo_datahora", \Application\Painel\Helpers\Model::FIELDTYPE_DATETIME, "Campo Data Hora", "Campo do tipo data e hora");
-		$this->addField("campo_arquivo", \Application\Painel\Helpers\Model::FIELDTYPE_FILE, "Campo Arquivo", "Campo do tipo arquivo");
+		$this->addField("campo_arquivo", \Application\Painel\Helpers\Model::FIELDTYPE_VARCHAR, "Campo Arquivo", "Campo do tipo arquivo");
 
 		// seta o campo descrição
 		$this->setDescriptionField("campo_varchar");

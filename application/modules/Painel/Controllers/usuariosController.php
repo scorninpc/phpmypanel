@@ -62,6 +62,7 @@ class usuariosController extends \Application\Painel\Helpers\Controller
 
 			// efetuou o login ok
 			$session = new \Application\Main\Helpers\Sessions("login");
+			$session->nome = $user['nome'];
 			$session->idusuario = $user['idusuario'];
 			$session->email = $user['email'];
 

@@ -75,6 +75,7 @@ class Bootstrap {
 		$view->core_funcionalidades = $funcionalidades;
 		$view->core_current_controller = $currentController;
 		$view->core_current_action = $currentAction;
+		$view->core_login = $session;
 	}
 
 	/**

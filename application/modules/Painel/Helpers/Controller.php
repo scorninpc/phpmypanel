@@ -89,6 +89,18 @@ class Controller extends \Slim\Mvc\Controller
 					}
 				}
 
+				// se é um campo boolean
+				else if($config['datatype'] == \Application\Painel\Helpers\Model::FIELDTYPE_BOOLEAN) {
+
+					// trata o valor
+					if($data[$column] == 1) {
+						$data[$column] = TRUE;
+					}
+					else {
+						$data[$column] = FALSE;
+					}
+				}
+
 				// se é um campo varchar
 				else if($config['datatype'] == \Application\Painel\Helpers\Model::FIELDTYPE_VARCHAR) {
 
@@ -156,7 +168,12 @@ class Controller extends \Slim\Mvc\Controller
 							unset($data[$column]);
 						}
 					}
+				}
 
+				// verifica se a coluna é vazia, se for da unset para não atualizar vazia
+				if($data[$column] === NULL) {
+					unset($data[$column]);
+					continue;
 				}
 
 			}
@@ -226,6 +243,9 @@ class Controller extends \Slim\Mvc\Controller
 			}
 
 		}
+
+		// executa antes de montar o form
+		$this->doBeforeForm();
 
 		// assina as variaveis
 		$this->view->core_model = $this->model;
@@ -325,6 +345,7 @@ class Controller extends \Slim\Mvc\Controller
 	public function doBeforeUpdate($data) { return $data; }
 	public function doAfterDelete($id) {}
 	public function dobeforeDelete($id) {}
+	public function doBeforeForm() { }
 
 	
 }

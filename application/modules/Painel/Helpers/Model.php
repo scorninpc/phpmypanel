@@ -186,6 +186,14 @@ class Model extends \Slim\Mvc\Model
 	}
 
 	/**
+	 * seta o valor de uma coluna
+	 */
+	public function setValue($field, $value)
+	{
+		$this->row[$field] = $value;
+	}
+
+	/**
 	 * Informa a visibilidade do campo conforme a tela do CRUD.
 	 * 
 	 * @param string $field Nome do campo
@@ -285,7 +293,7 @@ class Model extends \Slim\Mvc\Model
 	 * 
 	 * $field - nome do campo
 	 * $model - model da tabela que é pra ser listada
-	 * $select - querybuilder do select que é pra ser executado para exibir no autocomplete
+	 * $options - opções de configuração
 	 */
 	public function setAutocomplete($field, $model_name, $options=[])
 	{

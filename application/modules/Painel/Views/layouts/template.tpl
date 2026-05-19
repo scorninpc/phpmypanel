@@ -61,13 +61,15 @@
 							<a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu" aria-expanded="false">
 								{* <span class="avatar avatar-sm" style="background-image: url(/files/general/bbc859c86887754d906c934ea866b081.jpeg)"></span> imagem do perfil quando tiver *}
 								<div class="d-none d-xl-block px-2">
-									<div class="nome">Bruno</div>
+									<div class="nome">{$core_login->nome}</div>
 									<div class="mt-1 small text-muted">--</div> {* perfil quando tiver *}
 								</div>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-								{* <a href="/painel/usuarios/form/idusuario/1" class="dropdown-item">Meu Perfil</a> *}
-								<a href="{$this->url(['controller'=>"users", 'action'=>"logout"], "painel")}" class="dropdown-item">Sair</a>
+								<a href="{$this->url(['controller'=>"funcionalidades", 'action'=>"index"], "painel")}" class="dropdown-item">Funcionalidades</a>
+								<a href="{$this->url(['controller'=>"usuarios", 'action'=>"index"], "painel")}" class="dropdown-item">Usuários</a>
+								<div class="dropdown-divider"></div>
+								<a href="{$this->url(['controller'=>"usuarios", 'action'=>"logout"], "painel")}" class="dropdown-item">Sair</a>
 							</div>
 
 						</div>
@@ -89,16 +91,18 @@
 								</li>
 
 								{foreach from=$core_funcionalidades item=core_funcionalidade}
-								<li class="nav-item">
-									<a class="nav-link active" href="{$this->url(['controller'=>$core_funcionalidade['controlador']], "painel")}">
-										{if strlen($core_funcionalidade['icone']|default:"") > 0}
-										<span class="nav-link-icon d-md-none d-lg-inline-block">
-											<i class="{$core_funcionalidade['icone']|escape}"></i>
-										</span>
-										{/if}
-										<span class="nav-link-title">{$core_funcionalidade['nome']|escape}</span>
-									</a>
-								</li>
+									{* se for para esconder, da um continue. não faz na query porque é usado para montar os breadcrumb e titles *}
+									{if $core_funcionalidade['hide']}{continue}{/if}
+									<li class="nav-item">
+										<a class="nav-link active" href="{$this->url(['controller'=>$core_funcionalidade['controlador']], "painel")}">
+											{if strlen($core_funcionalidade['icone']|default:"") > 0}
+											<span class="nav-link-icon d-md-none d-lg-inline-block">
+												<i class="{$core_funcionalidade['icone']|escape}"></i>
+											</span>
+											{/if}
+											<span class="nav-link-title">{$core_funcionalidade['nome']|escape}</span>
+										</a>
+									</li>
 								{/foreach}
 								
 								{* <li class="nav-item dropdown">
