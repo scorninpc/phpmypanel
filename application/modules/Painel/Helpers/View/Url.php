@@ -25,15 +25,17 @@ class Url
 		
 		// percorre os valores padrões
 		$final_params = [];
-		foreach($routes['default']['defaults'] as $default => $value) {
+		foreach($routes[$name]['defaults'] as $default => $value) {
 			// se esse parametro não estiver vindo da função
 			if(!isset($params[$default])) {
 				// usa o default
 				$final_params[$default] = $value;
 			}
 			else {
-				// usa o que está vindo
-				$final_params[$default] = $params[$default];
+				// usa o que está vindo se não for NULL
+				if($params[$default] != NULL) {
+					$final_params[$default] = $params[$default];
+				}
 			}
 
 			// e remove ele
@@ -42,7 +44,9 @@ class Url
 
 		// agora percorre o que sobrou de $params para criar o query string final
 		foreach ($params as $key => $value) {
-			$final_params['params'] .= "/" . urlencode($key) . "/" . urlencode($value);
+			if($value != NULL) {
+				$final_params['params'] .= "/" . urlencode($key) . "/" . urlencode($value);
+			}
 		}
 		if(isset($final_params['params'])) {
 			$final_params['params'] = substr($final_params['params'], 1);

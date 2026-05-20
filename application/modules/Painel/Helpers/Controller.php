@@ -39,8 +39,13 @@ class Controller extends \Slim\Mvc\Controller
 	 */
 	public function indexAction()
 	{
-		// recupera os registros
+		// inicia a query
 		$select = $this->model->queryBuilder();
+
+		// cria o hook para manipulação da qeury
+		$select = $this->doBeforeList($select);
+
+		// recupera os registros
 		$rows =  $select->get();
 
 		// assina as variaveis
@@ -339,6 +344,7 @@ class Controller extends \Slim\Mvc\Controller
 	/**
 	 * hooks
 	 */
+	public function doBeforeList($select) { return $select; }
 	public function doAfterInsert($id) {}
 	public function doBeforeInsert($data) { return $data; }
 	public function doAfterUpdate($id) {}
@@ -346,6 +352,5 @@ class Controller extends \Slim\Mvc\Controller
 	public function doAfterDelete($id) {}
 	public function dobeforeDelete($id) {}
 	public function doBeforeForm() { }
-
 	
 }

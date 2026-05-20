@@ -28,11 +28,16 @@
 
     "require": {
         "scorninpc/slim-mvc": "3.0.0.x-dev",
-        "illuminate/database": "*"
+        "scorninpc/canvas": "^2.0",
+        "illuminate/database": "*",
+         "illuminate/pagination": "*"
     },
     "autoload": {
         "psr-4": {
             "Application\\": "application/modules/"
         }
+    },
+    "require-dev": {
+        "kint-php/kint": "^6.1"
     }
 }
