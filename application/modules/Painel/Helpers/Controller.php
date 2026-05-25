@@ -317,9 +317,12 @@ class Controller extends \PHPMyPanel\Internal\Controller
 			$payload = json_encode($payload);
 		}
 
+		// recupera o container
+		$app = \PHPMyPanel\Internal\Application::getSlimApplication();
+
 		// retorna o json
-		$this->response->getBody()->write($payload);
-		return $this->response->withHeader("Content-Type", "application/json")->withStatus($status);
+		$this->response->getResponse()->getBody()->write($payload);
+		return $this->response->getResponse()->withHeader("Content-Type", "application/json")->withStatus($status);
 	}
 
 	

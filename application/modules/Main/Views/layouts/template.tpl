@@ -9,6 +9,6 @@
 
 	</head>
 	<body>
-		{$layout_content}
+		{include $layout_content}
 	</body>
 </html>

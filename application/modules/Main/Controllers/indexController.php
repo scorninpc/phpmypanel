@@ -2,12 +2,14 @@
 
 namespace Application\Main\Controllers;
 
-class indexController extends \Slim\Mvc\Controller
+class indexController extends \PHPMyPanel\Internal\Controller
 {
-
+	/**
+	 * pagina inicial
+	 */
 	public function indexAction()
 	{
 		// redireciona para o painel
-		\Application\Main\Helpers\Redirect::go("/painel");
+		\PHPMyPanel\Helpers\Redirect::go("/painel");
 	}
 }

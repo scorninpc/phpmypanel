@@ -14,7 +14,6 @@ return [
 
 	'smarty' => [
 		'template_dir' => [
-			dirname(__FILE__) . "/../",
 			dirname(__FILE__) . "/../modules/",
 		],
 		'compile_dir' =>  dirname(__FILE__) . "/../tmp/templates_c",
@@ -32,5 +31,5 @@ return [
 		'database' => dirname(__FILE__) . "/../tmp/database.sqlite3",
 	],
 
-	'routes' => require APPLICATION_PATH . "/configs/routes.php",
+	'routes' => require dirname(__FILE__) . "/routes.php",
 ];

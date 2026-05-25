@@ -45,3 +45,4 @@
 - [ ] incluir multiplos arquivos de configurações com APPLICATION_ENV
 - [ ] Fazer um teste sem modulo, pois nao quero usar dentro do core, queria usar os helpers e bootstrap dentro de application
 - [ ] Tratar o Internal\Model para fazer o configure somente no painel, ou passar alguma variavel no construtor
+- [ ] os views helpers passam o $config, e parece estar com problema. tirar, deixar sem passar nada mesmo, quando precisar pega do application

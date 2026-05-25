@@ -21,7 +21,7 @@ class Controller
 
 	/**
 	 * Armazena o response
-	 * @var \Psr\Http\Message\ResponseInterface
+	 * @var \PHPMyPanel\Internal\Response
 	 */
 	protected $response;
 
@@ -51,6 +51,16 @@ class Controller
 	public function getRequest(): \PHPMyPanel\Internal\Request
 	{
 		return $this->request;
+	}
+
+	/**
+	 * Recupera o response
+	 * 
+	 * @return \PHPMyPanel\Internal\Response
+	 */
+	public function getResponse(): \PHPMyPanel\Internal\Response
+	{
+		return $this->response;
 	}
 
 	/**

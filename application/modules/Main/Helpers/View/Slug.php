@@ -13,7 +13,6 @@ class Slug
 	public function __construct($config) 
 	{
 		$this->config = $config;
-		$this->request = \Slim\Mvc\Factory::get("request");
 	}
 
 	/**

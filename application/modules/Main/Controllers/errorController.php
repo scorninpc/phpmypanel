@@ -2,7 +2,7 @@
 
 namespace Application\Main\Controllers;
 
-class errorController extends \Slim\Mvc\Controller
+class errorController extends \PHPMyPanel\Internal\Controller
 {
 	/**
 	 * pagina do erro

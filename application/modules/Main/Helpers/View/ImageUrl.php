@@ -8,7 +8,6 @@ namespace Application\Main\Helpers\View;
 class ImageUrl
 {
 	protected $config;
-	protected $request;
 
 	/**
 	 * Construtor do helper
@@ -17,8 +16,11 @@ class ImageUrl
 	 */
 	public function __construct($config) 
 	{
-		$this->config = $config;
-		$this->request = \Slim\Mvc\Factory::get("request");
+		// recupera o request do app
+		$app = \PHPMyPanel\Internal\Application::getInstance();
+
+		// recupera a configuração
+		$this->config = $app->getConfig();
 	}
 
 	/**
