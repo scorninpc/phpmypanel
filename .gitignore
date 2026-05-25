@@ -10,7 +10,9 @@ vendor/
 
 # local data
 application/tmp/database.sqlite3
-public_html/files/*/*.*
+public_html/.htaccess
+public_html/files/**/*
+!public_html/files/**/.gitkeep
 
 # home linux
 .bash_history
@@ -24,3 +26,5 @@ public_html/files/*/*.*
 .ssh/
 logs/
 docs/
+.gitconfig
+.sqlite_history
