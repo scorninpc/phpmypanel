@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Main\Helpers;
+namespace PHPMyPanel\Helpers;
 
 /**
  * Classe que ajuda nos redirecionamentos, tanto por nome de rota, por caminho ou outras formas possiveis.
@@ -11,17 +11,21 @@ class Redirect
 	 * Redireciona a partir do nome da rota.
 	 * 
 	 * @param string $route Nome da rota
-	 * @param string $params Vetor com os parametros
+	 * @param array $params Vetor com os parametros
 	 * 
 	 * @return void
 	 */
 	static public function urlFor(string $route, array $params=[]): void
 	{
-		$request = \Slim\Mvc\Factory::get("request");
-		
-		$routeContext = $request->getRouteContext();
+		// recupera o request do app
+		$app = \PHPMyPanel\Internal\Application::getInstance();
+		$request = $app->getRequest();
+
+		// recupera o contexto das rotas e o parser
+		$routeContext = \Slim\Routing\RouteContext::fromRequest($request->getRequest());
 		$parser = $routeContext->getRouteParser();
 
+		// cria a rota
 		self::go($parser->urlFor($route, $params));
 	}
 
@@ -34,7 +38,11 @@ class Redirect
 	 */
 	static public function go(string $url): void
 	{
-		$config = \Slim\Mvc\Factory::get("config");
+		// recupera o app
+		$app = \PHPMyPanel\Internal\Application::getSlimApplication();
+
+		// recupera a configuração
+		$config = $app->getContainer()->get("config");
 		
 		// Verifica o http
 		if(strpos($url, "http://") !== FALSE) {
@@ -76,7 +84,7 @@ class Redirect
 	 */
 	static public function back(): void
 	{
-		\Application\Main\Helpers\Redirect::go($_SERVER['HTTP_REFERER']??"");
+		self::go($_SERVER['HTTP_REFERER']??"");
 	}
 
 }

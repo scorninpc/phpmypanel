@@ -2,10 +2,11 @@
 
 namespace Application\Painel\Controllers;
 
-class indexController extends \Application\Painel\Helpers\Controller
+class indexController extends \PHPMyPanel\Internal\Controller
 {
 	public function indexAction()
-	{ }
+	{
+	}
 
 	/**
 	 * monta o autocomplete

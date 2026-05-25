@@ -27,14 +27,18 @@
     "prefer-stable": true,
 
     "require": {
-        "scorninpc/slim-mvc": "3.0.0.x-dev",
+        "slim/slim": "^4.0",
+        "slim/psr7": "*",
+        "php-di/php-di": "*",
+        "smarty/smarty": "^5.0",
         "scorninpc/canvas": "^2.0",
         "illuminate/database": "*",
-         "illuminate/pagination": "*"
+        "illuminate/pagination": "*"
     },
     "autoload": {
         "psr-4": {
-            "Application\\": "application/modules/"
+            "Application\\": "application/modules/",
+            "PHPMyPanel\\": "application/core/"
         }
     },
     "require-dev": {

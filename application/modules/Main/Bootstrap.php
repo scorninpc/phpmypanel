@@ -30,6 +30,11 @@ class Bootstrap {
 	{
 		$view = \Slim\Mvc\Factory::get("view");
 		$config = \Slim\Mvc\Factory::get("config");
+		$request = \Application\Main\Helpers\Request::getInstance();
+
+		// recupera os dados do modulo
+		$currentController = $request->getParam("controller");
+		$currentAction = $request->getParam("action");
 
 		// recupera as mensagens
 		$messages = Helpers\Messages::getMessages();
@@ -44,6 +49,8 @@ class Bootstrap {
 		$view->global_alerts = $alerts;
 		$view->global_success = $success;
 		$view->global_infos = $infos;
+		$view->currentController = $currentController;
+		$view->currentAction = $currentAction;
 
 		// limpa as mensagens
 		Helpers\Messages::clearMessages();

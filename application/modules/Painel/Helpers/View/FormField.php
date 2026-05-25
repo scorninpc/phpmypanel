@@ -10,9 +10,11 @@ class FormField
 
 	public function __construct($config) 
 	{
-		$this->config = $config;
-		$this->request = \Slim\Mvc\Factory::get("request");
-		$this->view = \Slim\Mvc\Factory::get("view");
+		// recupera o request do app
+		$app = \PHPMyPanel\Internal\Application::getInstance();
+		$this->config = $app->getConfig();
+		$this->request = $app->getRequest();
+		$this->view = $app->getView();
 	}
 
 	/**
@@ -35,8 +37,7 @@ class FormField
 		$template = "";
 
 		// recupera o basepath
-		$config = \Slim\Mvc\Factory::get("config");
-		$basePath = $config['application']['basepath'];
+		$basePath = $this->config['application']['basepath'];
 
 		// recupera o valor já formatado para usar no value
 		// $original_value = $model->getValue($column['name'])??"";

@@ -11,6 +11,7 @@ return [
 			'module' => "painel",
 			'controller' => "index",
 			'action' => "index",
+			'teste' => "OK",
 		],
 	],
 

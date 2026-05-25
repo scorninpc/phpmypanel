@@ -5,7 +5,7 @@ namespace Application\Painel\Helpers;
 /**
  * abstração do controller, para os CRUDs ja terem sempre o indexAction, formAction e deleteAction
  */
-class Controller extends \Slim\Mvc\Controller
+class Controller extends \PHPMyPanel\Internal\Controller
 {
 	/**
 	 * armazena o model desse controller
@@ -16,23 +16,6 @@ class Controller extends \Slim\Mvc\Controller
 	 * armazena o request
 	 */
 	public $request;
-
-	/**
-	 * inicializa o controller
-	 */
-	public function configure() {}
-
-	/**
-	 * construtor
-	 */
-	public function __construct($view, $container, $request, $response, $args)
-	{
-		// executa o hook
-		$this->configure();
-
-		// chama o parent
-		parent::__construct($view, $container, $request, $response, $args);
-	}
 
 	/**
 	 * faz a listagem dos registros
@@ -120,13 +103,13 @@ class Controller extends \Slim\Mvc\Controller
 							$filetype = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $arquivo['tmp_name']);
 							if(!in_array($filetype, $config['file']['allowed_mimes'])) {
 								\Application\Main\Helpers\Messages::error("Tipo do arquivo não permitido");
-								\Application\Main\Helpers\Redirect::back();
+								\PHPMyPanel\Helpers\Redirect::back();
 							}
 
 							// verifica se o diretório existe e é escrevivel (hahah)
 							if(!is_writable($config['file']['destination'])) {
 								\Application\Main\Helpers\Messages::error("Diretório \"" . ($config['file']['destination']) . "\" não possui permissão de escrita ou não existe");
-								\Application\Main\Helpers\Redirect::back();
+								\PHPMyPanel\Helpers\Redirect::back();
 							}
 							
 							// caminho final do arquivo
@@ -303,7 +286,7 @@ class Controller extends \Slim\Mvc\Controller
 	public function redirectAfterInsert($id)
 	{
 		// Retorna para a pagina anterior
-		\Application\Main\Helpers\Redirect::urlFor("painel", ['controller'=>$this->getParam("controller")]);
+		\PHPMyPanel\Helpers\Redirect::urlFor("painel", ['controller'=>$this->getParam("controller")]);
 	}
 
 	/**
@@ -312,7 +295,7 @@ class Controller extends \Slim\Mvc\Controller
 	public function redirectAfterUpdate($id)
 	{
 		// Retorna para a pagina anterior
-		\Application\Main\Helpers\Redirect::urlFor("painel", ['controller'=>$this->getParam("controller")]);
+		\PHPMyPanel\Helpers\Redirect::urlFor("painel", ['controller'=>$this->getParam("controller")]);
 	}
 
 	/**
@@ -321,7 +304,7 @@ class Controller extends \Slim\Mvc\Controller
 	public function redirectAfterDelete($id)
 	{
 		// Retorna para a pagina anterior
-		\Application\Main\Helpers\Redirect::urlFor("painel", ['controller'=>$this->getParam("controller")]);
+		\PHPMyPanel\Helpers\Redirect::urlFor("painel", ['controller'=>$this->getParam("controller")]);
 	}
 
 	/**

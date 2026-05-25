@@ -7,8 +7,8 @@ CREATE TABLE funcionalidades (
 	hide boolean not null default false
 );
 
-INSERT INTO funcionalidades (nome, controlador) VALUES ('Usuarios', 'usuarios', 'fa-solid fa-user-group');
-INSERT INTO funcionalidades (nome, controlador) VALUES ('Funcionalidades', 'funcionalidades', 'fa-solid fa-gears');
+INSERT INTO funcionalidades (nome, controlador, icone, hide) VALUES ('Usuarios', 'usuarios', 'fa-solid fa-user-group', True);
+INSERT INTO funcionalidades (nome, controlador, icone, hide) VALUES ('Funcionalidades', 'funcionalidades', 'fa-solid fa-gears', True);
 
 -- usuarios
 CREATE TABLE usuarios (

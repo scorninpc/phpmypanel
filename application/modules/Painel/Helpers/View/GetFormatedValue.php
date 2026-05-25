@@ -9,8 +9,10 @@ class GetFormatedValue
 
 	public function __construct($config) 
 	{
-		$this->config = $config;
-		$this->request = \Slim\Mvc\Factory::get("request");
+		// recupera o request do app
+		$app = \PHPMyPanel\Internal\Application::getInstance();
+		$this->config = $app->getConfig();
+		$this->request = $app->getRequest();
 	}
 
 	/**

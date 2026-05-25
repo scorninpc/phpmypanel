@@ -43,3 +43,5 @@
 - [ ] no tema escuro, a seleção de texto nos inputs quase nao aparecem
 - [ ] fazer o upload de imagem no summernote
 - [ ] incluir multiplos arquivos de configurações com APPLICATION_ENV
+- [ ] Fazer um teste sem modulo, pois nao quero usar dentro do core, queria usar os helpers e bootstrap dentro de application
+- [ ] Tratar o Internal\Model para fazer o configure somente no painel, ou passar alguma variavel no construtor

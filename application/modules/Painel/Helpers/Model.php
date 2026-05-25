@@ -5,11 +5,11 @@ namespace Application\Painel\Helpers;
 /**
  * abstração do model, para os CRUDs conseguirem montar os formulários e listagens
  */
-class Model extends \Slim\Mvc\Model
+class Model extends \PHPMyPanel\Internal\Model
 {	
 	// configura o nome da tabela e a chave primaria
-	protected $table = "funcionalidades";
-	protected $primaryKey = "idfuncionalidade";
+	protected $table = "";
+	protected $primaryKey = "";
 
 	// armazena as colunas do model
 	protected $columns = [];

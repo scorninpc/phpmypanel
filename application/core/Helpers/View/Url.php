@@ -1,27 +1,42 @@
 <?php
 
-namespace Application\Main\Helpers\View;
+namespace PHPMyPanel\Helpers\View;
 
+/**
+ * View helper que cria urls
+ */
 class Url
 {
-	protected $config;
+	/**
+	 * Armazena o request
+	 * @var \PHPMyPanel\Internal\Request
+	 */
 	protected $request;
 
-	public function __construct($config) 
+	/**
+	 * Construtor da classe
+	 * 
+	 * @param \PHPMyPanel\Internal\Request $request Request da requisição
+	 */
+	public function __construct(\PHPMyPanel\Internal\Request $request)
 	{
-		$this->config = $config;
-		$this->request = \Slim\Mvc\Factory::get("request");
+		$this->request = $request;
 	}
 
 	public function call($params, $name)
-	{	
+	{
 		// recupera o parser
-		$routeContext = $this->request->getRouteContext();
+		$routeContext = \Slim\Routing\RouteContext::fromRequest($this->request->getRequest());
 		$parser = $routeContext->getRouteParser();
 
+		// recupera o container
+		$app = \PHPMyPanel\Internal\Application::getSlimApplication();
+
+		// recupera a configuração
+		$config = $app->getContainer()->get("config");
+
 		// retorna as rotas
-		$container = \Slim\Mvc\Factory::get("container");
-		$routes = $container->get("routes");
+		$routes = $config['routes'];
 		
 		// percorre os valores padrões
 		$final_params = [];

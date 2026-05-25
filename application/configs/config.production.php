@@ -6,15 +6,16 @@ return [
 		'name' => "Application",
 		'location' => dirname(__FILE__) . "/..",
 		'modules_location' => dirname(__FILE__) . "/../modules",
-		'basepath' => "/phpmypanel/public_html",
+		'basepath' => "/lanceagro.com.br/public_html",
 		
-		'displayErrorDetails' => TRUE,
-		'displayDebug' => TRUE,
+		'displayErrorDetails' => FALSE,
+		'displayDebug' => FALSE,
 	],
 
 	'smarty' => [
 		'template_dir' => [
-			dirname(__FILE__) . "/../modules",
+			dirname(__FILE__) . "/../",
+			dirname(__FILE__) . "/../modules/",
 		],
 		'compile_dir' =>  dirname(__FILE__) . "/../tmp/templates_c",
 		'cache_dir' =>  dirname(__FILE__) . "/../tmp/templates_c",
@@ -31,5 +32,5 @@ return [
 		'database' => dirname(__FILE__) . "/../tmp/database.sqlite3",
 	],
 
-	'routes' => require dirname(__FILE__) . "/routes.php",
+	'routes' => require APPLICATION_PATH . "/configs/routes.php",
 ];

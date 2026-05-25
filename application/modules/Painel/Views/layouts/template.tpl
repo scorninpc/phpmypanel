@@ -135,7 +135,7 @@
 
 			{* content wrapper *}
 			<div class="page-wrapper">
-				{$layout_content}
+				{include $layout_content}
 			</div>
 		</div>
 

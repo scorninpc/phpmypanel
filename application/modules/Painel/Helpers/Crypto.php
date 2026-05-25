@@ -13,19 +13,31 @@ class Crypto
 	}
 	
 	/**
-	 * create a password hash
+	 * cria a hash de senha
 	 */
 	public static function hash($string, $cost=7, $length=22)
 	{
-		// Salt
-		$randomizer = new \Random\Randomizer();
 		$alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		$salt = $randomizer->getBytesFromString($alphabet, $length);
+		$salt = "";
 
-		// Hash string
+		// PHP 8.2+ existe random\randomizer
+		if(class_exists('Random\Randomizer')) {
+			// salt
+			$randomizer = new \Random\Randomizer();
+			$salt = $randomizer->getBytesFromString($alphabet, $length);
+		}
+		else {
+			// PHP 8.2- não existe random\randomizer
+			$maxIndex = strlen($alphabet) - 1;
+    		for($i=0; $i<$length; $i++) {
+				$salt .= $alphabet[random_int(0, $maxIndex)];
+			}
+		}
+
+		// hash string
 		$hashString = sprintf("\$2a\$%02d\$%s\$", $cost, $salt);
 		
-		// Retorna a chave criptografada
+		// retorna a chave criptografada
 		return crypt($string, $hashString);
 	}
 

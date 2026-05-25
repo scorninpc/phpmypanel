@@ -5,10 +5,39 @@ namespace Application\Painel;
 /***
  * classe que inicializa o modulo
  */
-class Bootstrap {
+class Bootstrap extends \PHPMyPanel\Internal\Bootstrap
+{
+	/**
+	 * Armazena o view
+	 * 
+	 * @var \PHPMyPanel\Internal\Smarty
+	 */
+	protected $view;
 
 	/**
-	 * any method that starts with "init" will be called by the bootstrap
+	 * Armazena as configurações
+	 * 
+	 * @var array
+	 */
+	protected $config;
+
+	/**
+	 * hook para configuração do bootstrap
+	 */
+	public function configure()
+	{
+		// recupera o container
+		$app = \PHPMyPanel\Internal\Application::getSlimApplication();
+
+		// recupera a configuração
+		$this->config = $app->getContainer()->get("config");
+
+		// recupera o view
+		$this->view = $app->getContainer()->get(\PHPMyPanel\Internal\Smarty::class);
+	}
+
+	/**
+	 * qualquer metodo iniciado com init será inicializado antes do controller chamar a action
 	 */
 	public function initDatabase()
 	{
@@ -20,13 +49,12 @@ class Bootstrap {
 	 */
 	public function initSessions()
 	{
-		$view = \Slim\Mvc\Factory::get("view");
-		$request = \Application\Main\Helpers\Request::getInstance();
+		// recupera a sessão de login
 		$session = new \Application\Main\Helpers\Sessions("login");
 
 		// recupera os dados do modulo
-		$currentController = $request->getParam("controller");
-		$currentAction = $request->getParam("action");
+		$currentController = $this->request->getParam("controller");
+		$currentAction = $this->request->getParam("action");
 		
 		// informa as paginas publicas que podem ser acessadas sem login
 		// @todo melhorar podendo usar wildcards tipo `main:usuarios:*` ou `api:*`
@@ -38,7 +66,7 @@ class Bootstrap {
 		];
 
 		// monta a actionString
-		$actionString = $request->getParam("module") . ":" . $currentController . ":" . $currentAction;
+		$actionString = $this->request->getParam("module") . ":" . $currentController . ":" . $currentAction;
 
 		// verifica se não está logado
 		if(($session->idusuario?:0) == 0) {
@@ -47,7 +75,7 @@ class Bootstrap {
 			if(!in_array($actionString, $publicPages)) {
 
 				// se não, redireciona para o login
-				\Application\Main\Helpers\Redirect::go("/painel/usuarios/login");
+				\PHPMyPanel\Helpers\Redirect::go("/painel/usuarios/login");
 			}
 		}
 
@@ -58,7 +86,7 @@ class Bootstrap {
 			if(in_array($actionString, $publicPages)) {
 				
 				// se for, redireciona para o main
-				\Application\Main\Helpers\Redirect::go("/painel/index/index");
+				\PHPMyPanel\Helpers\Redirect::go("/painel/index/index");
 			}
 
 		}
@@ -71,11 +99,11 @@ class Bootstrap {
 		$funcionalidades = $model->orderBy("nome")->get();
 
 		// assina as variaveis
-		$view->core_funcionalidade = $funcionalidade;
-		$view->core_funcionalidades = $funcionalidades;
-		$view->core_current_controller = $currentController;
-		$view->core_current_action = $currentAction;
-		$view->core_login = $session;
+		$this->view->core_funcionalidade = $funcionalidade;
+		$this->view->core_funcionalidades = $funcionalidades;
+		$this->view->core_current_controller = $currentController;
+		$this->view->core_current_action = $currentAction;
+		$this->view->core_login = $session;
 	}
 
 	/**
@@ -83,9 +111,6 @@ class Bootstrap {
 	 */
 	public function initView()
 	{
-		$view = \Slim\Mvc\Factory::get("view");
-		$config = \Slim\Mvc\Factory::get("config");
-
 
 		// recupera as mensagens
 		$messages = \Application\Main\Helpers\Messages::getMessages();
@@ -95,11 +120,11 @@ class Bootstrap {
 		$infos = $messages->info;
 
 		// assina as variaveis
-		$view->basePath = $config['application']['basepath'];
-		$view->global_errors = $errors;
-		$view->global_alerts = $alerts;
-		$view->global_success = $success;
-		$view->global_infos = $infos;
+		$this->view->basePath = $this->config['application']['basepath'];
+		$this->view->global_errors = $errors;
+		$this->view->global_alerts = $alerts;
+		$this->view->global_success = $success;
+		$this->view->global_infos = $infos;
 
 		// limpa as mensagens
 		\Application\Main\Helpers\Messages::clearMessages();

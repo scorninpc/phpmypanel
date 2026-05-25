@@ -1,25 +1,33 @@
 <?php
 
+// inicia com erros ligados
 ini_set("display_errors", "On");
 error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
-
-// Get the config file
-$config = require(__DIR__ . "/../application/configs/config.development.php");
-
-// Define a path to application directory
-defined("APPLICATION_PATH") || define("APPLICATION_PATH", realpath($config['application']['location']));
 
 // define o diretorio publico
 defined("PUBLIC_DIR") || define("PUBLIC_DIR", getenv("PUBLIC_DIR")?:"public_html");
 
-// define cache usage
+// define o uso de cache
 defined("APPLICATION_CACHE") || define("APPLICATION_CACHE", getenv("APPLICATION_CACHE"));
 defined("APPLICATION_DBCACHE") || define("APPLICATION_DBCACHE", getenv("APPLICATION_DBCACHE"));
 
-// Include autoload
+// ambiente
+defined("APPLICATION_ENV") || define("APPLICATION_ENV", getenv("APPLICATION_ENV"));
+
+// recupera as configurações
+$configFile = __DIR__ . "/../application/configs/config." . APPLICATION_ENV . ".php";
+if(!file_exists($configFile)) {
+	throw new \Exception("Config file not exists to this APPLICATION_ENV");
+}
+$config = require($configFile);
+
+// define o caminho da aplicação
+defined("APPLICATION_PATH") || define("APPLICATION_PATH", realpath($config['application']['location']));
+
+// inicia o autoload
 require __DIR__ . "/../vendor/autoload.php";
 
-// verifica se é a criação de imagens
+// verifica se é a criação de thumb de imagens, aqui, não carrega nada, fica levinho
 if ((isset($_GET['param'])) && ($_GET['param'] == "tbimage")) {
 
 	session_cache_limiter('none');
@@ -149,18 +157,20 @@ if ((isset($_GET['param'])) && ($_GET['param'] == "tbimage")) {
 	}
 	
 	die();
-
-	die("OK");
 }
 
-// Create Container
+// cria o container da aplicação
 $container = new \DI\Container();
 \Slim\Factory\AppFactory::setContainer($container);
 
-// Create the app
+// cria o app slim e seta ao core
 $app = \Slim\Factory\AppFactory::create();
 
-// Define basepath if it's not defined on config
+// cria o PHPMyPanel application, e seta o slim application dentro para que possamos
+// recuperar em outros momentos de forma statica
+$application = \PHPMyPanel\Internal\Application::getInstance($app);
+
+// define o basepath da applicatação
 if(!isset($config['application']['basepath'])) {
 	$config['application']['basepath'] = str_replace($_SERVER['DOCUMENT_ROOT'], "", dirname($_SERVER['SCRIPT_NAME']));
 	if($config['application']['basepath'] == "/") {
@@ -169,17 +179,24 @@ if(!isset($config['application']['basepath'])) {
 }
 $app->setBasePath($config['application']['basepath']);
 
-// Set view in Container
-$container->set("view", function($container) use ($config) {
-
-	// Create smarty view
-	$view = new \Application\Main\Helpers\Smarty($config['smarty']);
-
-	// Return view object
-	return $view;
+// seta a configuração no container
+$container->set("config", function($container) use ($config) {
+	// retorna o config
+	return $config;
 });
 
-// Initialize database
+// seta o view no container
+$container->set(\PHPMyPanel\Internal\Smarty::class, function($container) use ($config) {
+	// cria o view smarty
+	return new \PHPMyPanel\Internal\Smarty($config['smarty']);
+});
+
+// mantem a compatibilidade com o \Slim\Mvc\* [https://github.com/scorninpc/slim-smarty-view]
+// $container->set("view", \DI\get(\PHPMyPanel\Internal\Smarty::class));
+
+// inicializa o banco de dados casou houver habilitado
+// não precisa adiciona-lo ao container, pois o setAsGlobal ja deixa ele 
+// disponivel globalmente por conta do uso de models
 if($config['db']['enabled']) {
 	$database = new \Illuminate\Database\Capsule\Manager();
 	$database->addConnection($config['db']);
@@ -187,34 +204,54 @@ if($config['db']['enabled']) {
 	$database->bootEloquent();
 }
 
-// Config the errors
-\Kint::$enabled_mode = TRUE;
-\Kint\Renderer\RichRenderer::$theme = 'aante-light.css';
-\Kint\Renderer\RichRenderer::$folder = true;
+// configura o king como debug
+\Kint::$enabled_mode = $config['application']['displayDebug']?:FALSE;
+\Kint\Renderer\RichRenderer::$theme = "aante-light.css";
+\Kint\Renderer\RichRenderer::$folder = TRUE;
 
-// Set the config
-$container->set("config", function($container) use ($config) {
-	return $config;
+// adiciona as rotas ao container e ao app
+$container->set("routes", function($container) use ($config) {
+	// retorna as rotas
+	return $config['routes'];
 });
 
-// Routes
-$routes = require(APPLICATION_PATH . "/configs/routes.php");
-$container->set("routes", $routes);
-foreach($routes as $name => $route) {
-	$app->map($route['type'], $route['pattern'], function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response, $args) use ($config) {
+// percorre as rotas, adicionando-as à aplicação
+foreach($config['routes'] as $name => $route) {
+	$app->map($route['type'], $route['pattern'], function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response, array $args) use ($config, $application, $container) {
 
-			// store request and response
-			\Application\Main\Helpers\Request::getInstance($request, $args);
+			// cria o request e o response do PHPMyPanel
+			$PHPMyPanelRequest = new \PHPMyPanel\Internal\Request($request, $args);
+			$PHPMyPanelResponse = new \PHPMyPanel\Internal\Response($response);
 
-			// Call MVC bootstrap
-			$bootstrap = new \Slim\Mvc\Bootstrap($this, $request, $response, $args, $config);
-
-			// Get response from controller
-			return $bootstrap->getResponse();
+			// chama o run do application
+			return $application->run($PHPMyPanelRequest, $PHPMyPanelResponse);
 			
 		})
 		->setName($name);
 }
 
-// Run
+
+// configura a tela de erro
+// $displayErrorDetails = false; //$config['displayErrorDetails'];
+// $logErrors = true;
+// $logErrorDetails = false;
+
+// // display errors
+// ini_set("display_errors","Off");
+// if($displayErrorDetails === true) {
+// 	ini_set("display_errors","On");
+// }
+// ini_set("display_errors","On");
+
+// $errorMiddleware = $app->addErrorMiddleware($displayErrorDetails, $logErrors, $logErrorDetails);
+// $errorHandler = $errorMiddleware->getDefaultErrorHandler();
+// $errorHandler->registerErrorRenderer("text/html", new \Application\Main\Helpers\HtmlErrorRenderer($container));
+
+// $errorMiddleware = $app->addErrorMiddleware($displayErrorDetails, $logErrors, $logErrorDetails);
+// $errorHandler = $errorMiddleware->getDefaultErrorHandler();
+// $errorHandler->registerErrorRenderer("text/html", new \Application\Main\Helpers\HtmlErrorRenderer());
+// $errorHandler->registerErrorRenderer("text/html", \Application\Main\Helpers\HtmlErrorRenderer::class);
+
+
+// executa a aplicação
 $app->run();
