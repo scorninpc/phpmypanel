@@ -8,14 +8,9 @@
 - [ ] criar helpers para incluir js
 - [ ] criar helpers para incluir title
 - [ ] criar helpers para incluir metas
-- [x] confirmar se o helper url está fazendo escape corretamente
 - [ ] adicionar o popup/title no label dos campos do form
-- [x] criar um helper que monte o input no form
-- [x] criar um helper que mostre o valor do campo na listagem
-- [x] criar um metodo que "popula" o model, assim a gente pode usar o getValue() de um model populado
 - [ ] criar helper para logar os erros
 - [ ] criar tela para ver os erros
-- [x] adicionar os alertas ao inserir, atualizar e remover, inclusive nos erros
 - [ ] criar metodo no model que seta que o campo é invisivel no index quando mobile, para adicionar uma classe que esconde a coluna da tabela no mobile 
 - [ ] criar sistema de log que grava inserts, updates e deletes numa tabela de log
 - [ ] criar log de login
@@ -23,26 +18,42 @@
 - [ ] criar opção de login sem senha, por token
 - [ ] desenvolver "salvar sessão" no login
 - [ ] desenvolver busca
-- [ ] tela de erro custom
-- [ ] criar campo autocomplete
-- [ ] criar campo select
-- [ ] criar campo options
-- [x] criar campo upload
-- [x] criar metodo para setar as extensões ou mimes permitidos e o tamanho maximo permitido
-- [ ] estilizar o botão de upload, com preview e remoção
 - [ ] criar campo multiplos uploads
 - [ ] colocar max_size no modal
 - [ ] colocar opção de campo obrigatório no model
 - [ ] adicionar validação dos campos no formulário
-- [x] adicionar mascaras aos campos
 - [ ] criar campo do tipo option que possa selecionar com radio
-- [x] adicionar opção de texto rico 
 - [ ] adicionar opção de texto autoheight (nativo do tabler)
-- [x] adicionar no model o tamanho da coluna bootstrap
 - [ ] implementar minificação
 - [ ] no tema escuro, a seleção de texto nos inputs quase nao aparecem
 - [ ] fazer o upload de imagem no summernote
-- [ ] incluir multiplos arquivos de configurações com APPLICATION_ENV
 - [ ] Fazer um teste sem modulo, pois nao quero usar dentro do core, queria usar os helpers e bootstrap dentro de application
 - [ ] Tratar o Internal\Model para fazer o configure somente no painel, ou passar alguma variavel no construtor
 - [ ] os views helpers passam o $config, e parece estar com problema. tirar, deixar sem passar nada mesmo, quando precisar pega do application
+- [ ] criar a função `setRelationSelect` para um autocomplete mas no formato select
+- [ ] colocar `setMaxSize` no model
+- [ ] colocar `setRequired` no model e criar validação
+- [ ] criar uma tela de execução de banco de dados e exportação dos dados em xlsx
+- [ ] criar sistema de log de erro
+- [ ] criar tela de visualização de log
+- [ ] criar sistema de cache e integrar com redis ou arquivo
+- [ ] nos campos upload, colocar um parametro para criar o thumb no ato do upload no painel
+- [ ] pensar numa forma de usar mascaras na listagem, pra por exemplo criar valores em REAL ou %
+- [ ] criar metodo para ordenar os campos no form e na listagem
+- [ ] achar uma forma de chamar a tela de erro do modulo, e nao só do main
+- [x] tela de erro custom
+- [x] criar campo autocomplete
+- [x] criar campo options
+- [x] criar helper para fazer thumb
+- [x] incluir multiplos arquivos de configurações com APPLICATION_ENV
+- [x] adicionar opção de texto rico 
+- [x] adicionar no model o tamanho da coluna bootstrap
+- [x] adicionar mascaras aos campos
+- [x] criar campo upload
+- [x] criar metodo para setar as extensões ou mimes permitidos e o tamanho maximo permitido
+- [x] estilizar o botão de upload, com preview e remoção
+- [x] confirmar se o helper url está fazendo escape corretamente
+- [x] criar um helper que monte o input no form
+- [x] criar um helper que mostre o valor do campo na listagem
+- [x] criar um metodo que "popula" o model, assim a gente pode usar o getValue() de um model populado
+- [x] adicionar os alertas ao inserir, atualizar e remover, inclusive nos erros

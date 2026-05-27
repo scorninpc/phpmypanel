@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Main\Helpers;
+namespace PHPMyPanel\Internal;
 
 /**
  * Classe de abstração do \Slim\Interfaces\ErrorRendererInterface
@@ -33,10 +33,13 @@ final class HtmlErrorRenderer implements \Slim\Interfaces\ErrorRendererInterface
 		$message = $exception->getMessage();
 		
 		// verifica se tem request para forçar qual controller chamar
-		$request = \Slim\Mvc\Factory::get("request");
+		$app = \PHPMyPanel\Internal\Application::getInstance();
+		$request = $app->getRequest();
 		if(!$request) {
 			die("sem request");
 		}
+
+		// seta os objetos e informações nos parametros, para poder recuperar la no controller
 		$request->setParam("module", "main");
 		$request->setParam("controller", "error");
 		$request->setParam("action", "error");
@@ -45,8 +48,8 @@ final class HtmlErrorRenderer implements \Slim\Interfaces\ErrorRendererInterface
 		$request->setParam("title", $title);
 
 		// recupera o body do html
-		$application = \Slim\Mvc\Factory::get("application");
-		$return = $application->run();
+		$application = $app;
+		$return = $application->run($request, $app->getResponse());
 
 		// retorna o html
 		return strval($return->getBody());

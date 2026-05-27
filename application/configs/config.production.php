@@ -6,10 +6,11 @@ return [
 		'name' => "Application",
 		'location' => dirname(__FILE__) . "/..",
 		'modules_location' => dirname(__FILE__) . "/../modules",
-		'basepath' => "/lanceagro.com.br/public_html",
+		'basepath' => "",
 		
-		'displayErrorDetails' => FALSE,
-		'displayDebug' => FALSE,
+		'display_error' => FALSE,
+		'display_debug' => FALSE,
+		'log_errors' => TRUE,
 	],
 
 	'smarty' => [
@@ -20,9 +21,9 @@ return [
 		'cache_dir' =>  dirname(__FILE__) . "/../tmp/templates_c",
 		'caching' => FALSE,
 		'cache_lifetime' => 4600,
-		'force_compile' => TRUE,
+		'force_compile' => FALSE,
 		'debugging' => FALSE,
-		'compile_check' => TRUE,
+		'compile_check' => FALSE,
 	],
 
 	'db' => [

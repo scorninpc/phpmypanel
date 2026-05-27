@@ -68,6 +68,7 @@ class Model extends \PHPMyPanel\Internal\Model
 			],
 			'file' => NULL,
 			'autocomplete' => NULL,
+			'options' => NULL
 		];
 
 		// a depender do tipo, ja configura alguns padrões
@@ -239,6 +240,17 @@ class Model extends \PHPMyPanel\Internal\Model
 		}
 
 		return $this->columns[$field]['bootstrap_column_size'] = $size;
+	}
+
+	/**
+	 * Seta as opções do campo
+	 * 
+	 * @param string $name Nome do campo
+	 * @param array $options Vetor com as opções do campo
+	 */
+	public function setOptions(string $name, array $options=[])
+	{
+		$this->columns[$name]['options'] = $options;
 	}
 
 	/**

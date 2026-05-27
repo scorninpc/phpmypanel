@@ -205,7 +205,7 @@ if($config['db']['enabled']) {
 }
 
 // configura o king como debug
-\Kint::$enabled_mode = $config['application']['displayDebug']?:FALSE;
+\Kint::$enabled_mode = $config['application']['display_debug']?:FALSE;
 \Kint\Renderer\RichRenderer::$theme = "aante-light.css";
 \Kint\Renderer\RichRenderer::$folder = TRUE;
 
@@ -232,26 +232,19 @@ foreach($config['routes'] as $name => $route) {
 
 
 // configura a tela de erro
-// $displayErrorDetails = false; //$config['displayErrorDetails'];
-// $logErrors = true;
-// $logErrorDetails = false;
+$displayErrorDetails = $config['application']['display_error'];
+$logErrorDetails = $logError = $config['application']['log_errors'];
 
-// // display errors
-// ini_set("display_errors","Off");
-// if($displayErrorDetails === true) {
-// 	ini_set("display_errors","On");
-// }
-// ini_set("display_errors","On");
+// display errors
+ini_set("display_errors","Off");
+if($displayErrorDetails) {
+	ini_set("display_errors","On");
+}
 
-// $errorMiddleware = $app->addErrorMiddleware($displayErrorDetails, $logErrors, $logErrorDetails);
-// $errorHandler = $errorMiddleware->getDefaultErrorHandler();
-// $errorHandler->registerErrorRenderer("text/html", new \Application\Main\Helpers\HtmlErrorRenderer($container));
-
-// $errorMiddleware = $app->addErrorMiddleware($displayErrorDetails, $logErrors, $logErrorDetails);
-// $errorHandler = $errorMiddleware->getDefaultErrorHandler();
-// $errorHandler->registerErrorRenderer("text/html", new \Application\Main\Helpers\HtmlErrorRenderer());
-// $errorHandler->registerErrorRenderer("text/html", \Application\Main\Helpers\HtmlErrorRenderer::class);
-
+// chama o middleware para exibir o custom error
+$errorMiddleware = $app->addErrorMiddleware($displayErrorDetails, $logError, $logErrorDetails);
+$errorHandler = $errorMiddleware->getDefaultErrorHandler();
+$errorHandler->registerErrorRenderer("text/html", new \PHPMyPanel\Internal\HtmlErrorRenderer());
 
 // executa a aplicação
 $app->run();

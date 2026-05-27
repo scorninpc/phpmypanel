@@ -308,26 +308,6 @@ class Controller extends \PHPMyPanel\Internal\Controller
 	}
 
 	/**
-	 * retorna no formato json
-	 */
-	public function json($payload, $status=200)
-	{
-		// se for um vetor, encoda json
-		if(is_array($payload)) {
-			$payload = json_encode($payload);
-		}
-
-		// recupera o container
-		$app = \PHPMyPanel\Internal\Application::getSlimApplication();
-
-		// retorna o json
-		$this->response->getResponse()->getBody()->write($payload);
-		return $this->response->getResponse()->withHeader("Content-Type", "application/json")->withStatus($status);
-	}
-
-	
-
-	/**
 	 * hooks
 	 */
 	public function doBeforeList($select) { return $select; }

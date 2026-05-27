@@ -69,9 +69,9 @@ class Controller
 	 * @param string $name Nome do parametro
 	 * @param string $default Valor default caso o parametro não exista
 	 * 
-	 * @return string
+	 * @return mixed
 	 */
-	public function getParam($name, $default=NULL): ?string
+	public function getParam($name, $default=NULL): mixed
 	{
 		return $this->getRequest()->getParam($name, $default);
 	}
@@ -80,5 +80,28 @@ class Controller
 	 * Hooks
 	 */
 	public function configure() {}
+
+	/**
+	 * Retorna no formato JSON
+	 * 
+	 * @param array $payload Vetor com os dados json
+	 * @param integer $status Código do status HTTP
+	 * 
+	 * @return \Psr\Http\Message\ResponseInterface
+	 */
+	public function json(array $payload, int $status=200): \Psr\Http\Message\ResponseInterface
+	{
+		// se for um vetor, encoda json
+		if(is_array($payload)) {
+			$payload = json_encode($payload);
+		}
+
+		// recupera o container
+		$app = \PHPMyPanel\Internal\Application::getSlimApplication();
+
+		// retorna o json
+		$this->response->getResponse()->getBody()->write($payload);
+		return $this->response->getResponse()->withHeader("Content-Type", "application/json")->withStatus($status);
+	}
 
 }

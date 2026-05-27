@@ -34,6 +34,20 @@ class GetFormatedValue
 				$value = "";
 				break;
 
+			// varchar
+			case \Application\Painel\Helpers\Model::FIELDTYPE_VARCHAR:
+				
+				// se for um campo com opções (<select>)
+				if($column['options'] !== NULL) {
+					// verifica se tem associação, pois se tiver INDEX => VALUE, ele salva o INDEX no banco
+					$assoc = count(array_filter(array_keys($column['options']), "is_string")) > 0;
+					if($assoc) {
+						$value = $column['options'][$value];
+					}
+				}
+
+				break;
+
 			// integer
 			case \Application\Painel\Helpers\Model::FIELDTYPE_INTEGER:
 				
@@ -44,11 +58,32 @@ class GetFormatedValue
 
 				break;
 
+			// decimal
+			case \Application\Painel\Helpers\Model::FIELDTYPE_DECIMAL:
+				
+				if($value !== NULL) {
+					$value = number_format($value, 2, ",", ".");
+				}
+
+				break;
+
 			// date
 			case \Application\Painel\Helpers\Model::FIELDTYPE_DATE:
 				$value = strtotime($value??"");
 				if($value !== FALSE) {
 					$value = date("d/m/Y", $value);
+				}
+				else {
+					$value = "";
+				}
+				break;
+
+			// datetime
+			case \Application\Painel\Helpers\Model::FIELDTYPE_DATETIME:
+				
+				$value = strtotime($value??"");
+				if($value !== FALSE) {
+					$value = date("d/m/Y H:i:s", $value);
 				}
 				else {
 					$value = "";

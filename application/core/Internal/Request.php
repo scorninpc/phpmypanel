@@ -199,9 +199,9 @@ class Request
 	 * @param string $name Nome do parametro
 	 * @param string $default Valor default caso o parametro não exista
 	 * 
-	 * @return string
+	 * @return mixed
 	 */
-	public function getParam(string $name, mixed $default=NULL): ?string
+	public function getParam(string $name, mixed $default=NULL): mixed
 	{
 		// se o parametro não existir
 		if(!isset($this->params[$name])) {
