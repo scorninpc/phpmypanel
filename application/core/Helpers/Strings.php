@@ -1,9 +1,9 @@
 <?php
 
-namespace Application\Main\Helpers;
+namespace PHPMyPanel\Helpers;
 
 /**
- * algumas funções que facilitam o tratamento de strings
+ * Algumas funções que facilitam o tratamento de strings
  */
 class Strings
 {	

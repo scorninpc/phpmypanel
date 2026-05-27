@@ -198,7 +198,7 @@ class FormField
 		$classes = implode(" ", $column['classes']);
 
 		// faz a troca do campo
-		$field_html = \Application\Main\Helpers\Strings::vsprintf_named($template, [
+		$field_html = \PHPMyPanel\Helpers\Strings::vsprintf_named($template, [
 			'name' => $column['name'],
 			'classes' => $classes,
 			'id' => $column['id']??$column['name'],
@@ -210,7 +210,7 @@ class FormField
 		]);
 
 		// faz a troca do template todo (coluna bootstrap)
-		$html = \Application\Main\Helpers\Strings::vsprintf_named($column_template, [
+		$html = \PHPMyPanel\Helpers\Strings::vsprintf_named($column_template, [
 			'name' => $column['name'],
 			'id' => $column['id']??$column['name'],
 			'description' => $column['description'],

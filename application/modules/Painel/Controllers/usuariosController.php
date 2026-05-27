@@ -49,25 +49,25 @@ class usuariosController extends \Application\Painel\Helpers\Controller
 			$model = new \Application\Painel\Models\Usuarios();
 			$user = $model->where("email", $email)->first();
 			if(!$user) {
-				\Application\Main\Helpers\Messages::error("Usuário/senha não conferem");
+				\PHPMyPanel\Helpers\Messages::error("Usuário/senha não conferem");
 				\PHPMyPanel\Helpers\Redirect::back();
 			}
 
 			// verifica se a senha está correta
 			$check = \Application\Painel\Helpers\Crypto::check($password, $user['password']);
 			if(!$check) {
-				\Application\Main\Helpers\Messages::error("Usuário/senha não conferem");
+				\PHPMyPanel\Helpers\Messages::error("Usuário/senha não conferem");
 				\PHPMyPanel\Helpers\Redirect::back();
 			}
 
 			// efetuou o login ok
-			$session = new \Application\Main\Helpers\Sessions("login");
+			$session = new \PHPMyPanel\Helpers\Sessions("login");
 			$session->nome = $user['nome'];
 			$session->idusuario = $user['idusuario'];
 			$session->email = $user['email'];
 
 			// seta a mensagem
-			\Application\Main\Helpers\Messages::success("Welcome back!");
+			\PHPMyPanel\Helpers\Messages::success("Welcome back!");
 
 			// redireciona de volta
 			\PHPMyPanel\Helpers\Redirect::back();
@@ -79,7 +79,7 @@ class usuariosController extends \Application\Painel\Helpers\Controller
 	 */
 	public function logoutAction()
 	{
-		$session = new \Application\Main\Helpers\Sessions("login");
+		$session = new \PHPMyPanel\Helpers\Sessions("login");
 		$session->destroy();
 
 		// redireciona de volta

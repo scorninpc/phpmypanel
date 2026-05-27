@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Main\Helpers;
+namespace PHPMyPanel\Helpers;
 
 /**
  * Manipula as sessões da aplicação

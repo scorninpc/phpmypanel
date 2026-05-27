@@ -317,8 +317,8 @@ class Model extends \PHPMyPanel\Internal\Model
 		// monta a configuração padrão
 		$defaults = [
 			'columns' => [
-				\Application\Main\Helpers\Db::raw($model->getPrimaryKey() . " as id"),
-				\Application\Main\Helpers\Db::raw($model->getDescriptionField() . " as label"),
+				\PHPMyPanel\Helpers\Db::raw($model->getPrimaryKey() . " as id"),
+				\PHPMyPanel\Helpers\Db::raw($model->getDescriptionField() . " as label"),
 			],
 			'where' => [
 				"LOWER(" . $model->getDescriptionField() . ") like '%' || :term: || '%'" // essa concatenação e o lower é feito para que funcione no sqlite tambem que noa possui ilike

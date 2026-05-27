@@ -73,7 +73,7 @@ class Bootstrap extends \PHPMyPanel\Internal\Bootstrap
 		$currentAction = $this->request->getParam("action");
 
 		// recupera as mensagens
-		$messages = Helpers\Messages::getMessages();
+		$messages = \PHPMyPanel\Helpers\Messages::getMessages();
 		$errors = $messages->error;
 		$alerts = $messages->alert;
 		$success = $messages->success;
@@ -89,6 +89,6 @@ class Bootstrap extends \PHPMyPanel\Internal\Bootstrap
 		$this->view->currentAction = $currentAction;
 
 		// limpa as mensagens
-		Helpers\Messages::clearMessages();
+		\PHPMyPanel\Helpers\Messages::clearMessages();
 	}
 }

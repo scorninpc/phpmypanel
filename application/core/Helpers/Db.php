@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Main\Helpers;
+namespace PHPMyPanel\Helpers;
 
 /**
  * Classe de abstração do \Illuminate\Database\Capsule\Manager
@@ -24,7 +24,6 @@ class Db extends \Illuminate\Database\Capsule\Manager
 
 		$connection = $capsule->connection();
 		$db = $connection->getPdo();
-		// $db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, 1);
 
 		$execution = $db->prepare($query);
 		$execution->execute($params);

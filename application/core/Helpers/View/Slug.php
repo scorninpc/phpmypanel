@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Main\Helpers\View;
+namespace PHPMyPanel\Helpers\View;
 
 /**
  * View Helper para criar slugs non view
@@ -25,7 +25,7 @@ class Slug
 	{	
 		$string = htmlentities($string);
 		
-		$string = \Application\Main\Helpers\Strings::slug($string);
+		$string = \PHPMyPanel\Helpers\Strings::slug($string);
 
 		return $string;
 	}

@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Main\Helpers;
+namespace PHPMyPanel\Helpers;
 
 /**
  * Classe que trata mensagens de alerta do sistema.
@@ -13,7 +13,7 @@ class Messages
 	/**
 	 * Sessão que armazena as mensagens.
 	 * 
-	 * @var \Application\Main\Helpers\Sessions
+	 * @var \PHPMyPanel\Helpers\Sessions
 	 */
 	private static $_messages;
 	
@@ -37,7 +37,7 @@ class Messages
 			return;
 		}
 
-		self::$_messages = new Sessions("messages");
+		self::$_messages = new \PHPMyPanel\Helpers\Sessions("messages");
 		self::$initialized = TRUE;
 	}
 
@@ -49,7 +49,7 @@ class Messages
 	 * @example
 	 *
 	 * ```php
-	 * \Application\Main\Helpers\Messages::success("Registro inserido com sucesso");
+	 * \PHPMyPanel\Helpers\Messages::success("Registro inserido com sucesso");
 	 * ```
 	 * 
 	 * @param string $message Mensagem de sucesso a ser armazenada.
@@ -76,7 +76,7 @@ class Messages
 	 * 
 	 * @example
 	 * ```php
-	 * \Application\Main\Helpers\Messages::error("Erro ao inserir o registro");
+	 * \PHPMyPanel\Helpers\Messages::error("Erro ao inserir o registro");
 	 * ```
 	 *
 	 * @param string $message Mensagem de erro a ser armazenada.
@@ -103,7 +103,7 @@ class Messages
 	 * 
 	 * @example
 	 * ```php
-	 * \Application\Main\Helpers\Messages::alert("Houve um erro ao enviar uma foto, verifique");
+	 * \PHPMyPanel\Helpers\Messages::alert("Houve um erro ao enviar uma foto, verifique");
 	 * ```
 	 *
 	 * @param string $message Mensagem de alerta a ser armazenada.
@@ -130,7 +130,7 @@ class Messages
 	 * 
 	 * @example
 	 * ```php
-	 * \Application\Main\Helpers\Messages::info("Um novo usuário efetuou o login");
+	 * \PHPMyPanel\Helpers\Messages::info("Um novo usuário efetuou o login");
 	 * ```
 	 *
 	 * @param string $message Mensagem de informação a ser armazenada.
@@ -157,16 +157,16 @@ class Messages
 	 * 
 	 * @example
 	 * ```php
-	 * $sessao = \Application\Main\Helpers\Messages::getMessages();
+	 * $sessao = \PHPMyPanel\Helpers\Messages::getMessages();
 	 * d($sessao->success);
 	 * d($sessao->error);
 	 * d($sessao->alert);
 	 * d($sessao->info);
 	 * ```
 	 *
-	 * @return \Application\Main\Helpers\Sessions
+	 * @return \PHPMyPanel\Helpers\Sessions
 	 */
-	static public function getMessages():\Application\Main\Helpers\Sessions
+	static public function getMessages():\PHPMyPanel\Helpers\Sessions
 	{
 		self::initialize();
 		
@@ -179,7 +179,7 @@ class Messages
 	 * 
 	 * Após exibir na tela, não faz sentido mante-las na sessão
 	 *
-	 * @return \Application\Main\Helpers\Sessions
+	 * @return \PHPMyPanel\Helpers\Sessions
 	 */
 	static public function clearMessages():void
 	{

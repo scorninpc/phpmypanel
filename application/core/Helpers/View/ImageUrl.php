@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Main\Helpers\View;
+namespace PHPMyPanel\Helpers\View;
 
 /**
  * View Helper que cria a url da imagem para criação de thumbs.
@@ -44,7 +44,7 @@ class ImageUrl
 		$basePath = $this->config['application']['basepath'];
 		
 		// cria o slug do titulo
-		$titulo = \Application\Main\Helpers\Strings::slug($titulo);
+		$titulo = \PHPMyPanel\Helpers\Strings::slug($titulo);
 		
 		// cria a URL
 		$url = $basePath . "/images/" . $tipo . "/" . $crop . "/" . $largura . "/" . $altura . "/" . $tmp[0] . "/" . $titulo . "." . $tmp[1];

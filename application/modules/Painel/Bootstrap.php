@@ -50,7 +50,7 @@ class Bootstrap extends \PHPMyPanel\Internal\Bootstrap
 	public function initSessions()
 	{
 		// recupera a sessão de login
-		$session = new \Application\Main\Helpers\Sessions("login");
+		$session = new \PHPMyPanel\Helpers\Sessions("login");
 
 		// recupera os dados do modulo
 		$currentController = $this->request->getParam("controller");
@@ -113,7 +113,7 @@ class Bootstrap extends \PHPMyPanel\Internal\Bootstrap
 	{
 
 		// recupera as mensagens
-		$messages = \Application\Main\Helpers\Messages::getMessages();
+		$messages = \PHPMyPanel\Helpers\Messages::getMessages();
 		$errors = $messages->error;
 		$alerts = $messages->alert;
 		$success = $messages->success;
@@ -127,6 +127,6 @@ class Bootstrap extends \PHPMyPanel\Internal\Bootstrap
 		$this->view->global_infos = $infos;
 
 		// limpa as mensagens
-		\Application\Main\Helpers\Messages::clearMessages();
+		\PHPMyPanel\Helpers\Messages::clearMessages();
 	}
 }
