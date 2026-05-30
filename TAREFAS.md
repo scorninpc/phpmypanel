@@ -4,8 +4,6 @@
 - [ ] parametrizações
 - [ ] jeito de usar traduções
 - [ ] criar paginação por backend e por javascript
-- [ ] criar helpers para incluir title
-- [ ] criar helpers para incluir metas
 - [ ] adicionar o popup/title no label dos campos do form
 - [ ] criar helper para logar os erros
 - [ ] criar tela para ver os erros
@@ -39,6 +37,8 @@
 - [ ] pensar numa forma de usar mascaras na listagem, pra por exemplo criar valores em REAL ou %
 - [ ] criar metodo para ordenar os campos no form e na listagem
 - [ ] achar uma forma de chamar a tela de erro do modulo, e nao só do main
+- [x] criar helpers para incluir title
+- [x] criar helpers para incluir metas
 - [x] criar helpers para incluir css
 - [x] criar helpers para incluir js
 - [x] tela de erro custom

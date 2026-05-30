@@ -37,9 +37,16 @@ class Url
 
 		// retorna as rotas
 		$routes = $config['routes'];
+
+		// da unset nos parametros NULL
+		foreach($params as $key => $value) {
+			if($value === NULL) {
+				unset($params[$key]);
+			}
+		}
 		
 		// percorre os valores padrões
-		$final_params = [];
+		$final_params = $params;
 		foreach($routes[$name]['defaults'] as $default => $value) {
 			// se esse parametro não estiver vindo da função
 			if(!isset($params[$default])) {
@@ -58,7 +65,7 @@ class Url
 		}
 
 		// agora percorre o que sobrou de $params para criar o query string final
-		foreach ($params as $key => $value) {
+		foreach($params as $key => $value) {
 			if($value != NULL) {
 				$final_params['params'] .= "/" . urlencode($key) . "/" . urlencode($value);
 			}

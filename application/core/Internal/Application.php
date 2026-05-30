@@ -115,7 +115,7 @@ class Application
 	 * 
 	 * @return \PHPMyPanel\Internal\Request
 	 */
-	public function getRequest(): \PHPMyPanel\Internal\Request
+	public function getRequest(): ?\PHPMyPanel\Internal\Request
 	{
 		return $this->request;
 	}
