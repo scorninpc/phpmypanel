@@ -16,7 +16,7 @@
 		{* inclui o css se ele existir *}
 		{$this->assets("css")}
 
-		<title>Hello, world!</title>
+		{$this->meta("title")}
 
 		<script type="text/javascript">
 			var Base = {

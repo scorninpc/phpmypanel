@@ -16,6 +16,15 @@
 }
 
 /**
+ * size
+ */
+@media (min-width: 768px) {
+	.w-md-auto {
+		width: auto !important;
+	}
+}
+
+/**
  * icon for theme
  */
 html[data-bs-theme="dark"] a[href="#theme=dark"] {

@@ -98,6 +98,11 @@ class Bootstrap extends \PHPMyPanel\Internal\Bootstrap
 		// recupera todas as funcionalidades para criar o menu
 		$funcionalidades = $model->orderBy("nome")->get();
 
+		// seta o titulo
+		if(strlen($funcionalidade['nome']?:"") > 0) {
+			\PHPMyPanel\Helpers\Metas::setMeta("title", "PHP My Dash - " . $funcionalidade['nome']);
+		}
+
 		// assina as variaveis
 		$this->view->core_funcionalidade = $funcionalidade;
 		$this->view->core_funcionalidades = $funcionalidades;

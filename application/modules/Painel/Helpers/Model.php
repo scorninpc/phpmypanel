@@ -20,6 +20,9 @@ class Model extends \PHPMyPanel\Internal\Model
 	// armazena o nome da coluna que serve como identificador/descrição
 	protected $description_field = NULL;
 
+	// armazena o campo para fazer busca
+	protected $search_field = NULL;
+
 	// tipo de dados
 	const FIELDTYPE_INTEGER = "integer";
 	const FIELDTYPE_DECIMAL = "decimal";
@@ -152,6 +155,31 @@ class Model extends \PHPMyPanel\Internal\Model
 	public function getDescriptionField()
 	{
 		return $this->description_field;
+	}
+	
+	/**
+	 * seta o nome da coluna que faz a busca/procurar
+	 * 
+	 * @param string $field Coluna ou colunas concatenadas que será usada para fazer busca
+	 */
+	public function setSearchField(string $field)
+	{
+		$this->search_field = $field;
+	}
+
+	/**
+	 * recupera o nome da coluna que faz a busca/procurar
+	 * 
+	 * @return string
+	 */
+	public function getSearchField(): string
+	{
+		if(strlen($this->search_field?:"") == 0) {
+			return $this->description_field;
+		}
+		
+		return $this->search_field;
+		
 	}
 
 	/**

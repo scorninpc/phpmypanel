@@ -4,6 +4,23 @@
 return [
 
 	// modulo
+	'painel' => [
+
+		// seta os valores default do main
+		'defaults' => [
+			'title' => "PHP My Dash",
+			'description' => "",
+			'keywords' => "",
+			'og:type' => "",
+			'og:title' => "",
+			'og:description' => "",
+			'og:url' => "__SELF_URL__", // palavra chave para a propria URL
+			'og:image' => "",
+			'og:site_name' => "",
+		],
+	],
+
+	// modulo
 	'main' => [
 
 		// seta os valores default do main
