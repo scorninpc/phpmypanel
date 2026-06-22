@@ -11,6 +11,12 @@
 		<link rel="stylesheet" href="{$basePath}/assets/painel/css/jquery-ui.min.css">
 		<link rel="stylesheet" href="{$basePath}/assets/painel/css/plugins/summernote-bs5.min.css">
 		<link rel="stylesheet" href="{$basePath}/assets/painel/css/plugins/fancybox.css">
+
+		{if $core_current_controller == "bancodedados"}
+		<link rel="stylesheet" href="{$basePath}/assets/painel/css/plugins/codemirror.min.css" />
+		<link rel="stylesheet" href="{$basePath}/assets/painel/css/plugins/codemirror/material.min.css" />
+		{/if}
+
 		<link rel="stylesheet" href="{$basePath}/assets/painel/css/custom.css">
 
 		{* inclui o css se ele existir *}
@@ -71,6 +77,7 @@
 							<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
 								<a href="{$this->url(['controller'=>"funcionalidades", 'action'=>"index"], "painel")}" class="dropdown-item">Funcionalidades</a>
 								<a href="{$this->url(['controller'=>"usuarios", 'action'=>"index"], "painel")}" class="dropdown-item">Usuários</a>
+								<a href="{$this->url(['controller'=>"bancodedados", 'action'=>"index"], "painel")}" class="dropdown-item">Banco de Dados</a>
 								<div class="dropdown-divider"></div>
 								<a href="{$this->url(['controller'=>"usuarios", 'action'=>"logout"], "painel")}" class="dropdown-item">Sair</a>
 							</div>
@@ -153,6 +160,12 @@
 		<script src="{$basePath}/assets/painel/js/plugins/jquery.mask.min.js"></script>
 		<script src="{$basePath}/assets/painel/js/plugins/summernote-bs5.min.js"></script>
 		<script src="{$basePath}/assets/painel/js/plugins/fancybox.umd.js"></script>
+
+		{if $core_current_controller == "bancodedados"}
+		<script src="{$basePath}/assets/painel/js/plugins/codemirror.min.js"></script>
+		<script src="{$basePath}/assets/painel/js/plugins/codemirror/sql.min.js"></script>
+		{/if}
+
 		<script src="{$basePath}/assets/painel/js/custom.js"></script>
 
 		{* inclui o javascript caso exista *}

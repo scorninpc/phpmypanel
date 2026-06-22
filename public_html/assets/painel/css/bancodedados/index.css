@@ -1,0 +1,38 @@
+/**
+ * autoheight
+ */
+.CodeMirror {
+	height: auto;
+	viewportMargin: Infinity;
+
+	/* border: #e5e6e7 1px solid;
+	border-radius: 3px; */
+
+	border: var(--tblr-border-width) solid var(--tblr-border-color);
+	border-radius: var(--tblr-border-radius);
+}
+.CodeMirror-scroll {
+	max-height: 800px;
+	min-height: 200px;
+}
+
+.alert {
+	box-shadow: none;
+}
+
+/**
+ * tabela
+ */
+.table-responsive {
+	max-height: 800px;
+}
+.sticky-top {
+	position: sticky;
+	top: 0;
+}
+.table thead th {
+	font-size: 0.6rem;
+} 
+.table tbody td {
+	font-size: 0.7rem;
+} 

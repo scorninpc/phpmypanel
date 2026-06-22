@@ -96,3 +96,10 @@ html[data-bs-theme="dark"] table.sin-table tbody tr td a {
 	max-width: 80px;
 	text-align: center;
 }
+
+/**
+ * alertas
+ */
+.alert {
+	box-shadow: none;
+}
