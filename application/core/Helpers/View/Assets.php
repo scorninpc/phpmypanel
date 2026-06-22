@@ -28,10 +28,11 @@ class Assets
 	 * Faz a chamada
 	 * 
 	 * @param mixed $type Tipo do asset, css ou javascript
+	 * @param integer|null $cache Código do cache para colocar no final
 	 * 
 	 * @return string
 	 */
-	public function call($type)
+	public function call($type, $core_cache=NULL)
 	{
 		// recupera o request do app
 		$app = \PHPMyPanel\Internal\Application::getInstance();
@@ -70,13 +71,19 @@ class Assets
 		// verifica se o arquivo existe
 		$include = "";
 		if(file_exists($pathFisico)) {
+			
+			// verifica se tem cache control
+			$htmlCache = "";
+			if(intval($core_cache) > 0) {
+				$htmlCache = "?" . $core_cache;
+			}
 
 			// verifica o tipo novamente para criar o include
 			if($type == "css") {
-				$include = "<link href=\"" . $config['application']['basepath'] . $path . "\" rel=\"stylesheet\" type=\"text/css\">";
+				$include = "<link href=\"" . $config['application']['basepath'] . $path . $htmlCache . "\" rel=\"stylesheet\" type=\"text/css\">";
 			}
 			elseif($type == "javascript") {
-				$include = "<script src=\"" . $config['application']['basepath'] . $path . "\"></script>";
+				$include = "<script src=\"" . $config['application']['basepath'] . $path . $htmlCache . "\"></script>";
 			}
 		}
 

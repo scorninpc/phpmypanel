@@ -26,6 +26,14 @@ return [
 		'compile_check' => FALSE,
 	],
 
+	'email' => [
+		'dsn' => "",
+		'sender' => [
+			'email' => "",
+			'name' => "",
+		],
+	],
+
 	'db' => [
 		'enabled' => TRUE,
 		'driver' => 'sqlite',

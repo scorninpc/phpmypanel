@@ -7,6 +7,12 @@ namespace Application\Main;
  */
 class Bootstrap extends \PHPMyPanel\Internal\Bootstrap
 {
+	/**
+	 * Código do cache para forçar novo css/js/imagem
+	 * 
+	 * @var integer
+	 */
+	protected $cache = 3;
 
 	/**
 	 * Armazena o view
@@ -69,6 +75,7 @@ class Bootstrap extends \PHPMyPanel\Internal\Bootstrap
 	public function initView()
 	{
 		// recupera os dados do modulo
+		$currentModule = $this->request->getParam("module");
 		$currentController = $this->request->getParam("controller");
 		$currentAction = $this->request->getParam("action");
 
@@ -85,8 +92,13 @@ class Bootstrap extends \PHPMyPanel\Internal\Bootstrap
 		$this->view->global_alerts = $alerts;
 		$this->view->global_success = $success;
 		$this->view->global_infos = $infos;
-		$this->view->currentController = $currentController;
-		$this->view->currentAction = $currentAction;
+		$this->view->currentModule = $currentModule; // depreciar
+		$this->view->currentController = $currentController; // depreciar
+		$this->view->currentAction = $currentAction; // depreciar
+		$this->view->core_current_module = $currentModule;
+		$this->view->core_current_controller = $currentController;
+		$this->view->core_current_action = $currentAction;
+		$this->view->core_cache = $this->cache;
 
 		// limpa as mensagens
 		\PHPMyPanel\Helpers\Messages::clearMessages();

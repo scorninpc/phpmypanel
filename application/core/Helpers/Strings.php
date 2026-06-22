@@ -65,4 +65,53 @@ class Strings
 		// retorna o texto
 		return $string;
 	}
+
+	/**
+	 * Cria strings aleatórias
+	 * 
+	 * @param int $size Tamanho da string
+	 * @param mixed $hasNumber Se pode usar numeros
+	 * 
+	 * @return string
+	 */
+	static public function randomString(int $size, $hasNumber=TRUE): string
+	{
+		// monta os caracteres permitidos
+		$letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		$numbers = "0123456789";
+		
+		// verifica se possui numeros
+		if($hasNumber) {
+			$chars = $letters . $numbers;
+		}
+		
+		// cria a semente random
+		mt_srand((int)(10000000 * (double)microtime()));
+		
+		// cria a string aleatoria
+		$str = "";
+		for($i = 0, $lc = strlen($chars) - 1; $i < $size; $i ++) {
+			$str .= $chars[mt_rand(0, $lc)];
+		}
+		
+		// retorna a string
+		return $str;
+	}
+
+	/**
+	 * Gera uuids v4
+	 * 
+	 * @return string
+	 */
+	static public function uuid(): string
+	{
+		$data = random_bytes(16);
+
+		// seta o bit em v4
+		$data[6] = chr(ord($data[6]) & 0x0f | 0x40);
+		$data[8] = chr(ord($data[8]) & 0x3f | 0x80);
+			
+		// formata para string 8-4-4-4-12
+		return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+	}
 }

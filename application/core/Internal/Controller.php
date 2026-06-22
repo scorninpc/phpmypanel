@@ -67,7 +67,7 @@ class Controller
 	 * Alias para simplificar e nao precisar pegar o request antes
 	 * 
 	 * @param string $name Nome do parametro
-	 * @param string $default Valor default caso o parametro não exista
+	 * @param mixed $default Valor default caso o parametro não exista
 	 * 
 	 * @return mixed
 	 */

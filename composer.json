@@ -33,7 +33,11 @@
         "smarty/smarty": "^5.0",
         "scorninpc/canvas": "^2.0",
         "illuminate/database": "*",
-        "illuminate/pagination": "*"
+        "illuminate/pagination": "*",
+        "ezyang/htmlpurifier": "^4.19",
+        "symfony/mailer": "*",
+        "symfony/mailjet-mailer": "*",
+        "symfony/http-client": "*"
     },
     "autoload": {
         "psr-4": {
