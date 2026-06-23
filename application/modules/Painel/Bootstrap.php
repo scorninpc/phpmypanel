@@ -109,16 +109,19 @@ class Bootstrap extends \PHPMyPanel\Internal\Bootstrap
 
 		// seta o titulo
 		if(strlen($funcionalidade['nome']?:"") > 0) {
-			\PHPMyPanel\Helpers\Metas::setMeta("title", "PHP My Dash - " . $funcionalidade['nome']);
+			\PHPMyPanel\Helpers\Metas::setMeta("title", "PHP My Panel - " . $funcionalidade['nome']);
 		}
 
 		// assina as variaveis
 		$this->view->core_funcionalidade = $funcionalidade;
 		$this->view->core_funcionalidades = $funcionalidades;
+		
 		$this->view->core_current_module = $currentModule;
 		$this->view->core_current_controller = $currentController;
 		$this->view->core_current_action = $currentAction;
+		
 		$this->view->core_login = $session;
+
 		$this->view->core_cache = $this->cache;
 	}
 

@@ -5,22 +5,22 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="stylesheet" href="{$basePath}/assets/painel/fonts/font-awesome/css/all.min.css" >
-		<link rel="stylesheet" href="{$basePath}/assets/painel/css/tabler.min.css">
-		<link rel="stylesheet" href="{$basePath}/assets/painel/css/tabler-themes.min.css">
-		<link rel="stylesheet" href="{$basePath}/assets/painel/css/jquery-ui.min.css">
-		<link rel="stylesheet" href="{$basePath}/assets/painel/css/plugins/summernote-bs5.min.css">
-		<link rel="stylesheet" href="{$basePath}/assets/painel/css/plugins/fancybox.css">
+		<link rel="stylesheet" href="{$basePath}/assets/painel/fonts/font-awesome/css/all.min.css?{$core_cache}" >
+		<link rel="stylesheet" href="{$basePath}/assets/painel/css/tabler.min.css?{$core_cache}">
+		<link rel="stylesheet" href="{$basePath}/assets/painel/css/tabler-themes.min.css?{$core_cache}">
+		<link rel="stylesheet" href="{$basePath}/assets/painel/css/jquery-ui.min.css?{$core_cache}">
+		<link rel="stylesheet" href="{$basePath}/assets/painel/css/plugins/summernote-bs5.min.css?{$core_cache}">
+		<link rel="stylesheet" href="{$basePath}/assets/painel/css/plugins/fancybox.css?{$core_cache}">
 
 		{if $core_current_controller == "bancodedados"}
-		<link rel="stylesheet" href="{$basePath}/assets/painel/css/plugins/codemirror.min.css" />
-		<link rel="stylesheet" href="{$basePath}/assets/painel/css/plugins/codemirror/material.min.css" />
+		<link rel="stylesheet" href="{$basePath}/assets/painel/css/plugins/codemirror.min.css?{$core_cache}" />
+		<link rel="stylesheet" href="{$basePath}/assets/painel/css/plugins/codemirror/material.min.css?{$core_cache}" />
 		{/if}
 
-		<link rel="stylesheet" href="{$basePath}/assets/painel/css/custom.css">
+		<link rel="stylesheet" href="{$basePath}/assets/painel/css/custom.css?{$core_cache}">
 
 		{* inclui o css se ele existir *}
-		{$this->assets("css")}
+		{$this->assets("css", $core_cache)}
 
 		{$this->meta("title")}
 
@@ -152,24 +152,24 @@
 		{* container para abrigar os alertas *}
 		<div class="toast-containert position-fixed bottom-0 end-0 p-3"></div>
 
-		<script src="{$basePath}/assets/painel/js/tabler.min.js"></script>
-		<script src="{$basePath}/assets/painel/js/jquery-4.0.0.min.js"></script>
-		<script src="{$basePath}/assets/painel/js/jquery-migrate-3.6.0.min.js"></script>
-		<script src="{$basePath}/assets/painel/js/jquery-ui.min.js"></script>
-		<script src="{$basePath}/assets/painel/js/plugins/helpers.js"></script>
-		<script src="{$basePath}/assets/painel/js/plugins/jquery.mask.min.js"></script>
-		<script src="{$basePath}/assets/painel/js/plugins/summernote-bs5.min.js"></script>
-		<script src="{$basePath}/assets/painel/js/plugins/fancybox.umd.js"></script>
+		<script src="{$basePath}/assets/painel/js/tabler.min.js?{$core_cache}"></script>
+		<script src="{$basePath}/assets/painel/js/jquery-4.0.0.min.js?{$core_cache}"></script>
+		<script src="{$basePath}/assets/painel/js/jquery-migrate-3.6.0.min.js?{$core_cache}"></script>
+		<script src="{$basePath}/assets/painel/js/jquery-ui.min.js?{$core_cache}"></script>
+		<script src="{$basePath}/assets/painel/js/plugins/helpers.js?{$core_cache}"></script>
+		<script src="{$basePath}/assets/painel/js/plugins/jquery.mask.min.js?{$core_cache}"></script>
+		<script src="{$basePath}/assets/painel/js/plugins/summernote-bs5.min.js?{$core_cache}"></script>
+		<script src="{$basePath}/assets/painel/js/plugins/fancybox.umd.js?{$core_cache}"></script>
 
 		{if $core_current_controller == "bancodedados"}
-		<script src="{$basePath}/assets/painel/js/plugins/codemirror.min.js"></script>
-		<script src="{$basePath}/assets/painel/js/plugins/codemirror/sql.min.js"></script>
+		<script src="{$basePath}/assets/painel/js/plugins/codemirror.min.js?{$core_cache}"></script>
+		<script src="{$basePath}/assets/painel/js/plugins/codemirror/sql.min.js?{$core_cache}"></script>
 		{/if}
 
-		<script src="{$basePath}/assets/painel/js/custom.js"></script>
+		<script src="{$basePath}/assets/painel/js/custom.js?{$core_cache}"></script>
 
 		{* inclui o javascript caso exista *}
-		{$this->assets("javascript")}
+		{$this->assets("javascript", $core_cache)}
 		
 	</body>
 </html>

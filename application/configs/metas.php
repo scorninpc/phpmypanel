@@ -8,7 +8,7 @@ return [
 
 		// seta os valores default do main
 		'defaults' => [
-			'title' => "PHP My Dash",
+			'title' => "PHP My Panel",
 			'description' => "",
 			'keywords' => "",
 			'og:type' => "",
