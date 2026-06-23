@@ -3,7 +3,7 @@
 - [ ] mudar o titulo da pagina conforme o titulo da funcionalidade
 - [ ] parametrizações
 - [ ] jeito de usar traduções
-- [ ] criar paginação por backend e por javascript
+- [ ] criar paginação por javascript
 - [ ] adicionar o popup/title no label dos campos do form
 - [ ] criar helper para logar os erros
 - [ ] criar tela para ver os erros
@@ -15,11 +15,8 @@
 - [ ] desenvolver "salvar sessão" no login
 - [ ] desenvolver busca
 - [ ] criar campo multiplos uploads
-- [ ] colocar max_size no modal
-- [ ] colocar opção de campo obrigatório no model
 - [ ] adicionar validação dos campos no formulário
 - [ ] criar campo do tipo option que possa selecionar com radio
-- [ ] adicionar opção de texto autoheight (nativo do tabler)
 - [ ] implementar minificação
 - [ ] no tema escuro, a seleção de texto nos inputs quase nao aparecem
 - [ ] fazer o upload de imagem no summernote
@@ -29,7 +26,6 @@
 - [ ] criar a função `setRelationSelect` para um autocomplete mas no formato select
 - [ ] colocar `setMaxSize` no model
 - [ ] colocar `setRequired` no model e criar validação
-- [ ] criar uma tela de execução de banco de dados e exportação dos dados em xlsx
 - [ ] criar sistema de log de erro
 - [ ] criar tela de visualização de log
 - [ ] criar sistema de cache e integrar com redis ou arquivo
@@ -37,6 +33,8 @@
 - [ ] pensar numa forma de usar mascaras na listagem, pra por exemplo criar valores em REAL ou %
 - [ ] criar metodo para ordenar os campos no form e na listagem
 - [ ] achar uma forma de chamar a tela de erro do modulo, e nao só do main
+- [x] criar paginação por backend
+- [x] criar uma tela de execução de banco de dados e exportação dos dados em xlsx
 - [x] criar helpers para incluir title
 - [x] criar helpers para incluir metas
 - [x] criar helpers para incluir css
