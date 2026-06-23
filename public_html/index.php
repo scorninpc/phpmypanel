@@ -30,6 +30,9 @@ require __DIR__ . "/../vendor/autoload.php";
 // verifica se é a criação de thumb de imagens, aqui, não carrega nada, fica levinho
 if ((isset($_GET['param'])) && ($_GET['param'] == "tbimage")) {
 
+	ini_set("display_errors", "Off");
+
+
 	session_cache_limiter('none');
 
 	// busca os parametros

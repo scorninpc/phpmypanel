@@ -8,6 +8,13 @@ namespace Application\Painel;
 class Bootstrap extends \PHPMyPanel\Internal\Bootstrap
 {
 	/**
+	 * Código do cache para forçar novo css/js/imagem
+	 * 
+	 * @var integer
+	 */
+	protected $cache = 3;
+
+	/**
 	 * Armazena o view
 	 * 
 	 * @var \PHPMyPanel\Internal\Smarty
@@ -53,6 +60,7 @@ class Bootstrap extends \PHPMyPanel\Internal\Bootstrap
 		$session = new \PHPMyPanel\Helpers\Sessions("login");
 
 		// recupera os dados do modulo
+		$currentModule = $this->request->getParam("module");
 		$currentController = $this->request->getParam("controller");
 		$currentAction = $this->request->getParam("action");
 		
@@ -63,6 +71,7 @@ class Bootstrap extends \PHPMyPanel\Internal\Bootstrap
 			"painel:usuarios:login",
 			"painel:usuarios:recover",
 			"painel:usuarios:register",
+			"main:error:error",
 		];
 
 		// monta a actionString
@@ -106,9 +115,11 @@ class Bootstrap extends \PHPMyPanel\Internal\Bootstrap
 		// assina as variaveis
 		$this->view->core_funcionalidade = $funcionalidade;
 		$this->view->core_funcionalidades = $funcionalidades;
+		$this->view->core_current_module = $currentModule;
 		$this->view->core_current_controller = $currentController;
 		$this->view->core_current_action = $currentAction;
 		$this->view->core_login = $session;
+		$this->view->core_cache = $this->cache;
 	}
 
 	/**
