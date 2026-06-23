@@ -136,6 +136,13 @@ class Controller extends \PHPMyPanel\Internal\Controller
 					}
 				}
 
+				// se é um campo decimal
+				else if($config['datatype'] == \Application\Painel\Helpers\Model::FIELDTYPE_DECIMAL) {
+
+					// trata o valor
+					$data[$column] = floatval(str_replace(",", ".", str_replace(".", "", $data[$column])));
+				}
+
 				// se é um campo varchar
 				else if($config['datatype'] == \Application\Painel\Helpers\Model::FIELDTYPE_VARCHAR) {
 
