@@ -36,6 +36,7 @@
 - [ ] remover o fontawsome e adicionar material icons
 - [ ] adicionar execute query que traz somente 1 resultado
 - [ ] adicionar flag is_admin no usuario e nas funcionalidades, pelo menos para separar 2 perfis
+- [ ] adicionar where no setAutocomplete como foi feito no sinreports-designer, no model.php
 - [x] criar paginação por backend
 - [x] criar uma tela de execução de banco de dados e exportação dos dados em xlsx
 - [x] criar helpers para incluir title
