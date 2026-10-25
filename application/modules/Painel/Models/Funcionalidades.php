@@ -9,7 +9,7 @@ class Funcionalidades extends \Application\Painel\Helpers\Model
 {
 	// configura o nome da tabela e a chave primaria
 	protected $table = "funcionalidades";
-	protected $primaryKey = "idfuncionalidade";
+	protected $primaryKey = "idfuncionalidadse";
 
 	/**
 	 * configura o model

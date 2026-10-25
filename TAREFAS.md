@@ -30,7 +30,7 @@
 - [ ] nos campos upload, colocar um parametro para criar o thumb no ato do upload no painel
 - [ ] pensar numa forma de usar mascaras na listagem, pra por exemplo criar valores em REAL ou %
 - [ ] criar metodo para ordenar os campos no form e na listagem
-- [ ] achar uma forma de chamar a tela de erro do modulo, e nao só do main
+- [x] achar uma forma de chamar a tela de erro do modulo, e nao só do main
 - [x] parametrizações
 - [x] configuração de timezone no config
 - [x] remover o fontawsome e adicionar material icons

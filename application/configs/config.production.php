@@ -9,8 +9,13 @@ return [
 		'basepath' => "",
 		
 		'display_error' => FALSE,
+		
 		'display_debug' => FALSE,
+
 		'log_errors' => TRUE,
+		'log_404' => FALSE,
+
+		'error_file' => dirname(__DIR__) . "/modules/Main/Views/error/error.tpl",
 	],
 
 	'smarty' => [

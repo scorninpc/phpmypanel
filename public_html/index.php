@@ -248,7 +248,6 @@ foreach($config['routes'] as $name => $route) {
 		->setName($name);
 }
 
-
 // configura a tela de erro
 $displayErrorDetails = $config['application']['display_error'];
 $logErrorDetails = $logError = $config['application']['log_errors'];
@@ -259,10 +258,12 @@ if($displayErrorDetails) {
 	ini_set("display_errors","On");
 }
 
-// chama o middleware para exibir o custom error
+// faz o handler do erro
 $errorMiddleware = $app->addErrorMiddleware($displayErrorDetails, $logError, $logErrorDetails);
-$errorHandler = $errorMiddleware->getDefaultErrorHandler();
-$errorHandler->registerErrorRenderer("text/html", new \PHPMyPanel\Internal\HtmlErrorRenderer());
+$errorMiddleware->setDefaultErrorHandler(
+	new \PHPMyPanel\Internal\ErrorHandler()
+);
+
 
 // executa a aplicação
 $app->run();

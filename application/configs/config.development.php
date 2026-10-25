@@ -6,9 +6,9 @@ return [
 	'application' => [
 		'basepath' => "/phpmypanel/public_html",
 		
-		'display_error' => FALSE,
+		'display_error' => TRUE,
 		'display_debug' => TRUE,
-		'log_errors' => FALSE,
+		'log_errors' => TRUE,
 	],
 
 	'smarty' => [
