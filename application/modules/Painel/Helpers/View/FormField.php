@@ -113,7 +113,7 @@ class FormField
 						$template = "
 							<div class=\"input-group\">
 								<a href=\"" . $preview_path . "\" class=\"btn\" " . $preview_attrib . ">
-									<i class=\"fa-solid fa-picture-in-picture\"></i>
+									<span class=\"material-symbols-outlined\">image</span>
 								</a>
 								<input type=\"file\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" class=\"form-control %(classes)s\">
 							</div>

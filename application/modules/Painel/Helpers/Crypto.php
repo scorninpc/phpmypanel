@@ -41,4 +41,37 @@ class Crypto
 		return crypt($string, $hashString);
 	}
 
+	/**
+	 * Criptografa textos
+	 * 
+	 * @param string $metodo
+	 * @param string $chave
+	 * @param string $conteudo
+	 * @return string
+	 */
+	static function criptografar($metodo, $chave, $conteudo): string
+	{
+		$ivlen = openssl_cipher_iv_length($metodo);
+		$iv = openssl_random_pseudo_bytes($ivlen);
+		$conteudo_criptografado = openssl_encrypt($conteudo, $metodo, $chave, 0, $iv);
+		
+		// retorna o conteudo criptografado
+		return $iv . '::' . $conteudo_criptografado;
+	}
+
+	/**
+	 * Descriptografa textos
+	 * 
+	 * @param string $metodo
+	 * @param string $chave
+	 * @param string $conteudo_criptografado
+	 */
+	static function descriptografar(string $metodo, string $chave, string $conteudo_criptografado): string
+	{
+		list($iv, $conteudo) = explode('::', $conteudo_criptografado, 2);
+		$conteudo = openssl_decrypt($conteudo, $metodo, $chave, 0, $iv);
+
+		return $conteudo;
+	}
+
 }

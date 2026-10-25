@@ -360,6 +360,11 @@ class Model extends \PHPMyPanel\Internal\Model
 			$defaults['columns'] = $options['columns'];
 		}
 
+		// verifica se tem wheres
+		if(isset($options['where'])) {
+			$defaults['where'] = $options['where'];
+		}
+
 		// cerifica se é um vetor, pois se for string as colunas tem o mesmo nome, caso contrario 'column_name'=>'ref_column_name'
 		if(is_array($field)) {
 			$name = key($field);

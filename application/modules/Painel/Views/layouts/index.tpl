@@ -20,7 +20,7 @@
 								<input type="text" name="query" value="{$core_query|default:""|escape}" class="form-control" placeholder="Procurar...">
 								<span class="input-group-text p-0">
 									<button class="btn btn-action">
-										<i class="fa-solid fa-magnifying-glass"></i>
+										<span class="material-symbols-outlined align-middle">search</span>
 									</button>
 								</span>
 							</div>
@@ -28,7 +28,7 @@
 					</div>
 
 					<a href="{$this->url(['controller'=>$core_funcionalidade['controlador'], 'action'=>"form"], "painel")}" class="btn btn-primary btn btn-primary btn-icon px-0 px-sm-3">
-						<i class="fa-solid fa-plus"></i>
+						<span class="material-symbols-outlined align-middle">add</span>
 						<span class="d-none d-sm-inline-block ps-1">Novo</span>
 					</a>
 
@@ -75,7 +75,7 @@
 									{* verifica a visilibidade do campo *}
 									{if $core_model->getVisibility($column['name'], 'list')}
 									<td>
-										<a href="{$this->url(['controller'=>$core_funcionalidade['controlador'], 'action'=>"form", $core_model->getPrimaryKey()=>$row[$core_model->getPrimaryKey()]], "painel")}">
+										<a href="{$this->url(['controller'=>$core_funcionalidade['controlador'], 'action'=>"form", $core_model->getPrimaryKey()=>$row[$core_model->getPrimaryKey()]], "painel")}" class="td-row">
 											{$this->getFormatedValue($core_model, $column['name'], $row)|default:"&nbsp;"}
 										</a>
 									</td>
@@ -105,7 +105,7 @@
 								
 								<li class="page-item">
 									<a class="page-link" href="{$basePath}/painel/{$core_current_controller}/{$core_current_action}/pagina/1" >
-										<i class="fa-solid fa-angles-left"></i>
+										<span class="material-symbols-outlined align-middle">keyboard_double_arrow_left</span>
 									</a>
 								</li>
 							{/if}
@@ -143,7 +143,7 @@
 							{if $core_rows->currentPage() <= ($core_rows->lastPage() - 4)}
 								<li class="page-item">
 									<a class="page-link" href="{$basePath}/painel/{$core_current_controller}/{$core_current_action}/pagina/{$core_rows->lastPage()}" >
-										<i class="fa-solid fa-angles-right"></i>
+										<span class="material-symbols-outlined align-middle">keyboard_double_arrow_right</span>
 									</a>
 								</li>
 							{/if}

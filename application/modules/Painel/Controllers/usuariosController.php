@@ -18,6 +18,20 @@ class usuariosController extends \Application\Painel\Helpers\Controller
 	}
 
 	/**
+	 * hook antes de montar o form
+	 */
+	public function doBeforeForm()
+	{
+		// se não for admin
+		if(!$this->login->is_admin) {
+
+			// esconde os campos de usuario comum
+			$this->model->setVisibility("is_admin", FALSE, FALSE, FALSE);
+
+		}
+	}
+
+	/**
 	 * hook antes da atualização
 	 */
 	public function doBeforeUpdate($data)
@@ -25,6 +39,18 @@ class usuariosController extends \Application\Painel\Helpers\Controller
 		// se a senha for vazia, remove o campo
 		if(strlen($data['password']?:"") == 0) {
 			unset($data['password']);
+		}
+
+		return $data;
+	}
+
+	/**
+	 * hook antes de inserir
+	 */
+	public function doBeforeInsert($data)
+	{
+		if(!$this->login->is_admin) {
+			$data['is_admin'] = FALSE;
 		}
 
 		return $data;
@@ -65,6 +91,8 @@ class usuariosController extends \Application\Painel\Helpers\Controller
 			$session->nome = $user['nome'];
 			$session->idusuario = $user['idusuario'];
 			$session->email = $user['email'];
+			$session->is_admin = $user['is_admin'];
+			$session->is_gerente = $user['is_gerente'];
 
 			// seta a mensagem
 			\PHPMyPanel\Helpers\Messages::success("Welcome back!");

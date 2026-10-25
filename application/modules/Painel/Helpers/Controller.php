@@ -18,6 +18,21 @@ class Controller extends \PHPMyPanel\Internal\Controller
 	public $request;
 
 	/**
+	 * armazena o login
+	 */
+	public $login;
+
+	/**
+	 * login
+	 */
+	public function __construct(\PHPMyPanel\Internal\Smarty $view, \PHPMyPanel\Internal\Request $request, \PHPMyPanel\Internal\Response $response)
+	{
+		parent::__construct($view, $request, $response);
+
+		$this->login = $view->core_login;
+	}
+
+	/**
 	 * faz a listagem dos registros
 	 */
 	public function indexAction()
@@ -81,6 +96,8 @@ class Controller extends \PHPMyPanel\Internal\Controller
 		// assina as variaveis
 		$this->view->core_rows = $rows;
 		$this->view->core_model = $this->model;
+
+		$rows = $this->doAfterList($rows);
 	}
 
 	/**
@@ -92,6 +109,9 @@ class Controller extends \PHPMyPanel\Internal\Controller
 
 		// recupera se tem parametro com o nome da chave primaria
 		$id = intval($this->getParam($primaryKey, 0));
+
+		// executa antes de montar o form
+		$this->doBeforeForm();
 
 		// se tiver id é porque está editando
 		$row = NULL;
@@ -286,8 +306,8 @@ class Controller extends \PHPMyPanel\Internal\Controller
 
 		}
 
-		// executa antes de montar o form
-		$this->doBeforeForm();
+		// executa depois de montar o form
+		$this->doAfterForm();
 
 		// assina as variaveis
 		$this->view->core_model = $this->model;
@@ -365,12 +385,18 @@ class Controller extends \PHPMyPanel\Internal\Controller
 	 * hooks
 	 */
 	public function doBeforeList($select) { return $select; }
+	public function doAfterList($rows) { return $rows; }
+	
 	public function doAfterInsert($id) {}
 	public function doBeforeInsert($data) { return $data; }
+
 	public function doAfterUpdate($id) {}
 	public function doBeforeUpdate($data) { return $data; }
+	
 	public function doAfterDelete($id) {}
 	public function dobeforeDelete($id) {}
+	
+	public function doAfterForm() { }
 	public function doBeforeForm() { }
 	
 }

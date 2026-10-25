@@ -4,21 +4,25 @@ CREATE TABLE funcionalidades (
 	nome varchar(250),
 	controlador varchar(250),
 	icone varchar(50),
-	hide boolean not null default false
+	hide boolean not null default false,
+	is_admin BOOLEAN,
+	is_gerente BOOLEAN
 );
 
-INSERT INTO funcionalidades (nome, controlador, icone, hide) VALUES ('Usuarios', 'usuarios', 'fa-solid fa-user-group', True);
-INSERT INTO funcionalidades (nome, controlador, icone, hide) VALUES ('Funcionalidades', 'funcionalidades', 'fa-solid fa-gears', True);
+INSERT INTO funcionalidades (nome, controlador, icone, hide, is_admin, is_gerente) VALUES ('Usuarios', 'usuarios', 'group', True, True, False);
+INSERT INTO funcionalidades (nome, controlador, icone, hide, is_admin, is_gerente) VALUES ('Funcionalidades', 'funcionalidades', 'menu_book', True, True, False);
 
 -- usuarios
 CREATE TABLE usuarios (
 	idusuario integer not null primary key AUTOINCREMENT, 
 	nome varchar(100),
 	email varchar(250), 
-	password varchar(250)
+	password varchar(250),
+	is_admin BOOLEAN,
+	is_gerente BOOLEAN
 );
 
-INSERT INTO usuarios (email, password) VALUES ('Admin', 'test@localhost', '$2a$07$ZHyBfzO7xkSfuU5D3EIHGOmdI6DX2rSLu/.TPWCdAzu5Xugaqhby.'); -- senha 123mudar
+INSERT INTO usuarios (nome, email, password, is_admin, is_gerente) VALUES ('Admin', 'test@localhost', '$2a$07$ZHyBfzO7xkSfuU5D3EIHGOmdI6DX2rSLu/.TPWCdAzu5Xugaqhby.', True, True); -- senha 123mudar
 
 
 -- tabela de testes

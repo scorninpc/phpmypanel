@@ -176,7 +176,7 @@ jQuery.fn.CoreAutocomplete = function(e) {
 			var input_group = $('<div class="input-group">'),
 				input_value = e,
 				input_label = $('<input type="text">'),
-				input_button = $('<button class="btn btn-white" type="button"><i class="fas fa-caret-down"></i></button>');
+				input_button = $('<button class="btn btn-white core-autocomplete-buttom p-0" type="button"><span class="material-symbols-outlined">arrow_drop_down</span></button>');
 
 			// configura o input value
 			input_value

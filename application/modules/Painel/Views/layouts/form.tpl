@@ -26,18 +26,18 @@
 
 						{if $core_form_mode == "update"}
 						<a href="{$this->url(['controller'=>$core_funcionalidade['controlador'], 'action'=>"delete", $core_model->getPrimaryKey()=>$core_row[$core_model->getPrimaryKey()]|default:0], "painel")}" class="btn btn-red btn-icon px-0 px-sm-3 me-0 me-sm-3 core-delete-confirm">
-							<i class="fa-solid fa-trash"></i>
+							<span class="material-symbols-outlined align-middle">cancel</span>
 							<span class="d-none d-sm-inline-block ps-1">Remover</span>
 						</a>
 						{/if}
 
 						<a href="{$this->url(['controller'=>$core_funcionalidade['controlador'], 'action'=>"index"], "painel")}" class="btn btn-secondary btn-icon px-0 px-sm-3">
-							<i class="fa-solid fa-list-ul"></i>
+							<span class="material-symbols-outlined align-middle">list</span>
 							<span class="d-none d-sm-inline-block ps-1">Voltar</span>
 						</a>
 
 						<button type="submit" class="btn btn-primary btn-icon px-0 px-sm-3">
-							<i class="fa-regular fa-paper-plane"></i>
+							<span class="material-symbols-outlined align-middle">send</span>
 							<span class="d-none d-sm-inline-block ps-1">{if $core_form_mode == "update"}Atualizar{else}Inserir{/if}</span>
 						</button>
 

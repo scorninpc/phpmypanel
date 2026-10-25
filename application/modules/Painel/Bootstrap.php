@@ -105,7 +105,14 @@ class Bootstrap extends \PHPMyPanel\Internal\Bootstrap
 		$funcionalidade = $model->where("controlador", $currentController)->first();
 
 		// recupera todas as funcionalidades para criar o menu
-		$funcionalidades = $model->orderBy("nome")->get();
+		$select = $model->orderBy("nome");
+		if(!$session->is_gerente) {
+			$select->whereRaw("(COALESCE(is_gerente, FALSE) = FALSE)");
+		}
+		if(!$session->is_admin) {
+			$select->whereRaw("(COALESCE(is_admin, FALSE) = FALSE)");
+		}
+		$funcionalidades = $select->get();
 
 		// seta o titulo
 		if(strlen($funcionalidade['nome']?:"") > 0) {

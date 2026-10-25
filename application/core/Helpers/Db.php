@@ -31,4 +31,42 @@ class Db extends \Illuminate\Database\Capsule\Manager
 
 		return $result;
 	}
+
+	/**
+	 * executa uma query e retorna somente o primeiro registro
+	 * 
+	 * @param string $query Query SQL a ser executada
+	 * @param array $params Parametros para efetuar o bind
+	 * 
+	 * @return ?array
+	 */
+	static public function getFirstFromQuery(string $query, array $params=[]): ?array
+	{
+		$rows = self::executeQuery($query, $params);
+		if(count($rows??[]) > 0) {
+			return $rows[0];
+		}
+		else {
+			return NULL;
+		}
+	}
+
+	/**
+	 * executa uma query e retorna os registros
+	 * 
+	 * @param string $query Query SQL a ser executada
+	 * @param array $params Parametros para efetuar o bind
+	 * 
+	 * @return ?array
+	 */
+	static public function getFromQuery(string $query, array $params=[]): ?array
+	{
+		$rows = self::executeQuery($query, $params);
+		if(count($rows??[]) > 0) {
+			return $rows;
+		}
+		else {
+			return NULL;
+		}
+	}
 }

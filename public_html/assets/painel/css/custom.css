@@ -25,6 +25,21 @@
 }
 
 /**
+ * icones
+ */
+.material-symbols-outlined {
+	font-size: 20px;
+	vertical-align: middle;
+}
+
+/**
+ * top navbar
+ */
+#navbar-menu .nav-link-icon {
+	height: initial;
+}
+
+/**
  * icon for theme
  */
 html[data-bs-theme="dark"] a[href="#theme=dark"] {
@@ -33,10 +48,66 @@ html[data-bs-theme="dark"] a[href="#theme=dark"] {
 html:not([data-bs-theme="dark"]) a[href="#theme=light"] {
 	display: none !important;
 }
+a[href="#theme=dark"] span,
+a[href="#theme=light"] span {
+	font-size: 1.1rem;
+}
+
+.toast-containert {
+	z-index: 1250;
+}
 
 /**
  * tabela com link
  */
+table.sin-table tr th:first-child,
+table.sin-table tr td:first-child {
+}
+
+table.sin-table tr th {
+	padding: .65rem .45rem;
+	color: rgb(93, 99, 106);
+	font-weight: 600;
+	font-size: .75rem;
+}
+
+table.sin-table tbody td {
+	padding: 0;
+	padding-left: 0;
+}
+table.sin-table .td-row {
+	padding: 0.25rem .45rem;
+	display: block;
+	color: rgb(64, 64, 64);
+}
+
+table.sin-table .td-row a {
+	color: rgb(64, 64, 64);
+}
+
+table.sin-table .td-row:hover {
+	text-decoration: none;
+}
+
+table.sin-table:not(.nohover) tr:hover td {
+	--tblr-table-striped-bg: #e9f2fb;
+	--tblr-table-bg: #066fd117;
+}
+table.sin-table:not(.nohover) tr:hover td a {
+	color: rgb(58, 62, 68);
+}
+
+html[data-bs-theme="dark"] table.sin-table tbody a {
+	color: rgb(252, 253, 254) !important;
+}
+
+html[data-bs-theme="dark"] table.sin-table:not(.nohover) tr:hover td { 
+	--tblr-table-striped-bg: #1d2f45;
+	--tblr-table-bg: #066fd117;
+}
+
+/* 
+
 table.sin-table thead tr th {
 	padding: .65rem .45rem;
 	color: rgb(93, 99, 106);
@@ -45,12 +116,12 @@ table.sin-table thead tr th {
 table.sin-table tbody tr td {
 	padding: 0;
 }
-table.sin-table tbody tr td a {
+table.sin-table tbody tr td a.td-row {
 	color: rgb(64, 64, 64);
 	padding: .25rem .25rem;
 	display: block;
 }
-table.sin-table tbody tr td a:hover {
+table.sin-table tbody tr td a.td-row:hover {
 	color: rgb(64, 64, 64);
 	text-decoration: none;
 }
@@ -60,6 +131,23 @@ table.sin-table tbody tr:hover td a {
 }
 .card-footer {
 	padding: 0.75rem var(--tblr-card-cap-padding-x);
+}
+
+table.sin-table .td-row  {
+	padding: .65rem .45rem;
+	display: block;
+	color: rgb(93, 99, 106);
+}
+
+html[data-bs-theme="dark"] table.sin-table .td-row  {
+	color: rgb(252, 253, 254);
+}
+.td-row:hover {
+	text-decoration: none;
+} */
+
+table.sin-table .td-row .material-symbols-outlined {
+	font-size: 16px;
 }
 
 /** dark **/
@@ -95,6 +183,12 @@ html[data-bs-theme="dark"] table.sin-table tbody tr td a {
 .core-autocomplete {
 	max-width: 80px;
 	text-align: center;
+}
+.core-autocomplete-buttom .material-symbols-outlined {
+	font-size: 24px;
+}
+.ui-widget.ui-widget-content {
+	z-index: 1111;
 }
 
 /**

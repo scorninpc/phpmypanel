@@ -5,7 +5,9 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="stylesheet" href="{$basePath}/assets/painel/fonts/font-awesome/css/all.min.css?{$core_cache}" >
+		{* <link rel="stylesheet" href="{$basePath}/assets/painel/fonts/font-awesome/css/all.min.css?{$core_cache}" > *}
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,500,1,-25" />
+
 		<link rel="stylesheet" href="{$basePath}/assets/painel/css/tabler.min.css?{$core_cache}">
 		<link rel="stylesheet" href="{$basePath}/assets/painel/css/tabler-themes.min.css?{$core_cache}">
 		<link rel="stylesheet" href="{$basePath}/assets/painel/css/jquery-ui.min.css?{$core_cache}">
@@ -62,8 +64,8 @@
 					<div class="navbar-nav flex-row order-md-last">
 						
 						<div class="d-none d-md-flex">
-							<a href="#theme=dark" class="nav-link px-0 " data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Habilitar modo escuro" data-bs-original-title="Habilitar modo escuro"><i class="fas fa-moon"></i></a>
-							<a href="#theme=light" class="nav-link px-0 " data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Habilitar modo claro" data-bs-original-title="Habilitar modo claro"><i class="fas fa-sun"></i></a>
+							<a href="#theme=dark" class="nav-link px-0 " data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Habilitar modo escuro" title="Habilitar modo escuro"><span class="material-symbols-outlined align-middle">dark_mode</span></a>
+							<a href="#theme=light" class="nav-link px-0 " data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Habilitar modo claro" title="Habilitar modo claro"><span class="material-symbols-outlined align-middle">light_mode</span></a>
 						</div>
 
 						<div class="nav-item dropdown nav-item-user">
@@ -75,10 +77,18 @@
 								</div>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+								{if $core_login->is_admin}
 								<a href="{$this->url(['controller'=>"funcionalidades", 'action'=>"index"], "painel")}" class="dropdown-item">Funcionalidades</a>
 								<a href="{$this->url(['controller'=>"usuarios", 'action'=>"index"], "painel")}" class="dropdown-item">Usuários</a>
 								<a href="{$this->url(['controller'=>"bancodedados", 'action'=>"index"], "painel")}" class="dropdown-item">Banco de Dados</a>
 								<div class="dropdown-divider"></div>
+								{/if}
+
+								{if $core_login->is_admin || $core_login->is_gerente}
+								<a href="{$this->url(['controller'=>"usuarios", 'action'=>"index"], "painel")}" class="dropdown-item">Usuários</a>
+								<div class="dropdown-divider"></div>
+								{/if}
+
 								<a href="{$this->url(['controller'=>"usuarios", 'action'=>"logout"], "painel")}" class="dropdown-item">Sair</a>
 							</div>
 
@@ -92,7 +102,7 @@
 								<li class="nav-item">
 									<a class="nav-link active" href="{$this->url([], "painel")}">
 										<span class="nav-link-icon d-md-none d-lg-inline-block">
-											<i class="fas fa-tachometer-alt"></i>
+											<span class="material-symbols-outlined align-middle">dashboard</span>
 										</span>
 										<span class="nav-link-title">
 											Dashboard
@@ -103,11 +113,12 @@
 								{foreach from=$core_funcionalidades item=core_funcionalidade}
 									{* se for para esconder, da um continue. não faz na query porque é usado para montar os breadcrumb e titles *}
 									{if $core_funcionalidade['hide']}{continue}{/if}
+
 									<li class="nav-item">
 										<a class="nav-link active" href="{$this->url(['controller'=>$core_funcionalidade['controlador']], "painel")}">
 											{if strlen($core_funcionalidade['icone']|default:"") > 0}
 											<span class="nav-link-icon d-md-none d-lg-inline-block">
-												<i class="{$core_funcionalidade['icone']|escape}"></i>
+												<span class="material-symbols-outlined align-middle">{$core_funcionalidade['icone']|escape}</span>
 											</span>
 											{/if}
 											<span class="nav-link-title">{$core_funcionalidade['nome']|escape}</span>

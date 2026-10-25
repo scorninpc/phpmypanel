@@ -28,3 +28,4 @@ logs/
 docs/
 .gitconfig
 .sqlite_history
+application/tmp/
