@@ -11,6 +11,7 @@ CREATE TABLE funcionalidades (
 
 INSERT INTO funcionalidades (nome, controlador, icone, hide, is_admin, is_gerente) VALUES ('Usuarios', 'usuarios', 'group', True, True, False);
 INSERT INTO funcionalidades (nome, controlador, icone, hide, is_admin, is_gerente) VALUES ('Funcionalidades', 'funcionalidades', 'menu_book', True, True, False);
+INSERT INTO funcionalidades (nome, controlador, icone, hide, is_admin, is_gerente) VALUES ('Parametrizações', 'parametrizacoes', 'tune', True, True, False);
 
 -- usuarios
 CREATE TABLE usuarios (
@@ -37,4 +38,13 @@ CREATE TABLE testes (
 	campo_data date,
 	campo_datahora datetime,
 	campo_arquivo varchar(50)
+);
+
+-- tabela de parametrizações
+CREATE TABLE parametrizacoes (
+	idparametrizacao integer not null primary key AUTOINCREMENT,
+	descricao VARCHAR(250) NOT NULL,
+	chave VARCHAR(250) NOT NULL,
+	valor TEXT NOT NULL,
+	tipo VARCHAR(100)
 );

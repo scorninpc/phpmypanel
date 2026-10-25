@@ -1,6 +1,5 @@
 # Tarefas
 
-- [ ] parametrizações
 - [ ] jeito de usar traduções
 - [ ] criar paginação por javascript
 - [ ] adicionar o popup/title no label dos campos do form
@@ -32,6 +31,7 @@
 - [ ] pensar numa forma de usar mascaras na listagem, pra por exemplo criar valores em REAL ou %
 - [ ] criar metodo para ordenar os campos no form e na listagem
 - [ ] achar uma forma de chamar a tela de erro do modulo, e nao só do main
+- [x] parametrizações
 - [x] configuração de timezone no config
 - [x] remover o fontawsome e adicionar material icons
 - [x] adicionar execute query que traz somente 1 resultado

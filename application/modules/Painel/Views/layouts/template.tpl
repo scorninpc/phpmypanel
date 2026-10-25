@@ -78,8 +78,9 @@
 							</a>
 							<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
 								{if $core_login->is_admin}
+									<a href="{$this->url(['controller'=>"usuarios", 'action'=>"index"], "painel")}" class="dropdown-item">Usuários</a>
+								<a href="{$this->url(['controller'=>"parametrizacoes", 'action'=>"index"], "painel")}" class="dropdown-item">Parametrizações</a>
 								<a href="{$this->url(['controller'=>"funcionalidades", 'action'=>"index"], "painel")}" class="dropdown-item">Funcionalidades</a>
-								<a href="{$this->url(['controller'=>"usuarios", 'action'=>"index"], "painel")}" class="dropdown-item">Usuários</a>
 								<a href="{$this->url(['controller'=>"bancodedados", 'action'=>"index"], "painel")}" class="dropdown-item">Banco de Dados</a>
 								<div class="dropdown-divider"></div>
 								{/if}

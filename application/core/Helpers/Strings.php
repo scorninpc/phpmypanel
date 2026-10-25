@@ -114,4 +114,26 @@ class Strings
 		// formata para string 8-4-4-4-12
 		return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
 	}
+
+	/**
+	 * converte a string para decimal
+	 * 
+	 * @param string $decimal
+	 * return float
+	 */
+	static public function toDecimal(string $decimal): float
+	{
+		return floatval(str_replace(",", ".", str_replace(".", "", $decimal)));
+	}
+
+	/**
+	 * converte a string para inteiro
+	 * 
+	 * @param string $numero
+	 * return int
+	 */
+	static public function toInteger(string $numero): int
+	{
+		return intval(preg_replace('/[^0-9]/', '', $numero));
+	}
 }

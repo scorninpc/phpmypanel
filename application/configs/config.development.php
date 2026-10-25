@@ -7,7 +7,7 @@ return [
 		'basepath' => "/phpmypanel/public_html",
 		
 		'display_error' => FALSE,
-		'display_debug' => FALSE,
+		'display_debug' => TRUE,
 		'log_errors' => FALSE,
 	],
 
