@@ -20,6 +20,15 @@ if(!file_exists($configFile)) {
 	throw new \Exception("Config file not exists to this APPLICATION_ENV");
 }
 $config = require($configFile);
+while(isset($config['extends'])) {
+
+	// importa a extensão
+	$tmpConfig = require(__DIR__ . "/../application/configs/config." . $config['extends'] . ".php");
+	unset($config['extends']);
+
+	// faz o merge
+	$config = array_replace_recursive($tmpConfig, $config);
+}
 
 // define o caminho da aplicação
 defined("APPLICATION_PATH") || define("APPLICATION_PATH", realpath($config['application']['location']));
@@ -203,6 +212,12 @@ $container->set(\PHPMyPanel\Internal\Smarty::class, function($container) use ($c
 if($config['db']['enabled']) {
 	$database = new \Illuminate\Database\Capsule\Manager();
 	$database->addConnection($config['db']);
+
+	// seta o time zone
+	if((isset($config['db']['timezone'])) && ($config['db']['driver'] == "pgsql")) {
+		$database->getConnection()->getPdo()->exec("SET TIME ZONE '" . $config['db']['timezone'] . "'");
+	}
+
 	$database->setAsGlobal();
 	$database->bootEloquent();
 }

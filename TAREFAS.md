@@ -1,6 +1,5 @@
 # Tarefas
 
-- [ ] mudar o titulo da pagina conforme o titulo da funcionalidade
 - [ ] parametrizações
 - [ ] jeito de usar traduções
 - [ ] criar paginação por javascript
@@ -33,11 +32,12 @@
 - [ ] pensar numa forma de usar mascaras na listagem, pra por exemplo criar valores em REAL ou %
 - [ ] criar metodo para ordenar os campos no form e na listagem
 - [ ] achar uma forma de chamar a tela de erro do modulo, e nao só do main
-- [ ] remover o fontawsome e adicionar material icons
-- [ ] adicionar execute query que traz somente 1 resultado
-- [ ] adicionar flag is_admin no usuario e nas funcionalidades, pelo menos para separar 2 perfis
-- [ ] adicionar where no setAutocomplete como foi feito no sinreports-designer, no model.php
-- [ ] configuração de timezone no config
+- [x] configuração de timezone no config
+- [x] remover o fontawsome e adicionar material icons
+- [x] adicionar execute query que traz somente 1 resultado
+- [x] adicionar flag is_admin no usuario e nas funcionalidades, pelo menos para separar 2 perfis
+- [x] adicionar where no setAutocomplete como foi feito no sinreports-designer, no model.php
+- [x] mudar o titulo da pagina conforme o titulo da funcionalidade
 - [x] criar paginação por backend
 - [x] criar uma tela de execução de banco de dados e exportação dos dados em xlsx
 - [x] criar helpers para incluir title

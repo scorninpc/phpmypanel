@@ -15,7 +15,7 @@ return [
 
 	'smarty' => [
 		'template_dir' => [
-			dirname(__FILE__) . "/../modules/",
+			dirname(__FILE__) . "/../modules",
 		],
 		'compile_dir' =>  dirname(__FILE__) . "/../tmp/templates_c",
 		'cache_dir' =>  dirname(__FILE__) . "/../tmp/templates_c",
@@ -38,6 +38,7 @@ return [
 		'enabled' => TRUE,
 		'driver' => 'sqlite',
 		'database' => dirname(__FILE__) . "/../tmp/database.sqlite3",
+		'timezone' => "America/Sao_Paulo",
 	],
 
 	'routes' => require dirname(__FILE__) . "/routes.php",
