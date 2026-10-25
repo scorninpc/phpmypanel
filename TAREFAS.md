@@ -3,7 +3,6 @@
 - [ ] jeito de usar traduções
 - [ ] criar paginação por javascript
 - [ ] adicionar o popup/title no label dos campos do form
-- [ ] criar helper para logar os erros
 - [ ] criar tela para ver os erros
 - [ ] criar metodo no model que seta que o campo é invisivel no index quando mobile, para adicionar uma classe que esconde a coluna da tabela no mobile 
 - [ ] criar sistema de log que grava inserts, updates e deletes numa tabela de log
@@ -24,12 +23,13 @@
 - [ ] criar a função `setRelationSelect` para um autocomplete mas no formato select
 - [ ] colocar `setMaxSize` no model
 - [ ] colocar `setRequired` no model e criar validação
-- [ ] criar sistema de log de erro
 - [ ] criar tela de visualização de log
 - [ ] criar sistema de cache e integrar com redis ou arquivo
 - [ ] nos campos upload, colocar um parametro para criar o thumb no ato do upload no painel
 - [ ] pensar numa forma de usar mascaras na listagem, pra por exemplo criar valores em REAL ou %
 - [ ] criar metodo para ordenar os campos no form e na listagem
+- [x] criar sistema de log de erro
+- [x] criar helper para logar os erros
 - [x] achar uma forma de chamar a tela de erro do modulo, e nao só do main
 - [x] parametrizações
 - [x] configuração de timezone no config
