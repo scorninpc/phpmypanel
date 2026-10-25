@@ -8,7 +8,7 @@ return [
 		
 		'display_error' => TRUE,
 		'display_debug' => TRUE,
-		'log_errors' => TRUE,
+		'log_errors' => FALSE,
 	],
 
 	'smarty' => [

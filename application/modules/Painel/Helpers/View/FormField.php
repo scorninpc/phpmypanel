@@ -51,7 +51,7 @@ class FormField
 
 			// senhas
 			case \Application\Painel\Helpers\Model::FIELDTYPE_PASSWORD:
-				$template = "<input type=\"password\" name=\"%(name)s\" id=\"%(id)s\" value=\"\" placeholder=\"%(long_description)s\" class=\"form-control %(classes)s\">";
+				$template = "<input type=\"password\" name=\"%(name)s\" id=\"%(id)s\" value=\"\" placeholder=\"%(long_description)s\" class=\"form-control %(classes)s\" %(required)s>";
 				break;
 
 			// boolean
@@ -69,7 +69,7 @@ class FormField
 
 			// text
 			case \Application\Painel\Helpers\Model::FIELDTYPE_TEXT:
-				$template = "<textarea name=\"%(name)s\" id=\"%(id)s\" class=\"form-control %(classes)s\">%(value)s</textarea>";
+				$template = "<textarea name=\"%(name)s\" id=\"%(id)s\" class=\"form-control %(classes)s\" %(required)s>%(value)s</textarea>";
 				break;
 
 			// date
@@ -80,18 +80,18 @@ class FormField
 					$value = date("Y-m-d", strtotime($value??""));
 				}
 
-				$template = "<input type=\"date\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" class=\"form-control %(classes)s\">";
+				$template = "<input type=\"date\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" class=\"form-control %(classes)s\" %(required)s>";
 				break;
 
 			// datetime
 			case \Application\Painel\Helpers\Model::FIELDTYPE_DATETIME:
-				$template = "<input type=\"datetime-local\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" class=\"form-control %(classes)s\">";
+				$template = "<input type=\"datetime-local\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" class=\"form-control %(classes)s\" %(required)s>";
 				break;
 
 			// todos os outros tipos são um input="text"
 			case \Application\Painel\Helpers\Model::FIELDTYPE_VARCHAR:
 				// template padrão do varchar
-				$template = "<input type=\"text\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" placeholder=\"%(long_description)s\" class=\"form-control %(classes)s\">";
+				$template = "<input type=\"text\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" placeholder=\"%(long_description)s\" class=\"form-control %(classes)s\" %(required)s>";
 
 				// se for um arquivo
 				if($column['file'] !== NULL) {
@@ -115,7 +115,7 @@ class FormField
 								<a href=\"" . $preview_path . "\" class=\"btn\" " . $preview_attrib . ">
 									<span class=\"material-symbols-outlined\">image</span>
 								</a>
-								<input type=\"file\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" class=\"form-control %(classes)s\">
+								<input type=\"file\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" class=\"form-control %(classes)s\" %(required)s>
 							</div>
 
 							<div class=\"modal\" id=\"exampleModal\" tabindex=\"-1\">
@@ -130,7 +130,7 @@ class FormField
 					}
 					else {
 						$template = "
-							<input type=\"file\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" class=\"form-control %(classes)s\">
+							<input type=\"file\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" class=\"form-control %(classes)s\" %(required)s>
 						";
 					}
 					
@@ -143,7 +143,7 @@ class FormField
 					$assoc = count(array_filter(array_keys($column['options']), "is_string")) > 0;
 
 					// inicia o template
-					$template = "<select class=\"form-select %(classes)s\" id=\"%(id)s\" name=\"%(name)s\">\n";
+					$template = "<select class=\"form-select %(classes)s\" id=\"%(id)s\" name=\"%(name)s\" %(required)s>\n";
 
 					// percorre as opções
 					foreach($column['options'] as $option_value => $option_description) {
@@ -167,12 +167,12 @@ class FormField
 				break;
 
 			case \Application\Painel\Helpers\Model::FIELDTYPE_INTEGER:
-				$template = "<input type=\"text\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" placeholder=\"%(long_description)s\" class=\"form-control %(classes)s\">";
+				$template = "<input type=\"text\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" placeholder=\"%(long_description)s\" class=\"form-control %(classes)s\" %(required)s>";
 
 				// se for um autocomplete
 				if($column['autocomplete'] !== NULL) {
 					$autocomplete_label = $row[$field . "_label"];
-					$template = "<input type=\"text\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" placeholder=\"%(long_description)s\" class=\"form-control %(classes)s\" data-core-autocomplete-model=\"%(model_name)s\" data-core-autocomplete-label=\"%(autocomplete_label)s\">";
+					$template = "<input type=\"text\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" placeholder=\"%(long_description)s\" class=\"form-control %(classes)s\" data-core-autocomplete-model=\"%(model_name)s\" data-core-autocomplete-label=\"%(autocomplete_label)s\" %(required)s>";
 				}
 
 				break;
@@ -184,13 +184,13 @@ class FormField
 					$value = number_format($value, 2, ",", ".");
 				}
 
-				$template = "<input type=\"text\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" placeholder=\"%(long_description)s\" class=\"form-control %(classes)s\">";
+				$template = "<input type=\"text\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" placeholder=\"%(long_description)s\" class=\"form-control %(classes)s\" %(required)s>";
 				break;
 
 
 
 			default:
-				$template = "<input type=\"text\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" placeholder=\"%(long_description)s\" class=\"form-control %(classes)s\">";
+				$template = "<input type=\"text\" name=\"%(name)s\" id=\"%(id)s\" value=\"%(value)s\" placeholder=\"%(long_description)s\" class=\"form-control %(classes)s\" %(required)s>";
 				break;
 		}
 
@@ -207,6 +207,7 @@ class FormField
 			'autocomplete_label' => $autocomplete_label??"",
 			'checked' => $checked??"",
 			'model_name' => "\\" . get_class($model),
+			'required' => ($column['required']) ? "required" : "",
 		]);
 
 		// faz a troca do template todo (coluna bootstrap)

@@ -10,9 +10,7 @@
 - [ ] criar o recuperar senha
 - [ ] criar opção de login sem senha, por token
 - [ ] desenvolver "salvar sessão" no login
-- [ ] desenvolver busca
 - [ ] criar campo multiplos uploads
-- [ ] adicionar validação dos campos no formulário
 - [ ] criar campo do tipo option que possa selecionar com radio
 - [ ] implementar minificação
 - [ ] no tema escuro, a seleção de texto nos inputs quase nao aparecem
@@ -22,12 +20,14 @@
 - [ ] os views helpers passam o $config, e parece estar com problema. tirar, deixar sem passar nada mesmo, quando precisar pega do application
 - [ ] criar a função `setRelationSelect` para um autocomplete mas no formato select
 - [ ] colocar `setMaxSize` no model
-- [ ] colocar `setRequired` no model e criar validação
 - [ ] criar tela de visualização de log
 - [ ] criar sistema de cache e integrar com redis ou arquivo
 - [ ] nos campos upload, colocar um parametro para criar o thumb no ato do upload no painel
 - [ ] pensar numa forma de usar mascaras na listagem, pra por exemplo criar valores em REAL ou %
 - [ ] criar metodo para ordenar os campos no form e na listagem
+- [x] colocar `setRequired` no model e criar validação
+- [x] adicionar validação dos campos no formulário
+- [x] desenvolver busca
 - [x] criar sistema de log de erro
 - [x] criar helper para logar os erros
 - [x] achar uma forma de chamar a tela de erro do modulo, e nao só do main

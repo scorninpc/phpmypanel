@@ -71,7 +71,8 @@ class Model extends \PHPMyPanel\Internal\Model
 			],
 			'file' => NULL,
 			'autocomplete' => NULL,
-			'options' => NULL
+			'options' => NULL,
+			'required' => FALSE,
 		];
 
 		// a depender do tipo, ja configura alguns padrões
@@ -155,6 +156,17 @@ class Model extends \PHPMyPanel\Internal\Model
 	public function getDescriptionField()
 	{
 		return $this->description_field;
+	}
+
+	/**
+	 * seta a obrigatoriedade do campo
+	 * 
+	 * @param string $name
+	 * @param bool $required
+	 */
+	public function setRequired($name, $required)
+	{
+		$this->columns[$name]['required'] = $required;
 	}
 	
 	/**

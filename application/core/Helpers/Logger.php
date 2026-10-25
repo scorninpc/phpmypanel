@@ -18,7 +18,7 @@ class Logger
 	 * 
 	 * @param \Exception $exception
 	 */
-	static public function log(\Exception $exception)
+	static public function log(\Throwable $exception)
 	{
 		// recupera os dados da aplicação
 		$app = \PHPMyPanel\Internal\Application::getInstance();

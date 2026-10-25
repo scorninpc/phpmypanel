@@ -24,6 +24,10 @@ class Usuarios extends \Application\Painel\Helpers\Model
 
 		// seta o campo descrição
 		$this->setDescriptionField("nome");
+
+		// seta a obrigatoriedade dos campos
+		$this->setRequired("nome", TRUE);
+		$this->setRequired("email", TRUE);
 		
 		// seta a visibilidade dos campos
 		$this->setVisibility("nome", TRUE, TRUE, TRUE);

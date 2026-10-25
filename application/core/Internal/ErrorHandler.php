@@ -33,6 +33,8 @@ final class ErrorHandler implements \Slim\Interfaces\ErrorHandlerInterface
 		// grava o log caso precisar
 		if($config['application']['log_errors']) {
 			if((($config['application']['log_404']) && ($code == 404)) || ($code != 404)) {
+
+			d($exception);
 				// grava o log
 				\PHPMyPanel\Helpers\Logger::log($exception);
 			}
